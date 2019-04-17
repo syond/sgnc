@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Funcionario;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Funcionario;
 
 class FuncionarioController extends Controller
 {
@@ -14,7 +15,7 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        //
+        return view('funcionario.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('funcionario.index');
     }
 
     /**
@@ -35,39 +36,87 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        $validarDados = $request->validate([
+            'txt_nome'=>'required|max:30',
+            'txt_email'=> 'max:50',
+            'txt_matricula' => 'required|numeric',
+            'txt_senha'=>'required',
+            'foto'
+          ]);
+        */
+
+         /*    
+          $funcionario = new Funcionario([
+            'nome' => $request->get('txt_nome'),
+            'email'=> $request->get('txt_email'),
+            'matricula'=> $request->get('txt_matricula'),
+            'senha'=> $request->get('txt_senha')
+          ]);
+            
+          $funcionario->save();
+            */
+          //return redirect('/funcionario')->with('success', 'Stock has been added');
+          
+
+
+          
+
+
+
+           //ERRO: 1364 Field 'matricula' doesn't have a default value
+          //$funcionario = Funcionario::create($validarDados);
+            
+
+          
+          $funcionario = Funcionario::create([
+            'nome'      => $request->get('txt_nome'),
+            'email'     => $request->get('txt_email'),
+            'matricula' => $request->get('txt_matricula'),
+            'senha'     => $request->get('txt_senha'),
+            'foto'      => 'null'
+          ]);
+
+          $funcionario->save();
+ 
+          //dd($funcionario->all());
+
+          return redirect('/funcionario')->with('success', 'Sucesso!');
+
+          //echo "DEU CERTO";
+          
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Funcionario  $funcionario
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Funcionario $funcionario)
+    public function show($id)
     {
-        //
+        return view('funcionario.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Funcionario  $funcionario
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Funcionario $funcionario)
+    public function edit($id)
     {
-        //
+        return view('funcionario.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Funcionario  $funcionario
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Funcionario $funcionario)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +124,10 @@ class FuncionarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Funcionario  $funcionario
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Funcionario $funcionario)
+    public function destroy($id)
     {
         //
     }

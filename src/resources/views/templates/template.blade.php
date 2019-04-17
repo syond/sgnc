@@ -1,9 +1,3 @@
-<!--
-Author: 
-Author URL: 
-License: 
-License URL: 
--->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -18,8 +12,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <script src="js/jquery.min.js"> </script>
-<script src="js/bootstrap.min.js"> </script>
-  
 <!-- Mainly scripts -->
 <script src="js/jquery.metisMenu.js"></script>
 <script src="js/jquery.slimscroll.min.js"></script>
@@ -27,8 +19,74 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/custom.css" rel="stylesheet">
 <script src="js/custom.js"></script>
 <script src="js/screenfull.js"></script>
-		
-        <!----->
+		<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+			if (!screenfull.enabled) {
+				return false;
+			}
+
+			
+
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});
+			
+
+			
+		});
+		</script>
+
+<!----->
+
+<!--pie-chart--->
+<script src="js/pie-chart.js" type="text/javascript"></script>
+ <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#demo-pie-1').pieChart({
+                barColor: '#3bb2d0',
+                trackColor: '#eee',
+                lineCap: 'round',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+
+            $('#demo-pie-2').pieChart({
+                barColor: '#fbb03b',
+                trackColor: '#eee',
+                lineCap: 'butt',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+
+            $('#demo-pie-3').pieChart({
+                barColor: '#ed6498',
+                trackColor: '#eee',
+                lineCap: 'square',
+                lineWidth: 8,
+                onStep: function (from, to, percent) {
+                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                }
+            });
+
+           
+        });
+
+    </script>
+<!--skycons-icons-->
+<script src="js/skycons.js"></script>
+<!--//skycons-icons-->
+</head>
+<body>
+<div id="wrapper">
+
+<!----->
         <nav class="navbar-default navbar-static-top" role="navigation">
              <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-               <h1> <a class="navbar-brand" href="index.html">Home</a></h1>         
+               <h1> <a class="navbar-brand" href="index">Home</a></h1>         
 			   </div>
 			 <div class=" border-bottom">
         	<div class="full-left">
@@ -45,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button id="toggle"><i class="fa fa-arrows-alt"></i></button>	
 			</section>
 			<form class=" navbar-left-right">
-              <input type="text"  value="Pesquisar..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Pesquisar...';}">
+              <input type="text"  value="Pesquisar..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
               <input type="submit" value="" class="fa fa-search">
             </form>
             <div class="clearfix"> </div>
@@ -54,22 +112,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        
             <!-- Brand and toggle get grouped for better mobile display -->
 		 
+		   <!-- Brand and toggle get grouped for better mobile display -->
+		 
 		   <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="drop-men" >
-          <ul class=" nav_1">
-             
-        
-        <li class="dropdown">
-                <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">Usuário<i class="caret"></i></span><img src="images/wo.jpg"></a>
-                <ul class="dropdown-menu " role="menu">
-                  <li><a href="profile.html"><i class="fa fa-user"></i>Editar</a></li>
-                  <li><a href="inbox.html"><i class="fa fa-envelope"></i>Mensagens</a></li>
-                  <li><a href="calendar.html"><i class="fa fa-calendar"></i>Calendário</a></li>
-                  <li><a href="inbox.html"><i class="fa fa-clipboard"></i>Tarefas</a></li>
-                </ul>
-              </li>
-             
-          </ul>
+		   <div class="drop-men" >
+			<ul class=" nav_1">
+			   
+			
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">Usuário<i class="caret"></i></span><img src="images/wo.jpg"></a>
+				  <ul class="dropdown-menu " role="menu">
+					<li><a href="profile.html"><i class="fa fa-user"></i>Editar</a></li>
+					<li><a href="inbox.html"><i class="fa fa-envelope"></i>Mensagens</a></li>
+					<li><a href="calendar.html"><i class="fa fa-calendar"></i>Calendário</a></li>
+					<li><a href="inbox.html"><i class="fa fa-clipboard"></i>Tarefas</a></li>
+				  </ul>
+				</li>
+			   
+			</ul>
 		     </div><!-- /.navbar-collapse -->
 			<div class="clearfix">
        
@@ -79,22 +139,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
 				
-				 <li>
+                    <li>
                         <a href="index.html" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
                     </li>
-				                   
+                   
                     <li>
                         <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Administrador</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="graficos.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Graficos</a></li>
                             
-                            <li><a href="tecnico.html" class=" hvr-bounce-to-right"><i class="fa fa-save nav_icon"></i>Cadastrar Técnico</a></li>
-							              <li><a href="onibus.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ônibus</a></li>
-							              <li><a href="empresa.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Empresa</a></li>
-							              <li><a href="setor.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Setor</a></li>       
+							<li><a href="{{ url('tecnico') }}" class=" hvr-bounce-to-right"><i class="fa fa-save nav_icon"></i>Cadastrar Técnico</a></li>
+							<li><a href="onibus.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ônibus</a></li>
+							<li><a href="empresa.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Empresa</a></li>
+							<li><a href="setor.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Setor</a></li>							
 					   </ul>
                     </li>
-					               
+					                     
                     <li>
                         <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Técnico</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -106,11 +166,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                      <li>
                         <a href="relatorio.html" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Relatório</span> </a>
                     </li>
-                                    
+                           
                     <li>
                         <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i> <span class="nav-label">Settings</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="signin.html" class=" hvr-bounce-to-right"><i class="fa fa-sign-in nav_icon"></i>Logout</a></li>
+                            <li><a href="signin.html" class=" hvr-bounce-to-right"><i class="fa fa-sign-in nav_icon"></i>Signin</a></li>
                             
                         </ul>
                     </li>
@@ -118,60 +178,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
 			</div>
         </nav>
-		 <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div id="page-wrapper" class="gray-bg dashbard-1">
        <div class="content-main">
-  </div>
-  <!--banner-->	
-		   <div class="banner">
-		    	<h2>
+ 
+  		<!--banner-->	
+		    <div class="banner">
+		   
+				<h2>
 				<a href="index.html">Home</a>
 				<i class="fa fa-angle-right"></i>
-				<span>Cadastra Técnico</span>
+				<span>Dashboard</span>
 				</h2>
 		    </div>
-			<!----->
-  
-  		<!--//banner-->
- 	<!--grid-->
- 	<div class="grid-form">
-    <div class="grid-form1">
-    <h3 id="forms-example" class="">Cadastro de Técnico</h3>
-    <form>
-      <div class="form-group">
-   <label for="matricula">Matrícula</label>
-   <input type="text" class="form-control" id="matricula" placeholder="Matricula">
- </div>
- <div class="form-group">
-   <label for="nome">Nome</label>
-   <input type="text" class="form-control" id="nome" placeholder="Nome">
- </div>
- <div class="form-group">
-   <label for="email">Email</label>
-   <input type="email" class="form-control" id="email" placeholder="Email">
- </div>
- <div class="form-group">
-   <label for="senha">Senha</label>
-   <input type="password" class="form-control" id="senha" placeholder="Senha">
- </div>
- </div>
- <button type="submit" class="btn btn-default">Enviar</button>
-</form>
-</div>
-<!----->
-
 		<!--//banner-->
-
- 	<!--//grid-->
-   <!---->
-<div class="copy-right">
-	<p> &copy; Universidade Estacio de Sá - Campus : Cabo Frio .</p>	    </div>
-		</div>
+		<!--content-->
+		<div class="content-top">
+			
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+			<div class="col-md-1"></div>
+			
+		@yield('content')		
 		</div>
 		<div class="clearfix"> </div>
-       </div>
-     
+		</div>		
 <!---->
+<div class="copy-right">
+	<p> &copy; Universidade Estacio de Sá - Campus : Cabo Frio .</p>	    </div>
 
+<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+	<script src="js/bootstrap.min.js"> </script>
 </body>
 </html>
 

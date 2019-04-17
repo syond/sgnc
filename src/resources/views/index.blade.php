@@ -148,10 +148,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="nav nav-second-level">
                             <li><a href="graficos.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Graficos</a></li>
                             
-							<li><a href="tecnico.html" class=" hvr-bounce-to-right"><i class="fa fa-save nav_icon"></i>Cadastrar Técnico</a></li>
-							<li><a href="onibus.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ônibus</a></li>
-							<li><a href="empresa.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Empresa</a></li>
-							<li><a href="setor.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Setor</a></li>							
+							<li><a href="{{ url('funcionario') }}" class=" hvr-bounce-to-right"><i class="fa fa-save nav_icon"></i>Cadastrar Funcionário</a></li>
+							<li><a href="{{ url('onibus') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ônibus</a></li>
+							<li><a href="{{ url('empresa') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Empresa</a></li>
+							<li><a href="{{ url('setor') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Setor</a></li>							
 					   </ul>
                     </li>
 					                     
