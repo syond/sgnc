@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+//importando model
 use App\Funcionario;
+//importando o Request personalizado
+use App\Http\Requests\FuncionarioStoreRequest;
 
 class FuncionarioController extends Controller
 {
@@ -28,63 +32,64 @@ class FuncionarioController extends Controller
         return view('funcionario.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        /*
-        $validarDados = $request->validate([
-            'txt_nome'=>'required|max:30',
-            'txt_email'=> 'max:50',
-            'txt_matricula' => 'required|numeric',
-            'txt_senha'=>'required',
-            'foto'
-          ]);
-        */
+      /**
+       * Store a newly created resource in storage.
+       *
+       * @param  \Illuminate\Http\Request  $request
+       * @return \Illuminate\Http\Response
+       */
+      public function store(FuncionarioStoreRequest $request)
+      {
+          /*
+          $validarDados = $request->validate([
+              'txt_nome'=>'required|max:30',
+              'txt_email'=> 'max:50',
+              'txt_matricula' => 'required|numeric',
+              'txt_senha'=>'required',
+              'foto'
+            ]);
+          */
 
-         /*    
-          $funcionario = new Funcionario([
-            'nome' => $request->get('txt_nome'),
-            'email'=> $request->get('txt_email'),
-            'matricula'=> $request->get('txt_matricula'),
-            'senha'=> $request->get('txt_senha')
-          ]);
+          /*    
+            $funcionario = new Funcionario([
+              'nome' => $request->get('txt_nome'),
+              'email'=> $request->get('txt_email'),
+              'matricula'=> $request->get('txt_matricula'),
+              'senha'=> $request->get('txt_senha')
+            ]);
+              
+            $funcionario->save();
+              */
+            //return redirect('/funcionario')->with('success', 'Stock has been added');
             
-          $funcionario->save();
+
+
+            //ERRO: 1364 Field 'matricula' doesn't have a default value
+            //$funcionario = Funcionario::create($validarDados);
+              
+
+            $dados = $request->validated();
+
+            Funcionario::create($dados);
+
+            //capturando os dados digitados e enviando ao $fillable do MODEL
+            /*
+            $funcionario = Funcionario::create([
+              'nome'      => $request->get('txt_nome'),
+              'email'     => $request->get('txt_email'),
+              'matricula' => $request->get('txt_matricula'),
+              'senha'     => $request->get('txt_senha'),
+              'foto'      => 'null'
+            ]);
             */
-          //return redirect('/funcionario')->with('success', 'Stock has been added');
-          
+            //salvando dados (ainda não sei se é necessário essa linha)
+            //$funcionario->save();
+  
+            //dd($dados);
 
-
-          
-
-
-
-           //ERRO: 1364 Field 'matricula' doesn't have a default value
-          //$funcionario = Funcionario::create($validarDados);
+            //reireciona ao funcionario.index com mensagem de sucesso
+            return redirect('/funcionario')->with('success', 'Sucesso!');
             
-
-          
-          $funcionario = Funcionario::create([
-            'nome'      => $request->get('txt_nome'),
-            'email'     => $request->get('txt_email'),
-            'matricula' => $request->get('txt_matricula'),
-            'senha'     => $request->get('txt_senha'),
-            'foto'      => 'null'
-          ]);
-
-          $funcionario->save();
- 
-          //dd($funcionario->all());
-
-          return redirect('/funcionario')->with('success', 'Sucesso!');
-
-          //echo "DEU CERTO";
-          
     }
 
     /**

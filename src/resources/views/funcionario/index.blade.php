@@ -144,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <li>{{ $error }}</li>
             @endforeach
         </ul>
-      </div><br/>
+      </div>
     @endif
 
   <form method="POST" action="{{ route('funcionario.store') }}">  

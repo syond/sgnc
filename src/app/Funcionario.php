@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Funcionario extends Model
 {
+    protected $primaryKey = 'id';
+    protected $table = 'funcionarios';
+
     protected $fillable = [
         'nome',
         'email',
@@ -14,6 +17,6 @@ class Funcionario extends Model
         'foto'
       ];
 
-    protected $table = 'funcionarios';
+    
 
 }
