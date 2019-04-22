@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Funcionario;
 //importando o Request personalizado
 use App\Http\Requests\FuncionarioStoreRequest;
+//importando o HASH
+use Illuminate\Support\Facades\Hash;
 
 class FuncionarioController extends Controller
 {
@@ -40,55 +42,15 @@ class FuncionarioController extends Controller
        */
       public function store(FuncionarioStoreRequest $request)
       {
-          /*
-          $validarDados = $request->validate([
-              'txt_nome'=>'required|max:30',
-              'txt_email'=> 'max:50',
-              'txt_matricula' => 'required|numeric',
-              'txt_senha'=>'required',
-              'foto'
-            ]);
-          */
 
-          /*    
-            $funcionario = new Funcionario([
-              'nome' => $request->get('txt_nome'),
-              'email'=> $request->get('txt_email'),
-              'matricula'=> $request->get('txt_matricula'),
-              'senha'=> $request->get('txt_senha')
-            ]);
-              
-            $funcionario->save();
-              */
-            //return redirect('/funcionario')->with('success', 'Stock has been added');
-            
+        $dados = $request->validated();
 
+        Hash::make($request['senha']);
+          
+        dd($dados);
+        //Funcionario::create($dados);
 
-            //ERRO: 1364 Field 'matricula' doesn't have a default value
-            //$funcionario = Funcionario::create($validarDados);
-              
-
-            $dados = $request->validated();
-
-            Funcionario::create($dados);
-
-            //capturando os dados digitados e enviando ao $fillable do MODEL
-            /*
-            $funcionario = Funcionario::create([
-              'nome'      => $request->get('txt_nome'),
-              'email'     => $request->get('txt_email'),
-              'matricula' => $request->get('txt_matricula'),
-              'senha'     => $request->get('txt_senha'),
-              'foto'      => 'null'
-            ]);
-            */
-            //salvando dados (ainda não sei se é necessário essa linha)
-            //$funcionario->save();
-  
-            //dd($dados);
-
-            //reireciona ao funcionario.index com mensagem de sucesso
-            return redirect('/funcionario')->with('success', 'Sucesso!');
+        return redirect('/funcionario')->with('success', 'Sucesso!');
             
     }
 

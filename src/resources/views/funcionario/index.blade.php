@@ -153,19 +153,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             
       <div class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" name="txt_nome" placeholder="Nome">
+        <input type="text" class="form-control" name="nome" placeholder="Nome">
       </div>     
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" name="txt_email" placeholder="Email">
+        <input type="email" class="form-control" name="email" placeholder="Email">
       </div>
       <div class="form-group">
         <label for="matricula">Matrícula</label>
-        <input type="text" class="form-control" name="txt_matricula" placeholder="Matricula">
+        <input type="text" class="form-control" name="matricula" placeholder="Matricula">
+      </div>
+      <div class="form-group">
+        <label for="matricula">Foto</label>
+        <input type="text" class="form-control" name="foto" placeholder="Foto">
       </div>
       <div class="form-group">
         <label for="senha">Senha</label>
-        <input type="password" class="form-control" name="txt_senha" placeholder="Senha">
+        <input type="password" class="form-control" name="senha" placeholder="Senha">
       </div>
     </div>
       <button type="submit" class="btn btn-default">Enviar</button>
