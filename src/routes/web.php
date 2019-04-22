@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('auth/login');
 });
 
 /**
@@ -26,11 +26,3 @@ Route::resources([
 Route::resource('funcionario', 'FuncionarioController');
 
 
-
-Route::get('/home', function(){
-    return view('home');
-});
-
-Route::get('/teste', function(){
-    return view('teste');
-});

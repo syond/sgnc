@@ -24,11 +24,11 @@ class FuncionarioStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'matricula' => 'required|numeric|unique:funcionarios',
-            'senha'=>'required|min:6|max:8',
-            'nome'=>'required|max:30',
-            'email'=> 'required|max:50',
-            'foto' => 'nullable'
+            'matricula' =>  'required|numeric|unique:funcionarios',
+            'senha'     =>  'required|min:6|max:8',
+            'nome'      =>  'required|max:30',
+            'email'     =>  'required|max:50',
+            'foto'      =>  'nullable'
         ];
     }
 
@@ -40,8 +40,8 @@ class FuncionarioStoreRequest extends FormRequest
     public function filters()
     {
         return [
-            //'email' => 'trim|lowercase',
-            //'name' => 'trim|capitalize|escape'
+            //'email'   =>  'trim|lowercase',
+            //'name'    =>  'trim|capitalize|escape'
         ];
     }
 
@@ -53,14 +53,15 @@ class FuncionarioStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'Preenchimento do NOME é obrigatório.',
+            'nome.required'         =>  'Preenchimento do NOME é obrigatório.',
             
-            'email.required' => 'Preenchimento do EMAIL é obrigatório.',
+            'email.required'        =>  'Preenchimento do EMAIL é obrigatório.',
+            'email.unique'          =>  'Email já cadastrado!',
             
-            'matricula.required' => 'Preenchimento da MATRÍCULA é obrigatório.',
-            'matricula.unique' => 'Matrícula já existente!',
+            'matricula.required'    =>  'Preenchimento da MATRÍCULA é obrigatório.',
+            'matricula.unique'      =>  'Matrícula já cadastrado!',
             
-            'senha.required' => 'Preenchimento da SENHA é obrigatório.',            
+            'senha.required'        =>  'Preenchimento da SENHA é obrigatório.',            
         ];
     }
     

@@ -1,9 +1,3 @@
-<!--
-Author: 
-Author URL: 
-License: 
-License URL: 
--->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -27,7 +21,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/custom.css" rel="stylesheet">
 <script src="js/custom.js"></script>
 <script src="js/screenfull.js"></script>
-		
+    
+
+      @if(Auth::check())
+
+
         <!----->
         <nav class="navbar-default navbar-static-top" role="navigation">
              <div class="navbar-header">
@@ -189,6 +187,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        </div>
      
 <!---->
+
+
+      @endif
 
 </body>
 </html>

@@ -9,8 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Funcionario;
 //importando o Request personalizado
 use App\Http\Requests\FuncionarioStoreRequest;
-//importando o HASH
-use Illuminate\Support\Facades\Hash;
+
 
 class FuncionarioController extends Controller
 {
@@ -44,11 +43,8 @@ class FuncionarioController extends Controller
       {
 
         $dados = $request->validated();
-
-        Hash::make($request['senha']);
           
-        dd($dados);
-        //Funcionario::create($dados);
+        Funcionario::create($dados);
 
         return redirect('/funcionario')->with('success', 'Sucesso!');
             

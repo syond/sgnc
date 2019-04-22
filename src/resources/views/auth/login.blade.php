@@ -1,14 +1,7 @@
-
-<!--
-Author: 
-Author URL: 
-License: 
-License URL: 
--->
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>SGNC</title>
+<title>SGNC - Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -23,35 +16,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<div class="login">
-		<h1><a href="index.html">Bem vindo!</a></h1>
+		
+	<h1><a href="">SGNC</a></h1>
+		
+		
 		<div class="login-bottom">
 			<h2>Login</h2>
-			<form>
-			<div class="col-md-6">
-				<div class="login-mail">
-					<input type="text" placeholder="Funcionário" required="">
-					<i class="glyphicon glyphicon-user"></i>
-				</div>
-				<div class="login-mail">
-					<input type="password" placeholder="Password" required="">
-					<i class="fa fa-lock"></i>
-				</div>
-				   <a class="news-letter " href="#">
-						 <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Esqueceu a senha</label>
-					   </a>
 
 			
-			</div>
-			<div class="col-md-6 login-do">
-			
-				<label class="hvr-shutter-in-horizontal login-sub">
-					<input type="submit" value="login">
-					</label>
+			@if(Auth::guest())
+
+
+			<form method="">
+				<div class="col-md-6">
+					<div class="login-mail">
+						<input type="text" id="matricula" placeholder="Matrícula" required="">
+						<i class="glyphicon glyphicon-user"></i>
+					</div>
+					<div class="login-mail">
+						<input type="password" id="senha" placeholder="Senha" required="">
+						<i class="fa fa-lock"></i>
+					</div>
+					<a class="news-letter " href="#">
+							<label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Lembrar-me</label>
+					</a>
+					<a class="news-letter " href="#">
+							<label class="esqueciminhasenha">Esqueci minha senha</label>
+					</a>	
+				</div>	
+
+				<div class="col-md-6 login-do">
+					<label class="hvr-shutter-in-horizontal login-sub">
+						<input type="submit" value="login">
+						</label>
+				</div>
 				
-			</div>
-			
-			<div class="clearfix"> </div>
+				<div class="clearfix"> </div>
 			</form>
+
+
+			@endif
+
+
 		</div>
 	</div>
 		<!---->
