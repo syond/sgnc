@@ -20,7 +20,7 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        return view('funcionario.index');
+        return view('funcionario/index');
     }
 
     /**
@@ -30,7 +30,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        return view('funcionario.index');
+        return view('funcionario/index');
     }
 
       /**
@@ -58,7 +58,7 @@ class FuncionarioController extends Controller
      */
     public function show($id)
     {
-        return view('funcionario.show');
+        return view('funcionario/listar');
     }
 
     /**
@@ -69,7 +69,7 @@ class FuncionarioController extends Controller
      */
     public function edit($id)
     {
-        return view('funcionario.edit');
+        return view('funcionario/editar');
     }
 
     /**

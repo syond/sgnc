@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+
+//Route::get  ('/', redirect()->route('funcionario.login'));
+
+Route::get  ('/login',      ['uses' => 'Controller@login'                                                   ]);
+Route::post ('/login',      ['as'   => 'funcionario.login',     'uses' => 'auth\LoginController@auth'       ]);
+
+Route::post ('/dashboard',  ['as'   => 'dashboard',             'uses' => 'Controller@dashboard'            ]);
 
 /**
 Route::resources([

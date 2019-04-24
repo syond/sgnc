@@ -20,6 +20,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<h1><a href="">SGNC</a></h1>
 		
 		
+	@if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div>
+    @endif
+
 		<div class="login-bottom">
 			<h2>Login</h2>
 
@@ -27,7 +37,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			@if(Auth::guest())
 
 
-			<form method="">
+			<form method="POST" action="{{ route('funcionario.login') }}">
+
+				@csrf
+
 				<div class="col-md-6">
 					<div class="login-mail">
 						<input type="text" id="matricula" placeholder="Matrícula" required="">
@@ -48,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-6 login-do">
 					<label class="hvr-shutter-in-horizontal login-sub">
 						<input type="submit" value="login">
-						</label>
+					</label>
 				</div>
 				
 				<div class="clearfix"> </div>
