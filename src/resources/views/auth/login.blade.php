@@ -18,9 +18,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="login">
 		
 	<h1><a href="">SGNC</a></h1>
-		
-		
-	@if ($errors->any())
+
+		<div class="login-bottom">
+			
+		@if ($errors->any())
       <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -29,25 +30,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
       </div>
     @endif
-
-		<div class="login-bottom">
+			
 			<h2>Login</h2>
 
+		
 			
 			@if(Auth::guest())
 
 
-			<form method="POST" action="{{ route('funcionario.login') }}">
+			<form method="POST" action="{{ route('login') }}">
 
 				@csrf
 
 				<div class="col-md-6">
 					<div class="login-mail">
-						<input type="text" id="matricula" placeholder="Matrícula" required="">
+						<input type="text" name="matricula" placeholder="Matrícula" required="">
 						<i class="glyphicon glyphicon-user"></i>
 					</div>
 					<div class="login-mail">
-						<input type="password" id="senha" placeholder="Senha" required="">
+						<input type="password" name="senha" placeholder="Senha" required="">
 						<i class="fa fa-lock"></i>
 					</div>
 					<a class="news-letter " href="#">

@@ -11,13 +11,21 @@
 |
 */
 
+Route::get  ('/', function(){
+    return view('auth.login');
+})->middleware('auth');
 
-//Route::get  ('/', redirect()->route('funcionario.login'));
+//definindo que não utilizaremos o Register da classe Auth.
+Auth::routes(['register' => false]);
 
-Route::get  ('/login',      ['uses' => 'Controller@login'                                                   ]);
-Route::post ('/login',      ['as'   => 'funcionario.login',     'uses' => 'auth\LoginController@auth'       ]);
+Route::post ('/dashboard', 'DashboardController@index');
 
-Route::post ('/dashboard',  ['as'   => 'dashboard',             'uses' => 'Controller@dashboard'            ]);
+
+
+
+
+
+
 
 /**
 Route::resources([

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -37,8 +40,51 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function auth()
+    /**
+     * Determine if the user has too many failed login attempts.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+
+    protected function hasTooManyLoginAttempts ($request)
     {
-        //eu que criei essa merda
+        $maxLoginAttempts = 2;
+        $lockoutTime = 5; // 5 minutes
+        
+        return $this->limiter()->tooManyAttempts(
+            $this->throttleKey($request), $maxLoginAttempts, $lockoutTime
+        );
     }
+
+
+    protected function validateLogin(Request $request)
+    {
+        //$this->validate($request, [
+       //     'matricula' => '',
+       //     'senha' => '',
+        //]);
+
+        //dd($request);
+
+        $dados = [
+
+            'matricula' => $request->get('matricula'),
+            'senha'     => $request->get('senha'),
+
+        ];
+    //dd($dados);
+        try {
+
+            Auth::attempt($dados, false);
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+
+        }
+
+            
+    }
+
 }

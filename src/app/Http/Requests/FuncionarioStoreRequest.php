@@ -17,7 +17,7 @@ class FuncionarioStoreRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Regras de validação dos campos
      *
      * @return array
      */
@@ -46,7 +46,7 @@ class FuncionarioStoreRequest extends FormRequest
     }
 
     /**
-     * Custom message for validation
+     * Mensagens customizadas para validação
      *
      * @return array
      */
@@ -59,7 +59,7 @@ class FuncionarioStoreRequest extends FormRequest
             'email.unique'          =>  'Email já cadastrado!',
             
             'matricula.required'    =>  'Preenchimento da MATRÍCULA é obrigatório.',
-            'matricula.unique'      =>  'Matrícula já cadastrado!',
+            'matricula.unique'      =>  'Matrícula já cadastrada!',
             
             'senha.required'        =>  'Preenchimento da SENHA é obrigatório.',            
         ];

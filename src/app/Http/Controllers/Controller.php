@@ -10,15 +10,5 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function login()
-    {
-        return view('auth/login');
-    }
-
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-    
+   
 }

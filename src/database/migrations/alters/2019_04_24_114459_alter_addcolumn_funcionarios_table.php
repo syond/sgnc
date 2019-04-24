@@ -14,10 +14,8 @@ class AlterAddcolumnFuncionariosTable extends Migration
     public function up()
     {
         Schema::table('funcionarios', function (Blueprint $table) {
-            $table->string('nome', 30);
-            $table->string('email', 50);
-            $table->string('foto');
-            $table->timestamps();
+            $table->rememberToken();
+            $table->softDeletes();
         });
     }
 
@@ -29,11 +27,8 @@ class AlterAddcolumnFuncionariosTable extends Migration
     public function down()
     {
         Schema::table('funcionarios', function (Blueprint $table) {
-            $table->dropColumn('nome');
-            $table->dropColumn('email');
-            $table->dropColumn('foto');
-            $table->dropColumn()->timestamps();
+            $table->dropColumn()->rememberToken();
+            $table->dropColumn()->softDeletes();
         });
-        
     }
 }
