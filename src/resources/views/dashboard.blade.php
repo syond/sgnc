@@ -78,12 +78,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            
         });
 
-    </script>
+</script>
 <!--skycons-icons-->
 <script src="js/skycons.js"></script>
 <!--//skycons-icons-->
 </head>
 <body>
+
+
+
+
+
 <div id="wrapper">
 
 <!----->
@@ -168,9 +173,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </li>
                            
                     <li>
-                        <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i> <span class="nav-label">Settings</span><span class="fa arrow"></span></a>
+                        <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i> <span class="nav-label">Configurações</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="signin.html" class=" hvr-bounce-to-right"><i class="fa fa-sign-in nav_icon"></i>Signin</a></li>
+                            <li><a href="{{ route('logout') }}}" class=" hvr-bounce-to-right"><i class="fa fa-sign-in nav_icon"></i>Logout</a></li>
                             
                         </ul>
                     </li>

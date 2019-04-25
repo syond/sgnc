@@ -11,14 +11,20 @@
 |
 */
 
-Route::get  ('/', function(){
+Route::post  ('/', function(){
     return view('auth.login');
 })->middleware('auth');
+
+Route::get('/logout', 'Auth\LoginController@logout');
 
 //definindo que não utilizaremos o Register da classe Auth.
 Auth::routes(['register' => false]);
 
-Route::post ('/dashboard', 'DashboardController@index');
+Route::get ('/dashboard', 'DashboardController@index');
+
+Route::get('/templatetest', function(){
+    return view('templates/template');
+});
 
 
 
@@ -38,3 +44,7 @@ Route::resources([
 Route::resource('funcionario', 'FuncionarioController');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

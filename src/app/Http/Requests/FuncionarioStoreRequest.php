@@ -25,7 +25,7 @@ class FuncionarioStoreRequest extends FormRequest
     {
         return [
             'matricula' =>  'required|numeric|unique:funcionarios',
-            'senha'     =>  'required|min:6|max:8',
+            'password'  =>  'required|min:6|max:8',
             'nome'      =>  'required|max:30',
             'email'     =>  'required|max:50',
             'foto'      =>  'nullable'
@@ -61,7 +61,7 @@ class FuncionarioStoreRequest extends FormRequest
             'matricula.required'    =>  'Preenchimento da MATRÍCULA é obrigatório.',
             'matricula.unique'      =>  'Matrícula já cadastrada!',
             
-            'senha.required'        =>  'Preenchimento da SENHA é obrigatório.',            
+            'password.required'     =>  'Preenchimento da SENHA é obrigatório.',            
         ];
     }
     

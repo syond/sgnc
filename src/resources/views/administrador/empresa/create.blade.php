@@ -1,7 +1,13 @@
+<!--
+Author: 
+Author URL: 
+License: 
+License URL: 
+-->
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>SGNC Create</title>
+<title>SGNC</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -21,11 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/custom.css" rel="stylesheet">
 <script src="js/custom.js"></script>
 <script src="js/screenfull.js"></script>
-    
-
-     
-
-
+		
         <!----->
         <nav class="navbar-default navbar-static-top" role="navigation">
              <div class="navbar-header">
@@ -104,12 +106,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                      <li>
                         <a href="relatorio.html" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Relatório</span> </a>
                     </li>
-                                    
+                                                        
                     <li>
                         <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i> <span class="nav-label">Settings</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="signin.html" class=" hvr-bounce-to-right"><i class="fa fa-sign-in nav_icon"></i>Logout</a></li>
-                            
                         </ul>
                     </li>
                 </ul>
@@ -124,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    	<h2>
 				<a href="index.html">Home</a>
 				<i class="fa fa-angle-right"></i>
-				<span>Cadastrar Funcionário</span>
+				<span>Cadastro de Empresas</span>
 				</h2>
 		    </div>
 			<!----->
@@ -132,57 +133,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   		<!--//banner-->
  	<!--grid-->
  	<div class="grid-form">
-      <div class="grid-form1">
-          <h3 id="forms-example" class="">Cadastro de Funcionário</h3>
-
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div>
-    @endif
-
-  <form method="POST" action="{{ route('funcionario.store') }}">  
-
-      @csrf
-            
+    <div class="grid-form1">
+    <h3 id="forms-example" class="">Cadastro de Empresas</h3>
+    <form>
       <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" name="nome" placeholder="Nome">
-      </div>     
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" placeholder="Email">
-      </div>
-      <div class="form-group">
-        <label for="matricula">Matrícula</label>
-        <input type="text" class="form-control" name="matricula" placeholder="Matricula">
-      </div>
-      <div class="form-group">
-        <label for="matricula">Foto</label>
-        <input type="text" class="form-control" name="foto" placeholder="Foto">
-      </div>
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" class="form-control" name="password" placeholder="Senha">
-      </div>
-    </div>
-      <button type="submit" class="btn btn-default">Enviar</button>
-  </form>
-  </div>
+   <label for="cnpj">CNPJ</label>
+   <input type="text" class="form-control" id="cnpj" placeholder="00.000.000/0000-00">
+ </div>
+ <div class="form-group">
+   <label for="razaoSocial">Razão Social</label>
+   <input type="text" class="form-control" id="razaoSocial" placeholder="Empresa de Ônibus.S/A">
+ </div>
+ <div class="form-group">
+   <label for="nomeFantasia">Nome Fantasia</label>
+   <input type="text" class="form-control" id="nomeFantasia" placeholder="Empresa de Ônibus">
+ </div>
+ 
+ <button type="submit" class="btn btn-default">Enviar</button>
+</form>
+</div>
 <!----->
 
 		<!--//banner-->
 
  	<!--//grid-->
-   
-
-   
-
-
+   <!---->
 <div class="copy-right">
 	<p> &copy; Universidade Estacio de Sá - Campus : Cabo Frio .</p>	    </div>
 		</div>
@@ -194,4 +169,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </body>
 </html>
-

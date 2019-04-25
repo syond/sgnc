@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 
 class LoginController extends Controller
 {
@@ -58,33 +59,41 @@ class LoginController extends Controller
     }
 
 
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+
+    public function username()
+    {
+        return 'matricula';
+    }
+
     protected function validateLogin(Request $request)
     {
-        //$this->validate($request, [
-       //     'matricula' => '',
-       //     'senha' => '',
-        //]);
-
-        //dd($request);
-
-        $dados = [
-
-            'matricula' => $request->get('matricula'),
-            'senha'     => $request->get('senha'),
-
-        ];
-    //dd($dados);
+        $dados = $request->only('matricula', 'password');
+        
         try {
 
-            Auth::attempt($dados, false);
+            Auth::attempt($dados);
 
         } catch (Exception $e) {
 
             return $e->getMessage();
 
-        }
-
+        }  
             
     }
 
+    public function logout()
+    {
+        return redirect('login')->with(Auth::logout());
+    }
 }

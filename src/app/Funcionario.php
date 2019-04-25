@@ -3,39 +3,40 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 //importando o HASH
 use Illuminate\Support\Facades\Hash;
 
-//importando e implementando para realizar autenticação de usuário
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
-class Funcionario extends Model implements Authenticatable
+class Funcionario extends Authenticatable
 {
-
-  use AuthenticableTrait ;
 
   protected $primaryKey = 'id';
   protected $table      = 'funcionarios';
 
   protected $fillable   = [
     'matricula',
-    'senha',
+    'password',
     'nome',
     'email',
     'foto'
   ];
 
   protected $hidden     = [
-    'senha', 
+    'password', 
     'remember_token'
   ];
 
   //Função HASH da senha
-  public function setSenhaAttribute($senha){
+  public function setPasswordAttribute($password){
 
-    $this->attributes['senha'] = Hash::make($senha);
+      try {
+        $this->attributes['password'] = Hash::make($password);
 
+      } catch (Exception $e) {
+        $e->getMessage();
+      }
+    
   }
 }
