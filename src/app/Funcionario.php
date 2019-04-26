@@ -39,4 +39,9 @@ class Funcionario extends Authenticatable
       }
     
   }
+
+  public function isAdmin()
+  {
+      return $this->admin;
+  }
 }

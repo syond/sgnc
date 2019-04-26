@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Administrador' => $baseDir . '/app/Administrador.php',
+    'App\\Console\\Commands\\FlushSessions' => $baseDir . '/app/Console/Commands/FlushSessions.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Corretiva' => $baseDir . '/app/Corretiva.php',
     'App\\Empresa' => $baseDir . '/app/Empresa.php',

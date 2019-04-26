@@ -1,29 +1,55 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * Classes importadas para auxiliar
+ *  */
+use App\Http\Middleware\CheckAdmin;
 
-Route::post  ('/', function(){
+
+
+/**
+ * Rota INDEX que redireciona para a View de LOGIN
+ * com middleware de autenticação e checagem se o usuário
+ * é administrador ou não.
+ *  */
+Route::get  ('/', function(){
+
     return view('auth.login');
-})->middleware('auth');
 
+})->middleware('auth', 'CheckAdmin');
+
+
+/**
+ * Rota LOGOUT que redireciona para a View de LOGIN pelo método logout()
+ *  */
 Route::get('/logout', 'Auth\LoginController@logout');
 
-//definindo que não utilizaremos o Register da classe Auth.
+
+/**
+ * Rota para utilizarmos todas as Rotas do AUTH, menos as que forem passadas como FALSE
+ *  */
 Auth::routes(['register' => false]);
 
+
+/**
+ * Rota DASHBOARD só é acessada após o login
+ *  */
 Route::get ('/dashboard', 'DashboardController@index');
 
+
+
+
+
+
+
+
+
+
+//ROTA PARA TESTES
 Route::get('/templatetest', function(){
+
     return view('templates/template');
+
 });
 
 

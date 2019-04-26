@@ -125,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			   
 			
 				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">Usuário<i class="caret"></i></span><img src="images/wo.jpg"></a>
+				  <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">{{ dd((session()->all()) }}<i class="caret"></i></span><img src="images/wo.jpg"></a>
 				  <ul class="dropdown-menu " role="menu">
 					<li><a href="profile.html"><i class="fa fa-user"></i>Editar</a></li>
 					<li><a href="inbox.html"><i class="fa fa-envelope"></i>Mensagens</a></li>
@@ -175,7 +175,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li>
                         <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i> <span class="nav-label">Configurações</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="{{ route('logout') }}}" class=" hvr-bounce-to-right"><i class="fa fa-sign-in nav_icon"></i>Logout</a></li>
+                            <li><a href="{{ route('logout') }}" class=" hvr-bounce-to-right"><i class="fa fa-sign-in nav_icon"></i>Logout</a></li>
                             
                         </ul>
                     </li>

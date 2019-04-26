@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    //protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -88,10 +88,13 @@ class LoginController extends Controller
 
             return $e->getMessage();
 
-        }  
-            
+        }
+        
+                
+        //return view('dashboard')->with('data', $request->session()->get('nome'));
+          return view ('dashboard')->with()->dd(session()->all());  
     }
-
+    
     public function logout()
     {
         return redirect('login')->with(Auth::logout());
