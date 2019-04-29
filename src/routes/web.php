@@ -38,6 +38,34 @@ Route::get ('/dashboard', 'DashboardController@index');
 
 
 
+/**
+ * Rotas do menu ADMINISTRADOR
+ *  */
+
+Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.funcionario');
+Route::resource('admin/funcionario', 'FuncionarioController');
+
+Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');
+Route::resource ('admin/empresa', 'EmpresaController');
+
+Route::get ('admin/onibus', 'OnibusController@index')->name('admin.onibus');
+Route::resource ('admin/onibus', 'EmpresaController');
+
+Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');
+Route::resource ('admin/setor', 'EmpresaController');
+
+
+/**
+ * Rotas do menu TÉCNICO
+ *  */
+Route::get ('tecnico/nao-conformidade', 'NaoConformidadeController@index')->name('tecnico.naoconformidade');
+Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController');
+
+Route::get ('tecnico/acao-corretiva', 'CorretivaController@index')->name('tecnico.acaocorretiva');
+Route::resource ('tecnico/acao-corretiva', 'CorretivaController');
+
+Route::get ('tecnico/acao-imediata', 'CorretivaController@index')->name('tecnico.acaoimediata');
+Route::resource ('tecnico/acao-imediata', 'ImediataController');
 
 
 
@@ -53,12 +81,6 @@ Route::get('/templatetest', function(){
 });
 
 
-
-
-
-
-
-
 /**
 Route::resources([
     'tecnico'  => 'TecnicoController@create',
@@ -67,10 +89,3 @@ Route::resources([
     'setor'   => 'SetorController',
 ]);
  */
-Route::resource('funcionario', 'FuncionarioController');
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

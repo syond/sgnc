@@ -76,13 +76,14 @@ class LoginController extends Controller
         return 'matricula';
     }
 
-    protected function validateLogin(Request $request)
+    protected function login(Request $request)
     {
         $dados = $request->only('matricula', 'password');
-        
+
         try {
 
             Auth::attempt($dados);
+            //dd(Auth::attempt($dados));
 
         } catch (Exception $e) {
 
@@ -92,7 +93,7 @@ class LoginController extends Controller
         
                 
         //return view('dashboard')->with('data', $request->session()->get('nome'));
-          return view ('dashboard')->with()->dd(session()->all());  
+          return view ('dashboard');  
     }
     
     public function logout()

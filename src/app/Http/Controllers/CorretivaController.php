@@ -14,7 +14,7 @@ class CorretivaController extends Controller
      */
     public function index()
     {
-        //
+        return view('tecnico.corretiva.index');
     }
 
     /**

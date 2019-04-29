@@ -14,7 +14,7 @@ class OnibusController extends Controller
      */
     public function index()
     {
-        //
+        return view('administrador.onibus.index');
     }
 
     /**

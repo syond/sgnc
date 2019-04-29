@@ -14,7 +14,7 @@ class SetorController extends Controller
      */
     public function index()
     {
-        //
+        return view('administrador.setor.index');
     }
 
     /**

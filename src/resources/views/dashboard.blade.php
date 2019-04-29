@@ -7,18 +7,18 @@
 <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="{{ asset('css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<script src="js/jquery.min.js"> </script>
+<link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
+<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"> 
+<script src="{{ asset('js/jquery.min.js') }}"> </script>
 <!-- Mainly scripts -->
-<script src="js/jquery.metisMenu.js"></script>
-<script src="js/jquery.slimscroll.min.js"></script>
+<script src="{{ asset('js/jquery.metisMenu.js') }}"></script>
+<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
 <!-- Custom and plugin javascript -->
-<link href="css/custom.css" rel="stylesheet">
-<script src="js/custom.js"></script>
-<script src="js/screenfull.js"></script>
+<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+<script src="{{ asset('js/custom.js') }}"></script>
+<script src="{{ asset('js/screenfull.js') }}"></script>
 		<script>
 		$(function () {
 			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -125,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			   
 			
 				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">{{ dd((session()->all()) }}<i class="caret"></i></span><img src="images/wo.jpg"></a>
+				  <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">{{ Auth::user()->name}}<i class="caret"></i></span><img src="images/wo.jpg"></a>
 				  <ul class="dropdown-menu " role="menu">
 					<li><a href="profile.html"><i class="fa fa-user"></i>Editar</a></li>
 					<li><a href="inbox.html"><i class="fa fa-envelope"></i>Mensagens</a></li>
@@ -153,23 +153,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="nav nav-second-level">
                             <li><a href="graficos.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Graficos</a></li>
                             
-							<li><a href="{{ url('funcionario') }}" class=" hvr-bounce-to-right"><i class="fa fa-save nav_icon"></i>Cadastrar Funcionário</a></li>
-							<li><a href="{{ url('onibus') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ônibus</a></li>
-							<li><a href="{{ url('empresa') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Empresa</a></li>
-							<li><a href="{{ url('setor') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Setor</a></li>							
+							<li><a href="{{ url('admin/funcionario') }}" class=" hvr-bounce-to-right"><i class="fa fa-save nav_icon"></i>Cadastrar Funcionário</a></li>
+							<li><a href="{{ url('admin/onibus') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ônibus</a></li>
+							<li><a href="{{ url('admin/empresa') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Empresa</a></li>
+							<li><a href="{{ url('admin/setor') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Setor</a></li>							
 					   </ul>
                     </li>
 					                     
                     <li>
                         <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Técnico</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="acaoimediata.html" class=" hvr-bounce-to-right"> <i class="fa fa-file-o nav_icon"></i>Ação Imediata</a></li>
-							<li><a href="acaocorretiva.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ação Corretiva</a></li>
-							<li><a href="naoconformidade.html" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Não Conformidade</a></li>
+                            <li><a href="{{ url('tecnico/acao-imediata') }}" class=" hvr-bounce-to-right"> <i class="fa fa-file-o nav_icon"></i>Ação Imediata</a></li>
+							<li><a href="{{ url('tecnico/acao-corretiva') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ação Corretiva</a></li>
+							<li><a href="{{ url('tecnico/nao-conformidade') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Não Conformidade</a></li>
                        </ul>
                     </li>
                      <li>
-                        <a href="relatorio.html" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Relatório</span> </a>
+                        <a href="{{ url('relatorio') }}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i> <span class="nav-label">Relatório</span> </a>
                     </li>
                            
                     <li>
@@ -190,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		    <div class="banner">
 		   
 				<h2>
-				<a href="index.html">Home</a>
+				<a href="{{ url('dashboard') }}">Home</a>
 				<i class="fa fa-angle-right"></i>
 				<span>Dashboard</span>
 				</h2>

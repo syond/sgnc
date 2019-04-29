@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Empresa;
 use Illuminate\Http\Request;
 
+//importando o Request personalizado
+use App\Http\Requests\EmpresaStoreRequest;
+
 class EmpresaController extends Controller
 {
     /**
@@ -14,7 +17,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        //
+        return view('administrador.empresa.index');
     }
 
     /**
@@ -24,7 +27,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        //
+        return view('administrador.empresa.create');
     }
 
     /**
@@ -33,9 +36,13 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaStoreRequest $request)
     {
-        //
+        $dados = $request->validated();
+
+        Empresa::create($dados);
+
+        return redirect('/admin/empresa')->with('success', "Sucesso!");
     }
 
     /**

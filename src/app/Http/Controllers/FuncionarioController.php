@@ -20,7 +20,7 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        return view('funcionario/index');
+        return view('administrador.funcionario.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        return view('funcionario/index');
+        return view('administrador.funcionario.create');
     }
 
       /**

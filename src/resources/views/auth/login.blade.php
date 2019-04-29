@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<i class="glyphicon glyphicon-user"></i>
 					</div>
 					<div class="login-mail">
-						<input type="password" name="password" placeholder="Senha" required="">
+						<input type="password" name="password" placeholder="Senha" >
 						<i class="fa fa-lock"></i>
 					</div>
 					<a class="news-letter " href="#">

@@ -14,7 +14,7 @@ class ImediataController extends Controller
      */
     public function index()
     {
-        //
+        return view('tecnico.imediata.index');
     }
 
     /**
