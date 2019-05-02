@@ -155,6 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             
 							<li><a href="{{ url('admin/funcionario') }}" class=" hvr-bounce-to-right"><i class="fa fa-save nav_icon"></i>Cadastrar Funcionário</a></li>
 							<li><a href="{{ url('admin/onibus') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Ônibus</a></li>
+							<li><a href="{{ url('admin/equipamento') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Equipamento</a></li>
 							<li><a href="{{ url('admin/empresa') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Empresa</a></li>
 							<li><a href="{{ url('admin/setor') }}" class=" hvr-bounce-to-right"><i class="fa fa-file-o nav_icon"></i>Setor</a></li>							
 					   </ul>

@@ -8,85 +8,72 @@ use Illuminate\Http\Request;
 //importando o Request personalizado
 use App\Http\Requests\EmpresaStoreRequest;
 
+
 class EmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('administrador.empresa.index');
+        /**
+         * Importante para reconhecer a variável nas Views,
+         * junto com o compact(),
+         * e trabalhar com os métodos Show e Edit.
+         */
+        $empresa = Empresa::all();
+
+        return view('administrador.empresa.index', compact('empresa'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('administrador.empresa.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(EmpresaStoreRequest $request)
     {
         $dados = $request->validated();
 
         Empresa::create($dados);
 
-        return redirect('/admin/empresa')->with('success', "Sucesso!");
+        return redirect()->route('empresa.index')->with('success', "Empresa cadastrada com sucesso!");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Empresa $empresa)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Empresa $empresa)
+
+    public function edit($id)
     {
-        //
+        $empresa = Empresa::find($id);
+
+        return view('administrador.empresa.edit', compact('empresa'));
+        //return redirect()->route('empresa.edit', compact('empresa'))->with('success', "Empresa editada com sucesso!");
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Empresa $empresa)
+
+    public function update(EmpresaStoreRequest $request, $id)
     {
-        //
+        $empresa = Empresa::find($id);
+
+        $empresa->update([
+            'cnpj'          =>  $request->input('cnpj'),
+            'nome_fantasia' =>  $request->input('nome_fantasia'),
+            'razao_social'  =>  $request->input('razao_social'),
+        ]);
+
+        return redirect()->route('empresa.index')->with('success', 'Empresa atualizada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Empresa $empresa)
+
+    public function destroy($id)
     {
-        //
+        Empresa::find($id)->delete();
+        
+        return redirect()->route('empresa.index')->with('success', 'Empresa deletada com sucesso!');
     }
 }
