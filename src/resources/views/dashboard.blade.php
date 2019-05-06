@@ -86,9 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 
-@unless (Auth::check())
-    You are not signed in.
-@endunless
+@if(Auth::check())
 
 
 <div id="wrapper">
@@ -354,6 +352,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="js/scripts.js"></script>
 	<!--//scrolling js-->
 	<script src="js/bootstrap.min.js"> </script>
+
+
+@endif
+
+
 </body>
 </html>
 

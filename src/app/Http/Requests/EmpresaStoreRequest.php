@@ -35,7 +35,9 @@ class EmpresaStoreRequest extends FormRequest
         return [
             'cnpj.required'             =>  'Preenchimento do CNPJ é obrigatório.',
             'cnpj.unique'               =>  'CNPJ já existe!',
+
             'nome_fantasia.required'    =>  'Preenchimento do NOME FANTASIA é obrigatório.',
+            
             'razao_social.required'     =>  'Email já cadastrado!',      
         ];
     }

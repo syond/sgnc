@@ -17,7 +17,8 @@ class CheckAdmin
     {
         if(Auth::check() && Auth::Funcionario()->isAdmin())
         {
-            return $next($request);
+            return Auth::id();
+            //return $next($request);
         }
 
     }

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 //importando o Request personalizado
 use App\Http\Requests\EmpresaStoreRequest;
 
+use App\Funcionario;
+
+use Auth;
+
 
 class EmpresaController extends Controller
 {
@@ -33,11 +37,41 @@ class EmpresaController extends Controller
 
     public function store(EmpresaStoreRequest $request)
     {
-        $dados = $request->validated();
+        $dados = $request->validated();        
 
-        Empresa::create($dados);
+       
+        //Teste para verificar se o usuário está logado e é administrador
+        if(Auth::check())
+        {
+            //Capturando ID do usuário logado
+            $usuario_id = Auth::id();
 
-        return redirect()->route('empresa.index')->with('success', "Empresa cadastrada com sucesso!");
+            $nivel = Funcionario::select('nivel')->where('id', $usuario_id)->get();
+
+            if($nivel = '1')
+            {
+
+                Empresa::create([
+                    'cnpj'              => $request->cnpj,
+                    'nome_fantasia'     => $request->nome_fantasia,
+                    'razao_social'      => $request->razao_social,
+                    'administrador_id'  => $usuario_id,
+                ]);
+
+                return redirect()->route('empresa.index')->with('success', "Empresa cadastrada com sucesso!");
+
+            }elseif($nivel = '0'){
+
+                return "Você não tem permissão para executar essa tarefa.";
+
+            }
+
+        }else{
+
+            return "Você precisa estar logado para realizar essa terefa!";
+
+        }
+        
     }
 
 

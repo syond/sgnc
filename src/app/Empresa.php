@@ -13,5 +13,6 @@ class Empresa extends Model
         'cnpj',
         'nome_fantasia',
         'razao_social',
+        'administrador_id',
     ];
 }
