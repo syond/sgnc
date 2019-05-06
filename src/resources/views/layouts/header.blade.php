@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="{{ config('app.locale') }}">
 <head>
-<title>{{ config('app.name', 'SGNC') }}</title>
+<title>@yield('title', 'SNGC')</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -12,7 +12,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"> 
 <script src="{{ asset('js/jquery.min.js') }}"> </script>
-<script src="js/bootstrap.min.js"> </script>
+<script src="{{ asset('js/bootstrap.min.js') }}"> </script>
 <!-- Mainly scripts -->
 <script src="{{ asset('js/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
@@ -20,3 +20,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/screenfull.js') }}"></script>
+
+<body>

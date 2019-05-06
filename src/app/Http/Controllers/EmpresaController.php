@@ -15,9 +15,9 @@ class EmpresaController extends Controller
     public function index()
     {
         /**
-         * Importante para reconhecer a variável nas Views,
-         * junto com o compact(),
-         * e trabalhar com os métodos Show e Edit.
+         * Importante para reconhecer a variável $empresa
+         * nas Views, junto com o compact(),
+         * e trabalhar com os métodos Show/Edit/Destroy.
          */
         $empresa = Empresa::all();
 

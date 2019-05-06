@@ -26,9 +26,10 @@ class FuncionarioStoreRequest extends FormRequest
         return [
             'matricula' =>  'required|numeric|unique:funcionarios',
             'password'  =>  'required|min:6|max:8',
-            'nome'      =>  'required|max:30',
-            'email'     =>  'required|max:50',
-            'foto'      =>  'nullable'
+            'nome'      =>  'required|min:3',
+            'email'     =>  'required|email',
+            'foto'      =>  'nullable',
+            'nivel'     =>  'required',
         ];
     }
 
@@ -54,14 +55,21 @@ class FuncionarioStoreRequest extends FormRequest
     {
         return [
             'nome.required'         =>  'Preenchimento do NOME é obrigatório.',
+            'nome.min'              =>  'Insira um nome válido.',
             
             'email.required'        =>  'Preenchimento do EMAIL é obrigatório.',
+            'email.email'           =>  'Insira um email válido.',
             'email.unique'          =>  'Email já cadastrado!',
             
             'matricula.required'    =>  'Preenchimento da MATRÍCULA é obrigatório.',
             'matricula.unique'      =>  'Matrícula já cadastrada!',
+            'matricula.numeric'     =>  'Preencha o campo SOMENTE com NÚMEROS.',
             
-            'password.required'     =>  'Preenchimento da SENHA é obrigatório.',            
+            'password.required'     =>  'Preenchimento da SENHA é obrigatório.',
+            'password.min'          =>  'A senha deve conter no MÍNIMO 6 e no MÁXIMO 8 caracteres',
+            'password.max'          =>  'A senha deve conter no MÍNIMO 6 e no MÁXIMO 8 caracteres',
+            
+            'nivel.required'        =>  'Selecione um nível de acesso para esse usuário.',
         ];
     }
     

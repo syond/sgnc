@@ -20,7 +20,8 @@ class Funcionario extends Authenticatable
     'password',
     'nome',
     'email',
-    'foto'
+    'foto',
+    'nivel',
   ];
 
   protected $hidden     = [
@@ -40,8 +41,8 @@ class Funcionario extends Authenticatable
     
   }
 
-  public function isAdmin()
-  {
-      return $this->admin;
-  }
+  //public function isAdmin()
+  //{
+  //    return $this->admin;
+  //}
 }
