@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Empresa;
 use Illuminate\Http\Request;
-
-//importando o Request personalizado
 use App\Http\Requests\EmpresaStoreRequest;
-
 use App\Funcionario;
-
 use Auth;
 
 
@@ -23,7 +19,7 @@ class EmpresaController extends Controller
          * nas Views, junto com o compact(),
          * e trabalhar com os métodos Show/Edit/Destroy.
          */
-        $empresa = Empresa::all();
+        $empresa = Empresa::orderBy('created_at', 'DESC')->paginate(5);
 
         return view('administrador.empresa.index', compact('empresa'));
     }
@@ -34,12 +30,29 @@ class EmpresaController extends Controller
         return view('administrador.empresa.create');
     }
 
+    
+    /**
+     * Método para busca de dados cadastrados
+     */
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        
+        //Query para busca no banco de dados
+        $empresa = Empresa::where('cnpj', 'like', '%'.$search.'%')
+            ->orWhere('nome_fantasia', 'like', '%'.$search.'%')
+            ->orWhere('razao_social', 'like', '%'.$search.'%')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
+        return view('administrador.empresa.index', compact('empresa'));
+    }
+
 
     public function store(EmpresaStoreRequest $request)
     {
         $dados = $request->validated();        
 
-       
         //Teste para verificar se o usuário está logado e é administrador
         if(Auth::check())
         {

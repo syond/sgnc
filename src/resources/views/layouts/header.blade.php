@@ -21,4 +21,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/screenfull.js') }}"></script>
 
+<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+			if (!screenfull.enabled) {
+				return false;
+			}
+
+			
+
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});
+			
+
+			
+		});
+</script>
+
+<script src="{{ asset('js/skycons.js') }}"></script>
+
 <body>

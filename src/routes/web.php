@@ -16,7 +16,7 @@ Route::get  ('/', function(){
 
     return view('auth.login');
 
-})->middleware('auth', 'CheckAdmin');
+})->middleware('auth');
 
 
 /**
@@ -37,7 +37,6 @@ Auth::routes(['register' => false]);
 Route::get ('/dashboard', 'DashboardController@index');
 
 
-
 /**
  * Rotas do menu ADMINISTRADOR
  *  */
@@ -46,6 +45,7 @@ Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.func
 Route::resource('admin/funcionario', 'FuncionarioController');
 
 Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');
+Route::get ('admin/search', 'EmpresaController@search')->name('empresa.search');
 Route::resource ('admin/empresa', 'EmpresaController');
 
 Route::get ('admin/equipamento', 'EquipamentoController@index')->name('admin.equipamento');
@@ -73,15 +73,6 @@ Route::resource ('tecnico/acao-imediata', 'ImediataController');
 
 
 
-
-
-
-//ROTA PARA TESTES
-Route::get('/templatetest', function(){
-
-    return view('templates/template');
-
-});
 
 
 /**
