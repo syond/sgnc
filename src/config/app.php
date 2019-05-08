@@ -175,6 +175,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * INSTALADOS POR MIM
+         * 
+         */
+        LaravelLegends\PtBrValidator\ValidatorProvider::class,
+        geekcom\ValidatorDocs\ValidatorProvider::class,
+
     ],
 
     /*

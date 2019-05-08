@@ -1,18 +1,19 @@
 @include('layouts/header')
 
-
 @include('layouts/nav')
-
 
 @include('layouts/sidebar')
 
-
-
 <div class="content-main">
 
-    @include('layouts/navmap')
+    @component('layouts/navmap')
 
-    @yield('content')
+    <div class="grid-form">
+        <div class="grid-form1">
+            @include('layouts/flash-message')
+            @yield('content')
+        </div>
+    </div>
 
 </div>
 

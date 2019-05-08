@@ -13,20 +13,21 @@ class EmpresaController extends Controller
 {
 
     public function index()
-    {
+    {      
         /**
-         * Importante para reconhecer a variável $empresa
-         * nas Views, junto com o compact(),
-         * e trabalhar com os métodos Show/Edit/Destroy.
-         */
+         * Retorna todos os registros de EMPRESA ordenados decrescente pelo "created_at",
+         * listando apenas 5 registros por tela.
+         *  */
         $empresa = Empresa::orderBy('created_at', 'DESC')->paginate(5);
 
+        //Retorna view INDEX passando $empresa por COMPACT() para acesso nas views.
         return view('administrador.empresa.index', compact('empresa'));
     }
 
 
     public function create()
     {
+        //Retorna formulário de cadastro de empresa
         return view('administrador.empresa.create');
     }
 
@@ -36,14 +37,18 @@ class EmpresaController extends Controller
      */
     public function search(Request $request)
     {
+        //Retorna tudo que for digitado no campo de Busca
         $search = $request->get('search');
         
-        //Query para busca no banco de dados
+        /**
+         * Query para busca no banco de dados comparando com o que foi digitado
+         * no campo de Busca e retornando apenas 5 registros por página
+         *  */
         $empresa = Empresa::where('cnpj', 'like', '%'.$search.'%')
             ->orWhere('nome_fantasia', 'like', '%'.$search.'%')
             ->orWhere('razao_social', 'like', '%'.$search.'%')
             ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+            ->paginate(5);
 
         return view('administrador.empresa.index', compact('empresa'));
     }
@@ -59,19 +64,19 @@ class EmpresaController extends Controller
             //Capturando ID do usuário logado
             $usuario_id = Auth::id();
 
-            $nivel = Funcionario::select('nivel')->where('id', $usuario_id)->get();
+            $nivel = Funcionario::select('nivel')->where('id', $usuario_id)->get();           
 
             if($nivel = '1')
             {
 
                 Empresa::create([
-                    'cnpj'              => $request->cnpj,
+                    'cnpj'              => str_replace(["/", ".", "-"], "", $request->cnpj),
                     'nome_fantasia'     => $request->nome_fantasia,
                     'razao_social'      => $request->razao_social,
                     'administrador_id'  => $usuario_id,
                 ]);
 
-                return redirect()->route('empresa.index')->with('success', "Empresa cadastrada com sucesso!");
+                return back()->with('success', "Empresa cadastrada com sucesso!");
 
             }elseif($nivel = '0'){
 
@@ -88,14 +93,9 @@ class EmpresaController extends Controller
     }
 
 
-    public function show(Empresa $empresa)
-    {
-        //
-    }
-
-
     public function edit($id)
     {
+        //Query para encontrar a empresa pelo ID
         $empresa = Empresa::find($id);
 
         return view('administrador.empresa.edit', compact('empresa'));
@@ -107,20 +107,25 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::find($id);
 
+        /**
+         * Captura os dados preenchidos no formulário
+         * e atualiza no respectivo registro no banco.         * 
+         */
         $empresa->update([
             'cnpj'          =>  $request->input('cnpj'),
             'nome_fantasia' =>  $request->input('nome_fantasia'),
             'razao_social'  =>  $request->input('razao_social'),
         ]);
 
-        return redirect()->route('empresa.index')->with('success', 'Empresa atualizada com sucesso!');
+        return back()->with('success', 'Empresa atualizada com sucesso!');
     }
 
 
     public function destroy($id)
     {
+        //Query para encontrar a empresa pelo ID e deletar a mesma
         Empresa::find($id)->delete();
         
-        return redirect()->route('empresa.index')->with('success', 'Empresa deletada com sucesso!');
+        return back()->with('success', 'Empresa deletada com sucesso!');
     }
 }

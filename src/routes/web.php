@@ -52,10 +52,10 @@ Route::get ('admin/equipamento', 'EquipamentoController@index')->name('admin.equ
 Route::resource ('admin/equipamento', 'EquipamentoController');
 
 Route::get ('admin/onibus', 'OnibusController@index')->name('admin.onibus');
-Route::resource ('admin/onibus', 'EmpresaController');
+Route::resource ('admin/onibus', 'OnibusController');
 
 Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');
-Route::resource ('admin/setor', 'EmpresaController');
+Route::resource ('admin/setor', 'SetorController');
 
 
 /**

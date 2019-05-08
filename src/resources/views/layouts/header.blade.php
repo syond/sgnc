@@ -20,6 +20,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/screenfull.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 
 <script>
 		$(function () {

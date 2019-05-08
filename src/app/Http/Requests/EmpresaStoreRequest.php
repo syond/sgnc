@@ -24,7 +24,7 @@ class EmpresaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'cnpj'          => 'required|unique:empresas',
+            'cnpj'          => 'required|unique:empresas|cnpj',
             'nome_fantasia' => 'required|max:50',
             'razao_social'  => 'required|max:50',
         ];

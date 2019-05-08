@@ -8,16 +8,10 @@
 
 @section('content')
 
-
-<div class="grid-form">
-    <div class="grid-form1">
         <h3 id="forms-example" class="">Empresa</h3>
         <hr>
-        @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
         @component('layouts/header-index-controller')
-        @endcomponent
+        @endcomponent        
         <hr>
         <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
             <thead class="thead-dark">
@@ -36,13 +30,13 @@
             <tbody>
                 @foreach($empresa as $key => $value)
                 <tr>
-                    <td>{{ $value->cnpj }}</td>
+                    <td id="cnpj">{{ $value->cnpj }}</td>
                     <td>{{ $value->nome_fantasia }}</td>
                     <td>{{ $value->razao_social }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->updated_at }}</td>
                     <td>
-                        <form action="{{ route('empresa.destroy', $value->id) }}" method="POST">        
+                        <form action="{{ route('empresa.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
                             <a type="submit" href="{{ route('empresa.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                             @csrf
                             @method('DELETE')     
@@ -50,14 +44,18 @@
                         </form>
                     </td>
                 </tr>         
-            @endforeach
+                @endforeach
             </tbody>
         </table>
         <div class="text-center">
             {{ $empresa->links() }}
         </div>
-    </div>
-</div>
 
-  
+<script type="text/javascript">
+
+  $(document).ready(function(){
+        $("#cnpj").mask("00.000.000/0000-00")
+  })
+
+</script>
 @endsection
