@@ -14,14 +14,26 @@ class EmpresaController extends Controller
 
     public function index()
     {      
-        /**
-         * Retorna todos os registros de EMPRESA ordenados decrescente pelo "created_at",
-         * listando apenas 5 registros por tela.
-         *  */
+        //captura o id do usuário logado
+        $funcionario_id = Auth::id();
+
+        
+        //$funcionario = Funcionario::where('id', $funcionario_id)->get()->first();        
+        
+        //Ordena decrescente pelo "created_at", listando apenas 5 registros por tela.
         $empresa = Empresa::orderBy('created_at', 'DESC')->paginate(5);
 
+
+        $empresas = Empresa::where('funcionario_id', $funcionario_id)->get()->first();
+
+        $funcionario = $empresas->funcionario;
+
+        //dd($funcionario->nome);
+        
+        //dd($funcionario);
+        
         //Retorna view INDEX passando $empresa por COMPACT() para acesso nas views.
-        return view('administrador.empresa.index', compact('empresa'));
+        return view('administrador.empresa.index', compact('empresa', 'empresas', 'funcionario'));
     }
 
 
@@ -50,7 +62,7 @@ class EmpresaController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate(5);
 
-        return view('administrador.empresa.index', compact('empresa'));
+        return back()->compact('empresa');
     }
 
 
@@ -58,37 +70,16 @@ class EmpresaController extends Controller
     {
         $dados = $request->validated();        
 
-        //Teste para verificar se o usuário está logado e é administrador
-        if(Auth::check())
-        {
             //Capturando ID do usuário logado
-            $usuario_id = Auth::id();
+            $funcionario_id = Auth::id();
 
-            $nivel = Funcionario::select('nivel')->where('id', $usuario_id)->get();           
+            //Implementa o atributo "funcionario_id" diretamente com o id do usuário logado
+            $dados['funcionario_id'] = $funcionario_id;
+            $dados['cnpj'] = str_replace(["/", ".", "-"], "", $request->cnpj);
 
-            if($nivel = '1')
-            {
+            Empresa::create($dados);
 
-                Empresa::create([
-                    'cnpj'              => str_replace(["/", ".", "-"], "", $request->cnpj),
-                    'nome_fantasia'     => $request->nome_fantasia,
-                    'razao_social'      => $request->razao_social,
-                    'administrador_id'  => $usuario_id,
-                ]);
-
-                return back()->with('success', "Empresa cadastrada com sucesso!");
-
-            }elseif($nivel = '0'){
-
-                return "Você não tem permissão para executar essa tarefa.";
-
-            }
-
-        }else{
-
-            return "Você precisa estar logado para realizar essa terefa!";
-
-        }
+            return back()->with('success', "Empresa cadastrada com sucesso!");
         
     }
 

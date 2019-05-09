@@ -8,6 +8,7 @@
 
 @section('content')
 
+
         <h3 id="forms-example" class="">Empresa</h3>
         <hr>
         @component('layouts/header-index-controller')
@@ -22,8 +23,9 @@
                     <th scope="col">CNPJ</th>
                     <th scope="col">Nome Fantasia</th>
                     <th scope="col">Razão Social</th>
-                    <th scope="col">Criação:</th>
+                    <th scope="col">Data de Criação:</th>
                     <th scope="col">Última Atualização:</th>
+                    <th scope="col">Cadastrado por:</th>
                     <th scope="col">Ação</th>
                 </tr>
             </thead>        
@@ -35,6 +37,11 @@
                     <td>{{ $value->razao_social }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->updated_at }}</td>
+                    
+                    @foreach($funcionario->empresas as $funcionario)
+                    <td>{{ $funcionario->nome }}</td>
+                    @endforeach
+
                     <td>
                         <form action="{{ route('empresa.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
                             <a type="submit" href="{{ route('empresa.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       

@@ -29,6 +29,12 @@ class Funcionario extends Authenticatable
     'remember_token'
   ];
 
+  
+  public function empresas()
+  {
+    return $this->hasMany(Empresa::class);
+  }
+
   //Função HASH da senha
   public function setPasswordAttribute($password){
 
