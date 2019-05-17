@@ -11,8 +11,21 @@
 
         <h3 id="forms-example" class="">Empresa</h3>
         <hr>
-        @component('layouts/header-index-controller')
-        @endcomponent        
+        <div class="row">
+            <div class="col-sm-6">
+                <form class="" action="{{ route('empresa.create') }}">
+                    <button class="btn btn-success btn-lg">Cadastrar</button>
+                </form>
+            </div>
+
+
+            <div class="col-sm-6">
+                <form class="navbar-left-right" action="{{ route('empresa.search') }}">
+                    <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
+                    <input type="submit" value="" class="fa fa-search">
+                </form>  
+            </div>
+        </div>        
         <hr>
         <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
             <thead class="thead-dark">
@@ -25,7 +38,6 @@
                     <th scope="col">Razão Social</th>
                     <th scope="col">Data de Criação:</th>
                     <th scope="col">Última Atualização:</th>
-                    <th scope="col">Cadastrado por:</th>
                     <th scope="col">Ação</th>
                 </tr>
             </thead>        
@@ -38,9 +50,7 @@
                     <td>{{ $value->created_at }}</td>
                     <td>{{ $value->updated_at }}</td>
                     
-                    @foreach($funcionario->empresas as $funcionario)
-                    <td>{{ $funcionario->nome }}</td>
-                    @endforeach
+                    
 
                     <td>
                         <form action="{{ route('empresa.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        

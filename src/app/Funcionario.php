@@ -35,6 +35,16 @@ class Funcionario extends Authenticatable
     return $this->hasMany(Empresa::class);
   }
 
+  public function equipamentos()
+  {
+    return $this->hasMany(Equipamento::class);
+  }
+  
+  public function onibus()
+  {
+    return $this->hasMany(Onibus::class);
+  }
+
   //Função HASH da senha
   public function setPasswordAttribute($password){
 

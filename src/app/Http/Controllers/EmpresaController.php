@@ -62,7 +62,7 @@ class EmpresaController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate(5);
 
-        return back()->compact('empresa');
+        return view('administrador.empresa.index', compact('empresa'));
     }
 
 

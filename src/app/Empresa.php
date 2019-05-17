@@ -25,4 +25,9 @@ class Empresa extends Model
     {
         return $this->belongsTo(Funcionario::class);
     }
+
+    public function onibus()
+    {
+        return $this->hasMany(Onibus::class);
+    }
 }

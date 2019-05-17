@@ -45,10 +45,11 @@ Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.func
 Route::resource('admin/funcionario', 'FuncionarioController');
 
 Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');
-Route::get ('admin/search', 'EmpresaController@search')->name('empresa.search');
+Route::get ('admin/empresa/search', 'EmpresaController@search')->name('empresa.search');
 Route::resource ('admin/empresa', 'EmpresaController');
 
 Route::get ('admin/equipamento', 'EquipamentoController@index')->name('admin.equipamento');
+Route::get ('admin/equipamento/search', 'EquipamentoController@search')->name('equipamento.search');
 Route::resource ('admin/equipamento', 'EquipamentoController');
 
 Route::get ('admin/onibus', 'OnibusController@index')->name('admin.onibus');
