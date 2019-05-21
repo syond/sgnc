@@ -28,6 +28,7 @@ class EquipamentoStoreRequest extends FormRequest
             'modelo'            => 'required|max:50',
             'serial'            => 'required|max:50|unique:equipamentos',
             'ano'               => 'required|numeric',
+            'onibus_id'         => '',
             'funcionario_id'    => '',
         ];
     }

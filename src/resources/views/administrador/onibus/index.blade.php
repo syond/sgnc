@@ -11,12 +11,12 @@
 <hr>
 <div class="row">
     <div class="col-sm-6">
-        <form class="" action="{{ route('equipamento.create') }}">
+        <form class="" action="{{ route('onibus.create') }}">
             <button class="btn btn-success btn-lg">Cadastrar</button>
         </form>
     </div>
     <div class="col-sm-6">
-        <form class="navbar-left-right" action="{{ route('equipamento.search') }}">
+        <form class="navbar-left-right" action="{{ route('onibus.search') }}">
             <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
             <input type="submit" value="" class="fa fa-search">
         </form>  
@@ -29,9 +29,10 @@
             <h4>Ônibus Cadastrados</h4>
         </div><br>
         <tr>
-            <th scope="col">Fabrica</th>
             <th scope="col">Modelo</th>
-            <th scope="col">Serial</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Chassi</th>
+            <th scope="col">Número</th>
             <th scope="col">Ano</th>
             <th scope="col">Data de Criação:</th>
             <th scope="col">Última Atualização:</th>
@@ -40,25 +41,32 @@
     </thead>        
     <tbody>
                 
+        @foreach($onibus as $key => $value)     
         <tr>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
+            <td>{{ $value->modelo }}</td>
+            <td>{{ $value->placa }}</td>
+            <td>{{ $value->chassi }}</td>
+            <td>{{ $value->numero }}</td>
+            <td>{{ $value->ano }}</td>
+            <td>{{ $value->created_at }}</td>
+            <td>{{ $value->updated_at }}</td>
                     
                     
 
             <td>
-                        
+                <form action="{{ route('onibus.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
+                    <a type="submit" href="{{ route('onibus.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
+                    @csrf
+                    @method('DELETE')     
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>       
             </td>
         </tr>         
-                
+        @endforeach        
     </tbody>
 </table>
 <div class="text-center">
-            
+          
 </div>
 
 

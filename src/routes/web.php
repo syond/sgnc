@@ -50,9 +50,11 @@ Route::resource ('admin/empresa', 'EmpresaController');
 
 Route::get ('admin/equipamento', 'EquipamentoController@index')->name('admin.equipamento');
 Route::get ('admin/equipamento/search', 'EquipamentoController@search')->name('equipamento.search');
+Route::get ('admin/equipamento/json-onibus', 'EquipamentoController@onibusSelect');
 Route::resource ('admin/equipamento', 'EquipamentoController');
 
 Route::get ('admin/onibus', 'OnibusController@index')->name('admin.onibus');
+Route::get ('admin/onibus/search', 'OnibusController@search')->name('onibus.search');
 Route::resource ('admin/onibus', 'OnibusController');
 
 Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');

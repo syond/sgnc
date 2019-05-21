@@ -15,6 +15,8 @@ class Onibus extends Model
         'chassi',
         'numero',
         'ano',
+        'empresa_id',
+        'funcionario_id',
     ];
 
     protected $hidden     = [

@@ -14,6 +14,7 @@ class Equipamento extends Model
         'modelo',
         'serial',
         'ano',
+        'onibus_id',
         'funcionario_id',
     ];
 

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Equipamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests\EquipamentoStoreRequest;
 use App\Funcionario;
+use App\Empresa;
+use App\Onibus;
 use Auth;
 
 class EquipamentoController extends Controller
@@ -19,9 +22,23 @@ class EquipamentoController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('administrador.equipamento.create');
+        $empresas   = Empresa::all();
+
+        return view('administrador.equipamento.create', compact('empresas'));
+    }
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Onibus
+     */
+    public function onibusSelect()
+    {
+        $empresa_id = $request->input('empresa');
+
+        $onibus = Onibus::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($onibus);
     }
 
 
