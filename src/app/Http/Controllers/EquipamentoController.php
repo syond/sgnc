@@ -34,7 +34,7 @@ class EquipamentoController extends Controller
      */
     public function onibusSelect()
     {
-        $empresa_id = $request->input('empresa');
+        $empresa_id = Input::get('empresa_id');
 
         $onibus = Onibus::where('empresa_id', $empresa_id)->get();
 
@@ -63,7 +63,8 @@ class EquipamentoController extends Controller
 
         $funcionario_id = Auth::id();
 
-        $dados['funcionario_id'] = $funcionario_id;
+        $dados['funcionario_id']    = $funcionario_id;
+        $dados['onibus_id']    = $request->onibus;
 
         Equipamento::create($dados);
 
