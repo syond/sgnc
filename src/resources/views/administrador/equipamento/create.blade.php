@@ -15,19 +15,19 @@
 
     <div class="form-group">
       <label for="fabrica">Fábrica</label>
-      <input type="text" class="form-control" name="fabrica" id="fabrica" placeholder="Fábrica">
+      <input type="text" class="form-control" name="fabrica" id="fabrica">
     </div>
     <div class="form-group">
       <label for="modelo">Modelo</label>
-      <input type="text" class="form-control" name="modelo" placeholder="Modelo" maxlength="50">
+      <input type="text" class="form-control" name="modelo" maxlength="50">
     </div>
     <div class="form-group">
       <label for="serial">Serial</label>
-      <input type="text" class="form-control" name="serial" placeholder="Serial" maxlength="50">
+      <input type="text" class="form-control" name="serial" maxlength="50">
     </div>
     <div class="form-group">
       <label for="ano">Ano</label>
-      <input type="text" class="form-control" name="ano" placeholder="Ano" maxlength="4">
+      <input type="text" class="form-control" name="ano" maxlength="4">
     </div>
     <div class="form-group">
       <label for="empresa">Empresa</label>

@@ -17,7 +17,7 @@ class OnibusStoreRequest extends FormRequest
     {
         return [
             'modelo'            => 'required|max:50',
-            'placa'             => 'required|max:7|unique:onibus',
+            'placa'             => 'required|max:8|unique:onibus',
             'chassi'            => 'required|max:17|unique:onibus',
             'numero'            => 'required|numeric|unique:onibus',
             'ano'               => 'required|numeric',
@@ -34,6 +34,10 @@ class OnibusStoreRequest extends FormRequest
             'chassi.required'   =>  'Preenchimento do CHASSI é obrigatório.',
             'numero.required'   =>  'Preenchimento do NUMERO é obrigatório.',
             'ano.required'      =>  'Preenchimento do ANO é obrigatório.',
+
+            'placa.modelo'      =>  'MODELO inválido!',
+            'placa.placa'       =>  'PLACA inválida!',
+            'placa.chassi'      =>  'CHASSI inválido!',
 
             'placa.unique'      =>  'PLACA já cadastrada!',
             'chassi.unique'     =>  'CHASSI já cadastrado!',

@@ -34,24 +34,22 @@
             <th scope="col">Chassi</th>
             <th scope="col">Número</th>
             <th scope="col">Ano</th>
-            <th scope="col">Data de Criação:</th>
-            <th scope="col">Última Atualização:</th>
+            <th scope="col">Empresa</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>        
     <tbody>
                 
-        @foreach($onibus as $key => $value)     
+        @foreach($onibus_empresa as $key => $value) 
+       
+
         <tr>
             <td>{{ $value->modelo }}</td>
             <td>{{ $value->placa }}</td>
             <td>{{ $value->chassi }}</td>
             <td>{{ $value->numero }}</td>
             <td>{{ $value->ano }}</td>
-            <td>{{ $value->created_at }}</td>
-            <td>{{ $value->updated_at }}</td>
-                    
-                    
+            <td>{{ $value->nome_fantasia }}</td>
 
             <td>
                 <form action="{{ route('onibus.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        

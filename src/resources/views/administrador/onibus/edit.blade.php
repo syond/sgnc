@@ -20,30 +20,21 @@
     </div>
     <div class="form-group">
       <label for="modelo">Placa</label>
-      <input type="text" class="form-control" name="placa" placeholder="Placa" maxlength="7" value="{{ $onibus->placa }}">
+      <input type="text" class="form-control" name="placa" maxlength="7" value="{{ $onibus->placa }}">
     </div>
     <div class="form-group">
       <label for="serial">Chassi</label>
-      <input type="text" class="form-control" name="chassi" placeholder="Chassi" maxlength="17" value="{{ $onibus->chassi }}">
+      <input type="text" class="form-control" name="chassi" maxlength="17" value="{{ $onibus->chassi }}">
     </div>
     <div class="form-group">
       <label for="serial">Número</label>
-      <input type="text" class="form-control" name="numero" placeholder="Número" maxlength="5" value="{{ $onibus->numero }}">
+      <input type="text" class="form-control" name="numero" maxlength="5" value="{{ $onibus->numero }}">
     </div>
     <div class="form-group">
       <label for="ano">Ano</label>
-      <input type="text" class="form-control" name="ano" placeholder="Ano" maxlength="4" value="{{ $onibus->ano }}">
+      <input type="text" class="form-control" name="ano" maxlength="4" value="{{ $onibus->ano }}">
     </div>
-    <div class="form-group">
-      <label for="empresa">Empresa</label>
-      <select name="empresa_id" id="empresa_id" class="form-control" value="{{ $onibus->empresa_id }}">
-
-        @foreach($empresas as $empresa)
-          <option value="{{ $onibus->empresa_id }}">{{ $empresa->nome_fantasia }}</option>
-        @endforeach
-            
-      </select>
-    </div>        
+      
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
   </div>

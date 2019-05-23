@@ -68,7 +68,7 @@ class EmpresaController extends Controller
 
     public function store(EmpresaStoreRequest $request)
     {
-        $dados = $request->validated();        
+            $dados = $request->validated();        
 
             //Capturando ID do usuário logado
             $funcionario_id = Auth::id();

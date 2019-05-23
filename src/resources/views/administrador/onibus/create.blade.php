@@ -15,28 +15,28 @@
 
     <div class="form-group">
       <label for="fabrica">Modelo</label>
-      <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Modelo">
+      <input type="text" class="form-control" name="modelo" id="modelo" style="text-transform:uppercase">
     </div>
     <div class="form-group">
       <label for="modelo">Placa</label>
-      <input type="text" class="form-control" name="placa" placeholder="Placa" maxlength="7">
+      <input type="text" class="form-control" name="placa" id="placa" maxlength="7" style="text-transform:uppercase">
     </div>
     <div class="form-group">
       <label for="serial">Chassi</label>
-      <input type="text" class="form-control" name="chassi" placeholder="Chassi" maxlength="17">
+      <input type="text" class="form-control" name="chassi" maxlength="17" style="text-transform:uppercase">
     </div>
     <div class="form-group">
       <label for="serial">Número</label>
-      <input type="text" class="form-control" name="numero" placeholder="Número" maxlength="5">
+      <input type="text" class="form-control" name="numero" maxlength="5"style="text-transform:uppercase">
     </div>
     <div class="form-group">
       <label for="ano">Ano</label>
-      <input type="text" class="form-control" name="ano" placeholder="Ano" maxlength="4">
+      <input type="text" class="form-control" name="ano" maxlength="4" style="text-transform:uppercase">
     </div>
     <div class="form-group">
       <label for="empresa">Empresa</label>
       <select name="empresa_id" id="empresa_id" class="form-control">
-
+        <option value="0" disabled selected>Selecione a Empresa</option>
         @foreach($empresas as $empresa)
           <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
         @endforeach
@@ -46,5 +46,14 @@
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
   </div>
+
+  
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+      $("#placa").mask("AAA-0000")
+    })
+
+  </script>
 
 @endsection

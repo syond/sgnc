@@ -14,9 +14,15 @@ class OnibusController extends Controller
 
     public function index()
     {
-        $onibus = Onibus::orderBy('created_at', 'DESC')->paginate(5);
+        $onibus_empresa = Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id')->paginate(5);
 
-        return view('administrador.onibus.index', compact('onibus'));
+        //dd($onibus_empresa);
+
+        $onibus = Onibus::all();
+
+        //$onibus_empresa = Onibus::join('empresas', 'empresas.id', 'onibus.empresa_id')->paginate(5);
+
+        return view('administrador.onibus.index', compact('onibus', 'onibus_empresa'));
     }
 
 
@@ -50,6 +56,8 @@ class OnibusController extends Controller
         $funcionario_id = Auth::id();
 
         $dados['funcionario_id'] = $funcionario_id;
+
+        $dados['placa'] = str_replace("-", "", $request->placa);
         
         Onibus::create($dados);
 
@@ -67,7 +75,12 @@ class OnibusController extends Controller
     {
         $onibus = Onibus::find($id);
 
-        return view('administrador.onibus.edit', compact('onibus'));
+        $onibus_empresa = $onibus->empresa;
+        //$empresas = Empresa::all();
+
+        //$onibus = Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id');
+
+        return view('administrador.onibus.edit', compact('onibus', 'onibus_empresa'));
     }
 
 
