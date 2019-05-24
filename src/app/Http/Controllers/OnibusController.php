@@ -75,12 +75,7 @@ class OnibusController extends Controller
     {
         $onibus = Onibus::find($id);
 
-        $onibus_empresa = $onibus->empresa;
-        //$empresas = Empresa::all();
-
-        //$onibus = Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id');
-
-        return view('administrador.onibus.edit', compact('onibus', 'onibus_empresa'));
+        return view('administrador.onibus.edit', compact('onibus'));
     }
 
 

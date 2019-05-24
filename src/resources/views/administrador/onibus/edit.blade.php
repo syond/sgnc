@@ -34,7 +34,16 @@
       <label for="ano">Ano</label>
       <input type="text" class="form-control" name="ano" maxlength="4" value="{{ $onibus->ano }}">
     </div>
-      
+    <div class="form-group">
+      <label for="empresa">Empresa</label>
+      <select name="empresa" id="empresa" class="form-control">
+        <option value="0" disabled selected>{{ $onibus->empresa->nome_fantasia }}</option>
+        @foreach($onibus->empresa->get() as $value)
+          <option value="{{ $value->id }}">{{ $value->nome_fantasia }}</option>
+        @endforeach
+            
+      </select>
+    </div>
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
   </div>
