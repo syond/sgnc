@@ -25,12 +25,7 @@ class RelatorioController extends Controller
 
         //retorna todas as empresas cadastradas por esse usuário
         $empresa = $funcionario->empresa;
-
-        for each()
-        {
-
-        }
-
+        
         //retorna para a view anterior com a variável $funcionario disponível para uso na view
         return back()->compact('funcionario');
     }

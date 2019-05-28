@@ -6,7 +6,6 @@
 
 @section('content')
 
-
 <h3 id="forms-example" class="">Ônibus</h3>
 <hr>
 <div class="row">
@@ -39,9 +38,8 @@
         </tr>
     </thead>        
     <tbody>
-                
-        @foreach($onibus_empresa as $key => $value) 
-       
+
+        @foreach($onibus as $key => $value)  
 
         <tr>
             <td>{{ $value->modelo }}</td>
@@ -52,7 +50,7 @@
             <td>{{ $value->nome_fantasia }}</td>
 
             <td>
-                <form action="{{ route('onibus.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
+                <form action="{{ route('onibus.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
                     <a type="submit" href="{{ route('onibus.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                     @csrf
                     @method('DELETE')     
