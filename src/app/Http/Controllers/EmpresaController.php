@@ -26,14 +26,14 @@ class EmpresaController extends Controller
 
         $empresas = Empresa::where('funcionario_id', $funcionario_id)->get()->first();
 
-        $funcionario = $empresas->funcionario;
 
-        //dd($funcionario->nome);
         
-        //dd($funcionario);
+        //$funcionario = $empresas->funcionario;
+
+
         
         //Retorna view INDEX passando $empresa por COMPACT() para acesso nas views.
-        return view('administrador.empresa.index', compact('empresa', 'empresas', 'funcionario'));
+        return view('administrador.empresa.index', compact('empresa', 'empresas'));
     }
 
 

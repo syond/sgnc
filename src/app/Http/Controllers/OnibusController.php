@@ -14,15 +14,9 @@ class OnibusController extends Controller
 
     public function index()
     {
-        $onibus_empresa = Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id')->paginate(5);
+        $onibus_empresa = Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id');
 
-        //dd($onibus_empresa);
-
-        $onibus = Onibus::all();
-
-        //$onibus_empresa = Onibus::join('empresas', 'empresas.id', 'onibus.empresa_id')->paginate(5);
-
-        return view('administrador.onibus.index', compact('onibus', 'onibus_empresa'));
+        return view('administrador.onibus.index', compact( 'onibus_empresa'));
     }
 
 
@@ -61,7 +55,7 @@ class OnibusController extends Controller
         
         Onibus::create($dados);
 
-        return back()->with('success', "Onibus cadastrado com sucesso!");
+        return redirect()->route('onibus.index')->with('success', "Onibus cadastrado com sucesso!");
     }
 
 
@@ -81,18 +75,9 @@ class OnibusController extends Controller
 
     public function update(OnibusStoreRequest $request, $id)
     {
-        $onibus = Onibus::find($id);
+        $onibus = Onibus::find($id)->update($request->all());
 
-        $onibus->update([
-            'modelo'        =>  $request->input('modelo'),
-            'placa'         =>  $request->input('placa'),
-            'chassi'        =>  $request->input('chassi'),
-            'numero'        =>  $request->input('numero'),
-            'ano'           =>  $request->input('ano'),
-            'empresa_id'    =>  $request->input('empresa_id'),
-        ]);
-
-        return back()->with('success', 'Ônibus atualizado com sucesso!');
+        return redirect()->route('onibus.index')->with('success', 'Ônibus atualizado com sucesso!');
     }
 
 

@@ -17,11 +17,11 @@ class OnibusStoreRequest extends FormRequest
     {
         return [
             'modelo'            => 'required|max:50',
-            'placa'             => 'required|max:8|unique:onibus',
-            'chassi'            => 'required|max:17|unique:onibus',
-            'numero'            => 'required|numeric|unique:onibus',
+            'placa'             => 'required|max:8|unique:onibus,placa,' . $this->onibus,
+            'chassi'            => 'required|max:17|unique:onibus,chassi,' . $this->onibus,
+            'numero'            => 'required|numeric|unique:onibus,numero,' . $this->onibus,
             'ano'               => 'required|numeric',
-            'empresa_id'        => 'required',
+            'empresa_id'        => 'required,' . $this->onibus,
             'funcionario_id'    => '',
         ];
     }
@@ -35,9 +35,12 @@ class OnibusStoreRequest extends FormRequest
             'numero.required'   =>  'Preenchimento do NUMERO é obrigatório.',
             'ano.required'      =>  'Preenchimento do ANO é obrigatório.',
 
-            'placa.modelo'      =>  'MODELO inválido!',
-            'placa.placa'       =>  'PLACA inválida!',
-            'placa.chassi'      =>  'CHASSI inválido!',
+            'modelo.max'        =>  'MODELO inválido!',
+            'placa.max'         =>  'PLACA inválida!',
+            'chassi.max'        =>  'CHASSI inválido!',
+
+            'numero.numeric'    => 'O campo NUMERO deve conter apenas números!',
+            'ano.numeric'       => 'O campo ANO deve conter apenas números!',
 
             'placa.unique'      =>  'PLACA já cadastrada!',
             'chassi.unique'     =>  'CHASSI já cadastrado!',
