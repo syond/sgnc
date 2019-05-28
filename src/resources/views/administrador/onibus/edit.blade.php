@@ -16,23 +16,23 @@
 
     <div class="form-group">
       <label for="fabrica">Modelo</label>
-      <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Modelo" value="{{ $onibus->modelo }}">
+      <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Modelo" value="{{ old('onibus', $onibus->modelo) }}">
     </div>
     <div class="form-group">
       <label for="modelo">Placa</label>
-      <input type="text" class="form-control" name="placa" maxlength="7" value="{{ $onibus->placa }}">
+      <input type="text" class="form-control" name="placa" maxlength="7" value="{{ old('onibus', $onibus->placa) }}">
     </div>
     <div class="form-group">
       <label for="serial">Chassi</label>
-      <input type="text" class="form-control" name="chassi" maxlength="17" value="{{ $onibus->chassi }}">
+      <input type="text" class="form-control" name="chassi" maxlength="17" value="{{ old('onibus', $onibus->chassi) }}">
     </div>
     <div class="form-group">
       <label for="serial">Número</label>
-      <input type="text" class="form-control" name="numero" maxlength="5" value="{{ $onibus->numero }}">
+      <input type="text" class="form-control" name="numero" maxlength="5" value="{{ old('onibus', $onibus->numero) }}">
     </div>
     <div class="form-group">
       <label for="ano">Ano</label>
-      <input type="text" class="form-control" name="ano" maxlength="4" value="{{ $onibus->ano }}">
+      <input type="text" class="form-control" name="ano" maxlength="4" value="{{ old('onibus', $onibus->ano) }}">
     </div>
     <div class="form-group">
       <label for="empresa">Empresa</label>
