@@ -22,7 +22,7 @@ class OnibusStoreRequest extends FormRequest
             'chassi'            => 'required|max:17|unique:onibus,chassi,' . $this->onibus,
             'numero'            => 'required|numeric|unique:onibus,numero,' . $this->onibus,
             'ano'               => 'required|numeric',
-            'empresa_id'        => 'required,' . $this->onibus,
+            'empresa_id'        => 'required',
             'funcionario_id'    => 'required,' . $this->onibus,
         ];
     }

@@ -62,7 +62,7 @@
     </tbody>
 </table>
 <div class="text-center">
-          
+    {{ $onibus->links() }}
 </div>
 
 

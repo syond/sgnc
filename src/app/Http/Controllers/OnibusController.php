@@ -15,7 +15,7 @@ class OnibusController extends Controller
 
     public function index()
     {
-        $onibus = Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id')->paginate(5);
+        $onibus = Onibus::listarJoinOnibusEmpresa(5);
 
         return view('administrador.onibus.index', compact('onibus'));
     }
@@ -33,15 +33,9 @@ class OnibusController extends Controller
         $search = $request->get('search');
 
 
-        $onibus = Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id')
-                    ->where('modelo', 'like', '%'.$search.'%')
-                    ->orWhere('placa', 'like', '%'.$search.'%')
-                    ->orWhere('chassi', 'like', '%'.$search.'%')
-                    ->orWhere('numero', 'like', '%'.$search.'%')
-                    ->orWhere('ano', 'like', '%'.$search.'%')
-                    ->orWhere('nome_fantasia', 'like', '%'.$search.'%')
-                    ->paginate(5);
-                    
+        $onibus = Onibus::buscarOnibusCadastrado($search, 5);
+        
+        
         if(count($onibus) > 0)
         {
             return view('administrador.onibus.index', compact('onibus'));
@@ -65,15 +59,9 @@ class OnibusController extends Controller
         
         Onibus::create($dados);
 
-        return redirect()->route('onibus.index')->with('success', "Onibus cadastrado com sucesso!");
+        return redirect()->route('onibus.index')->with('success', "Ônibus cadastrado com sucesso!");
     }
-
-
-    public function show(Onibus $onibus)
-    {
-        //
-    }
-
+    
 
     public function edit($id)
     {
