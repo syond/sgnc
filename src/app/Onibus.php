@@ -46,12 +46,12 @@ class Onibus extends Model
     public static function buscarOnibusCadastrado($search, $paginate)
     {
         return Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id')
-                        ->where('modelo', 'like', '%'.$search.'%')
-                        ->orWhere('placa', 'like', '%'.$search.'%')
-                        ->orWhere('chassi', 'like', '%'.$search.'%')
-                        ->orWhere('numero', 'like', '%'.$search.'%')
-                        ->orWhere('ano', 'like', '%'.$search.'%')
-                        ->orWhere('nome_fantasia', 'like', '%'.$search.'%')
+                        ->where('onibus.modelo', 'like', '%'.$search.'%')
+                        ->orWhere('onibus.placa', 'like', '%'.$search.'%')
+                        ->orWhere('onibus.chassi', 'like', '%'.$search.'%')
+                        ->orWhere('onibus.numero', 'like', '%'.$search.'%')
+                        ->orWhere('onibus.ano', 'like', '%'.$search.'%')
+                        ->orWhere('empresas.nome_fantasia', 'like', '%'.$search.'%')
                         ->paginate($paginate);
     }
 }

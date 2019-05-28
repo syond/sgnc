@@ -15,34 +15,39 @@
 
     <div class="form-group">
       <label for="fabrica">Modelo</label>
-      <input type="text" class="form-control" name="modelo" id="modelo" style="text-transform:uppercase">
+      <input type="text" class="form-control" name="modelo" id="modelo" >
     </div>
     <div class="form-group">
       <label for="modelo">Placa</label>
-      <input type="text" class="form-control" name="placa" id="placa" maxlength="7" style="text-transform:uppercase">
+      <input type="text" class="form-control" name="placa" id="placa" maxlength="7" >
     </div>
     <div class="form-group">
       <label for="serial">Chassi</label>
-      <input type="text" class="form-control" name="chassi" maxlength="17" style="text-transform:uppercase">
+      <input type="text" class="form-control" name="chassi" maxlength="17" >
     </div>
     <div class="form-group">
       <label for="serial">Número</label>
-      <input type="text" class="form-control" name="numero" maxlength="5"style="text-transform:uppercase">
+      <input type="text" class="form-control" name="numero" maxlength="8" >
     </div>
     <div class="form-group">
       <label for="ano">Ano</label>
-      <input type="text" class="form-control" name="ano" maxlength="4" style="text-transform:uppercase">
+      <input type="text" class="form-control" name="ano" maxlength="4" >
     </div>
+
     <div class="form-group">
       <label for="empresa">Empresa</label>
+
+
       <select name="empresa_id" id="empresa_id" class="form-control">
         <option value="0" disabled selected>Selecione a Empresa</option>
         @foreach($empresas as $empresa)
           <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
-        @endforeach
-            
+        @endforeach   
       </select>
-    </div>        
+
+      
+    </div>    
+        
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
   </div>

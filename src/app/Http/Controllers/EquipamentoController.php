@@ -16,7 +16,7 @@ class EquipamentoController extends Controller
 
     public function index()
     {
-        $equipamento = Equipamento::orderBy('created_at', 'DESC')->paginate(5);
+        $equipamento = Equipamento::listarJoinEquipamentoOnibus(5);
 
         return view('administrador.equipamento.index', compact('equipamento'));
     }
@@ -24,6 +24,7 @@ class EquipamentoController extends Controller
 
     public function create(Request $request)
     {
+        //Para usar no SELECT
         $empresas   = Empresa::all();
 
         return view('administrador.equipamento.create', compact('empresas'));
@@ -46,14 +47,17 @@ class EquipamentoController extends Controller
     {
         $search = $request->get('search');
 
-        $equipamento = Equipamento::where('fabrica', 'like', '%'.$search.'%')
-            ->orWhere('modelo', 'like', '%'.$search.'%')
-            ->orWhere('serial', 'like', '%'.$search.'%')
-            ->orWhere('ano', 'like', '%'.$search.'%')
-            ->orderBy('created_at', 'DESC')
-            ->paginate(5);
-
-        return view('administrador.equipamento.index', compact('equipamento'));
+        $equipamento = Equipamento::buscarEquipamentoCadastrado($search, 5);
+        
+        
+        if(count($equipamento) > 0)
+        {
+            return view('administrador.equipamento.index', compact('equipamento'));
+        }
+            else
+            {
+                return view('administrador.equipamento.index', compact('equipamento'))->withErrors("Nenhum registro encontrado.");
+            } 
     }
 
 
@@ -68,13 +72,7 @@ class EquipamentoController extends Controller
 
         Equipamento::create($dados);
 
-        return back()->with('success', "Equipamento cadastrado com sucesso!");
-    }
-
-
-    public function show(Equipamento $equipamento)
-    {
-        //
+        return redirect()->route('equipamento.index')->with('success', "Equipamento cadastrado com sucesso!");
     }
 
 
@@ -82,22 +80,24 @@ class EquipamentoController extends Controller
     {
         $equipamento = Equipamento::find($id);
 
-        return view('administrador.equipamento.edit', compact('equipamento'));
+        //Para usar no SELECT
+        $empresas   = Empresa::all();
+        //
+
+        //Solução para o DISABLE SELECT
+        $equipamento_onibus = Onibus::find($equipamento->onibus_id);
+        $equipamento_empresa = Empresa::find($equipamento_onibus->empresa_id);
+        //Não ta atualizando quando altero a empresa. Tentar usar belongsTo()
+
+        return view('administrador.equipamento.edit', compact('equipamento', 'empresas', 'equipamento_empresa'));
     }
 
 
     public function update(EquipamentoStoreRequest $request, $id)
     {
-        $equipamento = Equipamento::find($id);
+        $equipamento = Equipamento::find($id)->update($request->all());
 
-        $equipamento->update([
-            'fabrica'   =>  $request->input('fabrica'),
-            'modelo'    =>  $request->input('modelo'),
-            'serial'    =>  $request->input('serial'),
-            'ano'       =>  $request->input('ano'),
-        ]);
-
-        return back()->with('success', 'Empresa atualizada com sucesso!');
+        return redirect()->route('equipamento.index')->with('success', 'Empresa atualizada com sucesso!');
     }
 
 
@@ -105,6 +105,6 @@ class EquipamentoController extends Controller
     {
         Equipamento::find($id)->delete();
         
-        return back()->with('success', 'Empresa deletada com sucesso!');
+        return back()->route('equipamento.index')->with('success', 'Empresa deletada com sucesso!');
     }
 }

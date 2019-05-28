@@ -33,8 +33,7 @@
             <th scope="col">Modelo</th>
             <th scope="col">Serial</th>
             <th scope="col">Ano</th>
-            <th scope="col">Data de Criação:</th>
-            <th scope="col">Última Atualização:</th>
+            <th scope="col">Ônibus:</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>        
@@ -45,8 +44,7 @@
                 <td>{{ $value->modelo }}</td>
                 <td>{{ $value->serial }}</td>
                 <td>{{ $value->ano }}</td>
-                <td>{{ $value->created_at }}</td>
-                <td>{{ $value->updated_at }}</td>
+                <td>{{ $value->placa }}</td>
                         
                         
 

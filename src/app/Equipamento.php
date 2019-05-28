@@ -33,4 +33,22 @@ class Equipamento extends Model
         return $this->belongsTo(Onibus::class);
     }
 
+
+    public static function listarJoinEquipamentoOnibus($paginate)
+    {
+        return Onibus::join('equipamentos', 'equipamentos.onibus_id', 'onibus.id')->paginate($paginate);
+    }
+
+    
+    public static function buscarEquipamentoCadastrado($search, $paginate)
+    {
+        return Onibus::join('equipamentos', 'equipamentos.onibus_id', 'onibus.id')
+                        ->where('equipamentos.fabrica', 'like', '%'.$search.'%')
+                        ->orWhere('equipamentos.modelo', 'like', '%'.$search.'%')
+                        ->orWhere('equipamentos.serial', 'like', '%'.$search.'%')
+                        ->orWhere('equipamentos.ano', 'like', '%'.$search.'%')
+                        ->orWhere('onibus.placa', 'like', '%'.$search.'%')
+                        ->paginate($paginate);
+    }
+
 }

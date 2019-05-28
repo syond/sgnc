@@ -28,21 +28,26 @@
     </div>
     <div class="form-group">
       <label for="serial">Número</label>
-      <input type="text" class="form-control" name="numero" maxlength="5" value="{{ old('onibus', $onibus->numero) }}">
+      <input type="text" class="form-control" name="numero" maxlength="8" value="{{ old('onibus', $onibus->numero) }}">
     </div>
     <div class="form-group">
       <label for="ano">Ano</label>
       <input type="text" class="form-control" name="ano" maxlength="4" value="{{ old('onibus', $onibus->ano) }}">
     </div>
+
+
     <div class="form-group">
       <label for="empresa">Empresa</label>
+      
+      
       <select name="empresa_id" id="empresa_id" class="form-control">
         <option value="0" disabled selected>{{ $onibus->empresa->nome_fantasia }}</option>
         @foreach($onibus->empresa->get() as $value)
           <option value="{{ $value->id }}">{{ $value->nome_fantasia }}</option>
-        @endforeach
-            
+        @endforeach  
       </select>
+
+      
     </div>
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>

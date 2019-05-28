@@ -17,23 +17,10 @@ class EmpresaController extends Controller
         //captura o id do usuário logado
         $funcionario_id = Auth::id();
 
-        
-        //$funcionario = Funcionario::where('id', $funcionario_id)->get()->first();        
-        
-        //Ordena decrescente pelo "created_at", listando apenas 5 registros por tela.
-        $empresa = Empresa::orderBy('created_at', 'DESC')->paginate(5);
-
-
-        $empresas = Empresa::where('funcionario_id', $funcionario_id)->get()->first();
-
-
-        
-        //$funcionario = $empresas->funcionario;
-
-
+        $empresa = Empresa::listarJoinEmpresaFuncionario(5);
         
         //Retorna view INDEX passando $empresa por COMPACT() para acesso nas views.
-        return view('administrador.empresa.index', compact('empresa', 'empresas'));
+        return view('administrador.empresa.index', compact('empresa'));
     }
 
 
@@ -51,18 +38,17 @@ class EmpresaController extends Controller
     {
         //Retorna tudo que for digitado no campo de Busca
         $search = $request->get('search');
-        
-        /**
-         * Query para busca no banco de dados comparando com o que foi digitado
-         * no campo de Busca e retornando apenas 5 registros por página
-         *  */
-        $empresa = Empresa::where('cnpj', 'like', '%'.$search.'%')
-            ->orWhere('nome_fantasia', 'like', '%'.$search.'%')
-            ->orWhere('razao_social', 'like', '%'.$search.'%')
-            ->orderBy('created_at', 'DESC')
-            ->paginate(5);
 
-        return view('administrador.empresa.index', compact('empresa'));
+        $empresa = Empresa::buscarEmpresaCadastrada($search, 5);
+        
+        if(count($empresa) > 0)
+        {
+            return view('administrador.empresa.index', compact('empresa'));
+        }
+            else
+            {
+                return view('administrador.empresa.index', compact('empresa'))->withErrors("Nenhum registro encontrado.");
+            } 
     }
 
 
@@ -79,7 +65,7 @@ class EmpresaController extends Controller
 
             Empresa::create($dados);
 
-            return back()->with('success', "Empresa cadastrada com sucesso!");
+            return redirect()->route('empresa.index')->with('success', "Empresa cadastrada com sucesso!");
         
     }
 
@@ -95,20 +81,21 @@ class EmpresaController extends Controller
 
 
     public function update(EmpresaStoreRequest $request, $id)
-    {
+    {    
+        
         $empresa = Empresa::find($id);
 
         /**
          * Captura os dados preenchidos no formulário
          * e atualiza no respectivo registro no banco.         * 
-         */
+         */   
         $empresa->update([
-            'cnpj'          =>  $request->input('cnpj'),
+            'cnpj'          =>  str_replace(["/", ".", "-"], "", $request->input('cnpj')),
             'nome_fantasia' =>  $request->input('nome_fantasia'),
             'razao_social'  =>  $request->input('razao_social'),
         ]);
 
-        return back()->with('success', 'Empresa atualizada com sucesso!');
+        return redirect()->route('empresa.index')->with('success', 'Empresa atualizada com sucesso!');
     }
 
 
@@ -117,6 +104,6 @@ class EmpresaController extends Controller
         //Query para encontrar a empresa pelo ID e deletar a mesma
         Empresa::find($id)->delete();
         
-        return back()->with('success', 'Empresa deletada com sucesso!');
+        return redirect()->route('empresa.index')->with('success', 'Empresa deletada com sucesso!');
     }
 }

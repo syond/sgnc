@@ -36,7 +36,7 @@
                     <th scope="col">CNPJ</th>
                     <th scope="col">Nome Fantasia</th>
                     <th scope="col">Razão Social</th>
-                    <th scope="col">Data de Criação:</th>
+                    <th scope="col">Criado por:</th>
                     <th scope="col">Última Atualização:</th>
                     <th scope="col">Ação</th>
                 </tr>
@@ -47,13 +47,13 @@
                     <td id="cnpj">{{ $value->cnpj }}</td>
                     <td>{{ $value->nome_fantasia }}</td>
                     <td>{{ $value->razao_social }}</td>
-                    <td>{{ $value->created_at }}</td>
+                    <td>{{ $value->nome }}</td>
                     <td>{{ $value->updated_at }}</td>
                     
                     
 
                     <td>
-                        <form action="{{ route('empresa.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
+                        <form action="{{ route('empresa.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('AVISO!!!! Ao excluir uma empresa também serão excluídos SETORES e ÔNIBUS relacionados a ela. Tem certeza que seja excluir ?')">        
                             <a type="submit" href="{{ route('empresa.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                             @csrf
                             @method('DELETE')     

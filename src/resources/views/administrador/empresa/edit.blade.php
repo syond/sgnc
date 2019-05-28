@@ -15,7 +15,7 @@
 
             <div class="form-group">
                 <label for="cnpj">CNPJ</label>
-                <input type="text" class="form-control" name="cnpj" placeholder="00.000.000/0000-00" value="{{ $empresa->cnpj }}">
+                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" value="{{ $empresa->cnpj }}">
             </div>
             <div class="form-group">
                 <label for="razaoSocial">Razão Social</label>
@@ -30,4 +30,11 @@
             </div>
         </form>
 
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $("#cnpj").mask("00.000.000/0000-00")
+    })
+
+</script>
 @endsection

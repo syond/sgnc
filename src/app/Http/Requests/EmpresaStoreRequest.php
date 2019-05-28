@@ -24,10 +24,10 @@ class EmpresaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'cnpj'              => 'required|unique:empresas|cnpj',
+            'cnpj'              => 'required|cnpj|unique:empresas,cnpj,' . $this->empresa,
             'nome_fantasia'     => 'required|max:50',
             'razao_social'      => 'required|max:50',
-            'funcionario_id'    => '',
+            'funcionario_id'    => 'required,' . $this->empresa,
         ];
     }
 
@@ -38,20 +38,10 @@ class EmpresaStoreRequest extends FormRequest
             'cnpj.unique'               =>  'CNPJ já existe!',
 
             'nome_fantasia.required'    =>  'Preenchimento do NOME FANTASIA é obrigatório.',
+            'nome_fantasia.max'         =>  'NOME FANTASIA muito longo!',
             
             'razao_social.required'     =>  'Email já cadastrado!',      
+            'razao_social.max'         =>  'NOME FANTASIA muito longo!',
         ];
-    }
-
-    /**
-     * 
-     * public function filters()
-        {
-            return [
-                'cnpj' => 'lower',
-            ];
-        }
-     * 
-     */
-    
+    }    
 }
