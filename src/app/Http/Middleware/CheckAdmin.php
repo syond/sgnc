@@ -3,23 +3,23 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class CheckAdmin
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
+
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::Funcionario()->isAdmin())
+        if(Auth::user() && Auth::user()->nivel == 1)
         {
-            return Auth::id();
-            //return $next($request);
+            return $next($request);
+        }
+        else
+        {
+            return redirect('/login')
+            ->with(['error' => "You do not have the permission to enter this site. Please login with correct user."]);
         }
 
+            
     }
 }

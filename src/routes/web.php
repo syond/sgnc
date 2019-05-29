@@ -36,24 +36,24 @@ Route::get ('/dashboard', 'DashboardController@index')->middleware('auth');
 
 Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.funcionario');
 Route::get ('admin/funcionario/search', 'FuncionarioController@search')->name('funcionario.search');
-Route::resource('admin/funcionario', 'FuncionarioController')->middleware('auth');
+Route::resource('admin/funcionario', 'FuncionarioController')->middleware('auth')->middleware('check.admin');
 
 Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');
 Route::get ('admin/empresa/search', 'EmpresaController@search')->name('empresa.search');
-Route::resource ('admin/empresa', 'EmpresaController')->middleware('auth');
+Route::resource ('admin/empresa', 'EmpresaController')->middleware('auth')->middleware('check.admin');
 
 Route::get ('admin/equipamento', 'EquipamentoController@index')->name('admin.equipamento');
 Route::get ('admin/equipamento/search', 'EquipamentoController@search')->name('equipamento.search');
 Route::get ('admin/equipamento/json-onibus', 'EquipamentoController@onibusSelect');
-Route::resource ('admin/equipamento', 'EquipamentoController')->middleware('auth');
+Route::resource ('admin/equipamento', 'EquipamentoController')->middleware('auth')->middleware('check.admin');
 
 Route::get ('admin/onibus', 'OnibusController@index')->name('admin.onibus');
 Route::get ('admin/onibus/search', 'OnibusController@search')->name('onibus.search');
-Route::resource ('admin/onibus', 'OnibusController')->middleware('auth');
+Route::resource ('admin/onibus', 'OnibusController')->middleware('auth')->middleware('check.admin');
 
 Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');
 Route::get ('admin/setor/search', 'SetorController@search')->name('setor.search');
-Route::resource ('admin/setor', 'SetorController')->middleware('auth');
+Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middleware('check.admin');
 
 
 /**
