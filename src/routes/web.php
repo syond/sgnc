@@ -1,13 +1,6 @@
 <?php
 
 /**
- * Classes importadas para auxiliar
- *  */
-use App\Http\Middleware\CheckAdmin;
-
-
-
-/**
  * Rota INDEX que redireciona para a View de LOGIN
  * com middleware de autenticação e checagem se o usuário
  * é administrador ou não.
@@ -16,7 +9,7 @@ Route::get  ('/', function(){
 
     return view('auth.login');
 
-})->middleware('auth');
+});
 
 
 /**
@@ -74,17 +67,3 @@ Route::resource ('tecnico/acao-corretiva', 'CorretivaController')->middleware('a
 
 Route::get ('tecnico/acao-imediata', 'CorretivaController@index')->name('tecnico.acaoimediata');
 Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');
-
-
-
-
-
-
-/**
-Route::resources([
-    'tecnico'  => 'TecnicoController@create',
-    'onibus'   => 'OnibusController',
-    'empresa'   => 'EmpresaController',
-    'setor'   => 'SetorController',
-]);
- */
