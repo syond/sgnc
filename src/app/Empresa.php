@@ -31,6 +31,11 @@ class Empresa extends Model
         return $this->hasMany(Onibus::class);
     }
 
+    public function setores()
+    {
+        return $this->hasMany(Setor::class);
+    }
+
 
 
     public static function listarJoinEmpresaFuncionario($paginate)

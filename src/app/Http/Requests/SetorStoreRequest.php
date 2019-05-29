@@ -16,8 +16,8 @@ class SetorStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'              => 'required|max:50|unique:setores,nome,' . $this->setor,
-            'empresa_id'        => 'required',
+            'nome'              => 'required|max:50',
+            'empresa_id'        => '',
             'funcionario_id'    => 'required,' . $this->setor,
         ];
     }

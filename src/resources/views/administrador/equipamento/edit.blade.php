@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label for="onibus">Ônibus</label>
                 <select name="onibus_id" id="onibus_id" class="form-control">
-                    <option value="0" disabled selected>Selecione o Ônibus</option>
+                    <option value="{{ $equipamento->onibus->id }}" disabled selected>{{ $equipamento->onibus->placa }}</option>
                 </select>
             </div>
 

@@ -104,6 +104,6 @@ class EmpresaController extends Controller
         //Query para encontrar a empresa pelo ID e deletar a mesma
         Empresa::find($id)->delete();
         
-        return redirect()->route('empresa.index')->with('success', 'Empresa deletada com sucesso!');
+        return back()->with('success', 'Empresa deletada com sucesso!');
     }
 }

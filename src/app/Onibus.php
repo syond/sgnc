@@ -24,10 +24,10 @@ class Onibus extends Model
          
       ];
 
-
-    public function funcionario()
+    
+    public function equipamentos()
     {
-        return $this->belongsTo(Funcionario::class);
+        return $this->hasMany(Equipamento::class);
     }
 
     public function empresa()

@@ -96,6 +96,6 @@ class EquipamentoController extends Controller
     {
         Equipamento::find($id)->delete();
         
-        return back()->route('equipamento.index')->with('success', 'Empresa deletada com sucesso!');
+        return back()->with('success', 'Empresa deletada com sucesso!');
     }
 }

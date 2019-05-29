@@ -16,13 +16,33 @@ class FuncionarioController extends Controller
 
     public function index()
     {
-        return view('administrador.funcionario.index');
+        $funcionarios = Funcionario::all();
+
+        return view('administrador.funcionario.index', compact('funcionarios'));
     }
 
 
     public function create()
     {
         return view('administrador.funcionario.create');
+    }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+
+        $funcionario = Funcionario::buscarFuncionarioCadastrado($search, 5);
+        
+        
+        if(count($funcionario) > 0)
+        {
+            return view('funcionario.index', compact('funcionario'));
+        }
+            else
+            {
+                return view('administrador.funcionario.index', compact('funcionario'))->withErrors("Nenhum registro encontrado.");
+            } 
     }
 
 
@@ -33,31 +53,31 @@ class FuncionarioController extends Controller
           
         Funcionario::create($dados);
 
-        return redirect('/admin/funcionario')->with('success', 'Sucesso!');
+        return redirect()->route('funcionario.index')->with('success', 'Funcionário cadastrado com sucesso!');
             
-    }
-
-
-    public function show($id)
-    {
-        return view('funcionario/listar');
     }
 
 
     public function edit($id)
     {
-        return view('funcionario/editar');
+        $funcionario = Funcionario::find($id);
+
+        return view('administrador.funcionario.edit', compact('funcionario'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(SetorStoreRequest $request, $id)
     {
-        //
+        $funcionario = Funcionario::find($id)->update($request->all());
+
+        return redirect()->route('funcionario.index')->with('success', 'Funcionario atualizado com sucesso!');
     }
 
 
     public function destroy($id)
     {
-        //
+        Funcionario::find($id)->delete();
+        
+        return back()->with('success', 'Funcionario deletado com sucesso!');
     }
 }

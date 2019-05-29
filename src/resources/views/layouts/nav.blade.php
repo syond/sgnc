@@ -20,12 +20,10 @@
              
         
         <li class="dropdown">
-                <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">Usuário<i class="caret"></i></span><img src="{{ asset('images/wo.jpg') }}"></a>
+                <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">{{ Auth::user()->nome }}<i class="caret"></i></span><img src="{{ asset('images/wo.jpg') }}"></a>
                 <ul class="dropdown-menu " role="menu">
                   <li><a href="profile.html"><i class="fa fa-user"></i>Editar</a></li>
-                  <li><a href="inbox.html"><i class="fa fa-envelope"></i>Mensagens</a></li>
-                  <li><a href="calendar.html"><i class="fa fa-calendar"></i>Calendário</a></li>
-                  <li><a href="inbox.html"><i class="fa fa-clipboard"></i>Tarefas</a></li>
+                  <li><a href="{{ route('logout') }}"><i class="fa fa-sign-in"></i>Logout</a></li>
                 </ul>
               </li>
              

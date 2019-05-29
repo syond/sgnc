@@ -12,7 +12,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"> 
 <script src="{{ asset('js/jquery.min.js') }}"> </script>
-<script src="{{ asset('js/bootstrap.min.js') }}"> </script>
 <!-- Mainly scripts -->
 <script src="{{ asset('js/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>

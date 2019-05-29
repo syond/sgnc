@@ -42,6 +42,7 @@ Route::get ('/dashboard', 'DashboardController@index');
  *  */
 
 Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.funcionario');
+Route::get ('admin/funcionario/search', 'FuncionarioController@search')->name('funcionario.search');
 Route::resource('admin/funcionario', 'FuncionarioController');
 
 Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');

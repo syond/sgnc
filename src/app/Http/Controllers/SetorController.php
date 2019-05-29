@@ -54,9 +54,18 @@ class SetorController extends Controller
         $dados['funcionario_id']    = $funcionario_id;
         $dados['empresa_id']        = $request->empresa_id;
 
-        Setor::create($dados);
+        $setor = Setor::verficarSeExisteSetorCadastrado($dados);
 
-        return redirect()->route('setor.index')->with('success', "Equipamento cadastrado com sucesso!");
+        if($setor > 0)
+        {
+            return back()->withErrors("Setor já cadastrado nessa empresa.");
+        }
+        else
+        {
+            Setor::create($dados);
+
+            return redirect()->route('setor.index')->with('success', "Setor cadastrado com sucesso!");
+        }
     }
 
 
@@ -72,7 +81,7 @@ class SetorController extends Controller
     {
         $setor = Setor::find($id)->update($request->all());
 
-        return redirect()->route('setor.index')->with('success', 'Empresa atualizada com sucesso!');
+        return redirect()->route('setor.index')->with('success', 'Setor atualizado com sucesso!');
     }
 
 
@@ -80,6 +89,6 @@ class SetorController extends Controller
     {
         Setor::find($id)->delete();
         
-        return back()->route('setor.index')->with('success', 'Empresa deletada com sucesso!');
+        return back()->with('success', 'Setor deletado com sucesso!');
     }
 }

@@ -42,10 +42,6 @@
         <input type="text" class="form-control" name="matricula" placeholder="Matricula" values="{{ old('matricula') }}">
       </div>
       <div class="form-group">
-        <label for="foto">Foto</label>
-        <input type="text" class="form-control" name="foto" placeholder="Foto">
-      </div>
-      <div class="form-group">
         <label for="nivel">Nível de Acesso</label>
         <select name="nivel" class="form-control">
           <option value="" disabled>Nível de Acesso</option>

@@ -22,12 +22,6 @@ class Equipamento extends Model
          
     ];
 
-
-    public function funcionario()
-    {
-        return $this->belongsTo(Funcionario::class);
-    }
-
     public function onibus()
     {
         return $this->belongsTo(Onibus::class);

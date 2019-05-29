@@ -37,7 +37,6 @@
                     <th scope="col">Nome Fantasia</th>
                     <th scope="col">Razão Social</th>
                     <th scope="col">Criado por:</th>
-                    <th scope="col">Última Atualização:</th>
                     <th scope="col">Ação</th>
                 </tr>
             </thead>        
@@ -48,7 +47,6 @@
                     <td>{{ $value->nome_fantasia }}</td>
                     <td>{{ $value->razao_social }}</td>
                     <td>{{ $value->nome }}</td>
-                    <td>{{ $value->updated_at }}</td>
                     
                     
 

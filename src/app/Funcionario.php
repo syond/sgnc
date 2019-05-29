@@ -35,15 +35,6 @@ class Funcionario extends Authenticatable
     return $this->hasMany(Empresa::class);
   }
 
-  public function equipamentos()
-  {
-    return $this->hasMany(Equipamento::class);
-  }
-  
-  public function onibus()
-  {
-    return $this->hasMany(Onibus::class);
-  }
 
   //Função HASH da senha
   public function setPasswordAttribute($password){
@@ -57,9 +48,13 @@ class Funcionario extends Authenticatable
     
   }
 
-  //public function isAdmin()
-  //{
-  //    Funcionario::where('nivel', 1);
-      
-  //}
+
+    public static function buscarFuncionarioCadastrado($search, $paginate)
+    {
+        return Funcionario::where('matricula', 'like', '%'.$search.'%')
+                        ->orWhere('nome', 'like', '%'.$search.'%')
+                        ->orWhere('email', 'like', '%'.$search.'%')
+                        ->paginate($paginate);
+    }
+  
 }

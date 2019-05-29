@@ -18,12 +18,7 @@ class Setor extends Model
     protected $hidden     = [
          
       ];
-
-
-    public function funcionario()
-    {
-        return $this->belongsTo(Funcionario::class);
-    }
+      
 
     public function empresa()
     {
@@ -44,5 +39,11 @@ class Setor extends Model
                         ->where('setores.nome', 'like', '%'.$search.'%')
                         ->orWhere('empresas.nome_fantasia', 'like', '%'.$search.'%')
                         ->paginate($paginate);
+    }
+
+
+    public static function verficarSeExisteSetorCadastrado($dados)
+    {
+        return Setor::where('nome', $dados['nome'])->where('empresa_id', $dados['empresa_id'])->count();
     }
 }

@@ -20,7 +20,7 @@ class EquipamentoStoreRequest extends FormRequest
             'modelo'            => 'required|max:50',
             'serial'            => 'required|max:50|unique:equipamentos,serial,' . $this->equipamento,
             'ano'               => 'required|numeric',
-            'onibus_id'         => 'required',
+            'onibus_id'         => '',
             'funcionario_id'    => 'required,' . $this->equipamento,
         ];
     }
