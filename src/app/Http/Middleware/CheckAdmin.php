@@ -16,8 +16,8 @@ class CheckAdmin
         }
         else
         {
-            return redirect('/login')
-            ->with(['error' => "You do not have the permission to enter this site. Please login with correct user."]);
+            return redirect('/dashboard')
+            ->with('error', "Você não tem permissão para acessar essa área. Use uma conta de Administrador!");
         }
 
             
