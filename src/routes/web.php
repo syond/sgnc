@@ -34,7 +34,7 @@ Auth::routes(['register' => false]);
 /**
  * Rota DASHBOARD só é acessada após o login
  *  */
-Route::get ('/dashboard', 'DashboardController@index');
+Route::get ('/dashboard', 'DashboardController@index')->middleware('auth');
 
 
 /**
@@ -43,37 +43,37 @@ Route::get ('/dashboard', 'DashboardController@index');
 
 Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.funcionario');
 Route::get ('admin/funcionario/search', 'FuncionarioController@search')->name('funcionario.search');
-Route::resource('admin/funcionario', 'FuncionarioController');
+Route::resource('admin/funcionario', 'FuncionarioController')->middleware('auth');
 
 Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');
 Route::get ('admin/empresa/search', 'EmpresaController@search')->name('empresa.search');
-Route::resource ('admin/empresa', 'EmpresaController');
+Route::resource ('admin/empresa', 'EmpresaController')->middleware('auth');
 
 Route::get ('admin/equipamento', 'EquipamentoController@index')->name('admin.equipamento');
 Route::get ('admin/equipamento/search', 'EquipamentoController@search')->name('equipamento.search');
 Route::get ('admin/equipamento/json-onibus', 'EquipamentoController@onibusSelect');
-Route::resource ('admin/equipamento', 'EquipamentoController');
+Route::resource ('admin/equipamento', 'EquipamentoController')->middleware('auth');
 
 Route::get ('admin/onibus', 'OnibusController@index')->name('admin.onibus');
 Route::get ('admin/onibus/search', 'OnibusController@search')->name('onibus.search');
-Route::resource ('admin/onibus', 'OnibusController');
+Route::resource ('admin/onibus', 'OnibusController')->middleware('auth');
 
 Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');
 Route::get ('admin/setor/search', 'SetorController@search')->name('setor.search');
-Route::resource ('admin/setor', 'SetorController');
+Route::resource ('admin/setor', 'SetorController')->middleware('auth');
 
 
 /**
  * Rotas do menu TÉCNICO
  *  */
 Route::get ('tecnico/nao-conformidade', 'NaoConformidadeController@index')->name('tecnico.naoconformidade');
-Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController');
+Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController')->middleware('auth');
 
 Route::get ('tecnico/acao-corretiva', 'CorretivaController@index')->name('tecnico.acaocorretiva');
-Route::resource ('tecnico/acao-corretiva', 'CorretivaController');
+Route::resource ('tecnico/acao-corretiva', 'CorretivaController')->middleware('auth');
 
 Route::get ('tecnico/acao-imediata', 'CorretivaController@index')->name('tecnico.acaoimediata');
-Route::resource ('tecnico/acao-imediata', 'ImediataController');
+Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');
 
 
 
