@@ -68,7 +68,7 @@ class EquipamentoController extends Controller
         $funcionario_id = Auth::id();
 
         $dados['funcionario_id']    = $funcionario_id;
-        $dados['onibus_id']    = $request->onibus;
+        $dados['onibus_id']         = $request->onibus_id;
 
         Equipamento::create($dados);
 
@@ -80,16 +80,7 @@ class EquipamentoController extends Controller
     {
         $equipamento = Equipamento::find($id);
 
-        //Para usar no SELECT
-        $empresas   = Empresa::all();
-        //
-
-        //Solução para o DISABLE SELECT
-        $equipamento_onibus = Onibus::find($equipamento->onibus_id);
-        $equipamento_empresa = Empresa::find($equipamento_onibus->empresa_id);
-        //Não ta atualizando quando altero a empresa. Tentar usar belongsTo()
-
-        return view('administrador.equipamento.edit', compact('equipamento', 'empresas', 'equipamento_empresa'));
+        return view('administrador.equipamento.edit', compact('equipamento'));
     }
 
 

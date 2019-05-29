@@ -4,82 +4,82 @@ namespace App\Http\Controllers;
 
 use App\Setor;
 use Illuminate\Http\Request;
+use App\Http\Requests\SetorStoreRequest;
+use App\Empresa;
+use Auth;
 
 class SetorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('administrador.setor.index');
+        $setores = Setor::listarJoinSetorEmpresa(5);
+
+        return view('administrador.setor.index', compact('setores'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $empresas   = Empresa::all();
+
+        return view('administrador.setor.create', compact('empresas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function search(Request $request)
     {
-        //
+        $search = $request->get('search');
+
+        $setores = Setor::buscarSetorCadastrado($search, 5);
+        
+        
+        if(count($setores) > 0)
+        {
+            return view('administrador.setor.index', compact('setores'));
+        }
+            else
+            {
+                return view('administrador.setor.index', compact('setores'))->withErrors("Nenhum registro encontrado.");
+            } 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Setor  $setor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Setor $setor)
+
+    public function store(SetorStoreRequest $request)
     {
-        //
+        $dados = $request->validated();        
+
+        $funcionario_id = Auth::id();
+
+        $dados['funcionario_id']    = $funcionario_id;
+        $dados['empresa_id']        = $request->empresa_id;
+
+        Setor::create($dados);
+
+        return redirect()->route('setor.index')->with('success', "Equipamento cadastrado com sucesso!");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Setor  $setor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Setor $setor)
+
+    public function edit($id)
     {
-        //
+        $setor = Setor::find($id);
+
+        return view('administrador.setor.edit', compact('setor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Setor  $setor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Setor $setor)
+
+    public function update(SetorStoreRequest $request, $id)
     {
-        //
+        $setor = Setor::find($id)->update($request->all());
+
+        return redirect()->route('setor.index')->with('success', 'Empresa atualizada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Setor  $setor
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Setor $setor)
+
+    public function destroy($id)
     {
-        //
+        Setor::find($id)->delete();
+        
+        return back()->route('setor.index')->with('success', 'Empresa deletada com sucesso!');
     }
 }

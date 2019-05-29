@@ -34,6 +34,7 @@ class Equipamento extends Model
     }
 
 
+
     public static function listarJoinEquipamentoOnibus($paginate)
     {
         return Onibus::join('equipamentos', 'equipamentos.onibus_id', 'onibus.id')->paginate($paginate);

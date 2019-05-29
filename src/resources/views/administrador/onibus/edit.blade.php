@@ -42,8 +42,8 @@
       
       <select name="empresa_id" id="empresa_id" class="form-control">
         <option value="0" disabled selected>{{ $onibus->empresa->nome_fantasia }}</option>
-        @foreach($onibus->empresa->get() as $value)
-          <option value="{{ $value->id }}">{{ $value->nome_fantasia }}</option>
+        @foreach($onibus->empresa->get() as $empresa)
+          <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
         @endforeach  
       </select>
 

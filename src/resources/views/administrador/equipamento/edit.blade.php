@@ -6,6 +6,7 @@
 		    
 @section('content')
 
+
     <h3 id="forms-example" class="">Editar Equipamento</h3>
 
         <form method="POST" action="{{ route('equipamento.update', $equipamento->id) }}">
@@ -15,28 +16,28 @@
 
             <div class="form-group">
                 <label for="cnpj">Fábrica</label>
-                <input type="text" class="form-control" name="fabrica" id="fabrica" value="{{ $equipamento->fabrica }}">
+                <input type="text" class="form-control" name="fabrica" id="fabrica" value="{{ old('equipamentos', $equipamento->fabrica) }}">
             </div>
             <div class="form-group">
                 <label for="razaoSocial">Modelo</label>
-                <input type="text" class="form-control" name="modelo" placeholder="Modelo" value="{{ $equipamento->modelo }}">
+                <input type="text" class="form-control" name="modelo" placeholder="Modelo" value="{{ old('equipamentos', $equipamento->modelo) }}">
             </div>
             <div class="form-group">
                 <label for="nomeFantasia">Serial</label>
-                <input type="text" class="form-control" name="serial" placeholder="Serial" value="{{ $equipamento->serial }}">
+                <input type="text" class="form-control" name="serial" placeholder="Serial" value="{{ old('equipamentos', $equipamento->serial) }}">
             </div>
             <div class="form-group">
                 <label for="nomeFantasia">Ano</label>
-                <input type="text" class="form-control" name="ano" placeholder="Ano" value="{{ $equipamento->ano }}">
+                <input type="text" class="form-control" name="ano" placeholder="Ano" value="{{ old('equipamentos', $equipamento->ano) }}">
             </div>
             
 
             <div class="form-group">
                 <label for="empresa">Empresa</label>
                 <select name="empresa" id="empresa" class="form-control">
-                    <option value="0" disabled selected>{{ $equipamento_empresa->nome_fantasia }}</option>
+                    <option value="0" disabled selected>{{ $equipamento->onibus->empresa->nome_fantasia }}</option>
 
-                    @foreach($empresas as $empresa)
+                    @foreach($equipamento->onibus->empresa->get() as $empresa)
                     <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
                     @endforeach
                         
@@ -44,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label for="onibus">Ônibus</label>
-                <select name="onibus" id="onibus" class="form-control">
+                <select name="onibus_id" id="onibus_id" class="form-control">
                     <option value="0" disabled selected>Selecione o Ônibus</option>
                 </select>
             </div>
@@ -68,12 +69,12 @@
       {
         console.log(data);
         
-        $('#onibus').empty();
-        $('#onibus').append('<option value="" disabled selected>Selecione o Ônibus</option>');
+        $('#onibus_id').empty();
+        $('#onibus_id').append('<option value="" disabled selected>Selecione o Ônibus</option>');
 
         $.each(data, function(index, onibusObj)
         {
-          $('#onibus').append('<option value="'+ onibusObj.id +'">'+ onibusObj.placa +'</option>');
+          $('#onibus_id').append('<option value="'+ onibusObj.id +'">'+ onibusObj.placa +'</option>');
         });
       });
       

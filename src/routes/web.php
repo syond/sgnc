@@ -58,6 +58,7 @@ Route::get ('admin/onibus/search', 'OnibusController@search')->name('onibus.sear
 Route::resource ('admin/onibus', 'OnibusController');
 
 Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');
+Route::get ('admin/setor/search', 'SetorController@search')->name('setor.search');
 Route::resource ('admin/setor', 'SetorController');
 
 

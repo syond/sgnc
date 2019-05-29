@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
       <label for="onibus">Ônibus</label>
-      <select name="onibus" id="onibus" class="form-control">
+      <select name="onibus_id" id="onibus_id" class="form-control">
         <option value="0" disabled selected>Selecione o Ônibus</option>
       </select>
     </div>
@@ -61,12 +61,12 @@
       {
         console.log(data);
         
-        $('#onibus').empty();
-        $('#onibus').append('<option value="" disabled selected>Selecione o Ônibus</option>');
+        $('#onibus_id').empty();
+        $('#onibus_id').append('<option value="" disabled selected>Selecione o Ônibus</option>');
 
         $.each(data, function(index, onibusObj)
         {
-          $('#onibus').append('<option value="'+ onibusObj.id +'">'+ onibusObj.placa +'</option>');
+          $('#onibus_id').append('<option value="'+ onibusObj.id +'">'+ onibusObj.placa +'</option>');
         });
       });
       
