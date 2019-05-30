@@ -4,82 +4,110 @@ namespace App\Http\Controllers;
 
 use App\Imediata;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Empresa;
+use App\Equipamento;
+use App\Onibus;
+use App\Http\Requests\ImediataStoreRequest;
+use Auth;
 
 class ImediataController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('tecnico.imediata.index');
+        $imediatas = Imediata::listarJoinImediataEquipamento(5);
+
+        return view('tecnico.imediata.index', compact('imediatas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $empresas   = Empresa::all();
+
+        return view('tecnico.imediata.create', compact('empresas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Imediata  $imediata
-     * @return \Illuminate\Http\Response
+     * Função para o <SELECT> dinâmico no campo Onibus
      */
-    public function show(Imediata $imediata)
+    public function onibusSelect()
     {
-        //
+        $empresa_id = Input::get('empresa_id');
+
+        $onibus = Onibus::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($onibus);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Imediata  $imediata
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Imediata $imediata)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Imediata  $imediata
-     * @return \Illuminate\Http\Response
+     * Função para o <SELECT> dinâmico no campo Equipamento
      */
-    public function update(Request $request, Imediata $imediata)
+    public function equipamentoSelect()
     {
-        //
+        $onibus_id = Input::get('onibus_id');
+
+        $equipamento = Equipamento::where('onibus_id', $onibus_id)->get();
+
+        return response()->json($equipamento);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Imediata  $imediata
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Imediata $imediata)
+    
+    public function search(Request $request)
     {
-        //
+        $search = $request->get('search');
+
+        $imediatas = Imediata::buscarImediataCadastrada($search, 5);
+        
+        
+        if(count($imediatas) > 0)
+        {
+            return view('tecnico.imediata.index', compact('imediatas'));
+        }
+            else
+            {
+                return view('tecnico.imediata.index', compact('imediatas'))->withErrors("Nenhum registro encontrado.");
+            } 
+    }
+
+
+    public function store(ImediataStoreRequest $request)
+    {
+        $dados = $request->validated();        
+
+        $funcionario_id = Auth::id();
+
+        $dados['funcionario_id']    = $funcionario_id;
+
+        Imediata::create($dados);
+
+        return redirect()->route('acao-imediata.index')->with('success', "Ação Imediata cadastrada com sucesso!");
+    }
+
+
+    public function edit($id)
+    {
+        $imediata = Imediata::find($id);
+
+        return view('tecnico.imediata.edit', compact('imediata'));
+    }
+
+
+    public function update(ImediataStoreRequest $request, $id)
+    {
+        $imediata = Imediata::find($id)->update($request->all());
+
+        return redirect()->route('acao-imediata.index')->with('success', 'Ação Imediata atualizada com sucesso!');
+    }
+
+
+    public function destroy($id)
+    {
+        Imediata::find($id)->delete();
+        
+        return back()->with('success', 'Ação Imediata deletada com sucesso!');
     }
 }

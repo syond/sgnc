@@ -65,5 +65,8 @@ Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController')->middl
 Route::get ('tecnico/acao-corretiva', 'CorretivaController@index')->name('tecnico.acaocorretiva');
 Route::resource ('tecnico/acao-corretiva', 'CorretivaController')->middleware('auth');
 
-Route::get ('tecnico/acao-imediata', 'CorretivaController@index')->name('tecnico.acaoimediata');
+Route::get ('tecnico/acao-imediata', 'ImediataController@index')->name('tecnico.acaoimediata');
+Route::get ('tecnico/acao-imediata/search', 'ImediataController@search')->name('acao-imediata.search');
+Route::get ('tecnico/acao-imediata/json-onibus', 'ImediataController@onibusSelect');
+Route::get ('tecnico/acao-imediata/json-equipamento', 'ImediataController@equipamentoSelect');
 Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');
