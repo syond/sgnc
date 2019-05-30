@@ -4,192 +4,95 @@
 
 @section('content')
 
-		<div class="content-top">
-			
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-			<div class="col-md-1"></div>
-			
-				<!---start-chart---->
-				<!----->
-				<div class="content-graph">
-				<div class="content-color">
-					<div class="content-ch"><p><i></i>Manutenções </p><span>100%</span>
-					<div class="clearfix"> </div>
-					</div>
-					<div class="content-ch1"><p><i></i>Safari</p><span> 50%</span>
-					<div class="clearfix"> </div>
-					</div>
-				</div>
-				<!--graficos-->
-		<link rel="stylesheet" href="css/graph.css">
-		<!--//graph-->
-							<script src="js/jquery.flot.js"></script>
-									<script>
-									$(document).ready(function () {
-									
-										// Graph Data ##############################################
-										var graphData = [{
-												// Visits
-												data: [ [6, 1300], [7, 1600], [8, 1900], [9, 2100], [10, 2500], [11, 2200], [12, 2000], [13, 1950], [14, 1900], [15, 2000] ],
-												color: '#999999'
-											}, {
-												// Returning Visits
-												data: [ [6, 500], [7, 600], [8, 550], [9, 600], [10, 800], [11, 900], [12, 800], [13, 850], [14, 830], [15, 1000] ],
-												color: '#999999',
-												points: { radius: 4, fillColor: '#7f8c8d' }
-											}
-										];
-									
-										// Grafico de linhas #############################################
-										$.plot($('#graph-lines'), graphData, {
-											series: {
-												points: {
-													show: true,
-													radius: 5
-												},
-												lines: {
-													show: true
-												},
-												shadowSize: 0
-											},
-											grid: {
-												color: '#7f8c8d',
-												borderColor: 'transparent',
-												borderWidth: 20,
-												hoverable: true
-											},
-											xaxis: {
-												tickColor: 'transparent',
-												tickDecimals: 2
-											},
-											yaxis: {
-												tickSize: 1000
-											}
-										});
-									
-										// Grafico de barras ##############################################
-										$.plot($('#graph-bars'), graphData, {
-											series: {
-												bars: {
-													show: true,
-													barWidth: .9,
-													align: 'center'
-												},
-												shadowSize: 0
-											},
-											grid: {
-												color: '#7f8c8d',
-												borderColor: 'transparent',
-												borderWidth: 20,
-												hoverable: true
-											},
-											xaxis: {
-												tickColor: 'transparent',
-												tickDecimals: 2
-											},
-											yaxis: {
-												tickSize: 1000
-											}
-										});
-									
-										// Graph Toggle ############################################
-										$('#graph-bars').hide();
-									
-										$('#lines').on('click', function (e) {
-											$('#bars').removeClass('active');
-											$('#graph-bars').fadeOut();
-											$(this).addClass('active');
-											$('#graph-lines').fadeIn();
-											e.preventDefault();
-										});
-									
-										$('#bars').on('click', function (e) {
-											$('#lines').removeClass('active');
-											$('#graph-lines').fadeOut();
-											$(this).addClass('active');
-											$('#graph-bars').fadeIn().removeClass('hidden');
-											e.preventDefault();
-										});
-									
-										// Tooltip #################################################
-										function showTooltip(x, y, contents) {
-											$('<div id="tooltip">' + contents + '</div>').css({
-												top: y - 16,
-												left: x + 20
-											}).appendTo('body').fadeIn();
-										}
-									
-										var previousPoint = null;
-									
-										$('#graph-lines, #graph-bars').bind('plothover', function (event, pos, item) {
-											if (item) {
-												if (previousPoint != item.dataIndex) {
-													previousPoint = item.dataIndex;
-													$('#tooltip').remove();
-													var x = item.datapoint[0],
-														y = item.datapoint[1];
-														showTooltip(item.pageX, item.pageY, y + ' visitors at ' + x + '.00h');
-												}
-											} else {
-												$('#tooltip').remove();
-												previousPoint = null;
-											}
-										});
-									
-									});
-									</script>
-				<div class="graph-container">
-									
-									<div id="graph-bars"> </div>
-									<div id="graph-lines"> </div>
-								</div>
-	
-		</div>
-		</div>
-		<div class="clearfix"> </div>
-		</div>
+		
+<h3 id="forms-example" class="">Dashboard</h3>
+<hr>
+<div class="row">
+    <div class="col-sm-6">
 
-<!--pie-chart--->
-<script src="js/pie-chart.js" type="text/javascript"></script>
- <script type="text/javascript">
+		<label for="equipamento_id">Tipo de Ação</label>
+		<select name="equipamento_id" id="equipamento_id" class="form-control">
+			<option value="" disabled selected></option>
+        	<option value="">Ação Imediata</option>
+			<option value="">Ação Corretiva</option>
+			<option value="">Não Conformidade</option>
+        </select>
 
-        $(document).ready(function () {
-            $('#demo-pie-1').pieChart({
-                barColor: '#3bb2d0',
-                trackColor: '#eee',
-                lineCap: 'round',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
+		<label for="equipamento_id">Data</label>
+		<input type="date" name="equipamento_id" id="equipamento_id" class="form-control">
 
-            $('#demo-pie-2').pieChart({
-                barColor: '#fbb03b',
-                trackColor: '#eee',
-                lineCap: 'butt',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
+		<label for="equipamento_id">Técnico Responsável</label>
+		<select name="equipamento_id" id="equipamento_id" class="form-control">
+			<option value="" disabled selected></option>
+        	<option value="">Jhonatan Alves</option>
+			<option value="">Gabriel Corrêa</option>
+			<option value="">Bruna de Oliveira</option>
+        </select>
 
-            $('#demo-pie-3').pieChart({
-                barColor: '#ed6498',
-                trackColor: '#eee',
-                lineCap: 'square',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
+		<label for="equipamento_id">Situação</label>
+		<select name="equipamento_id" id="equipamento_id" class="form-control">
+			<option value="" disabled selected></option>
+        	<option value="">Pendente</option>
+			<option value="">Em andamento</option>
+			<option value="">Encerrado</option>
+        </select>
 
-           
-        });
+    </div>
+    <div class="col-sm-6">
+        <form class="navbar-left-right" action="">
+            <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
+            <input type="submit" value="" class="fa fa-search">
+        </form>  
+    </div>
+</div>       
+<hr>
+<table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead class="thead-dark">
+        <div class="">
+            <h4>Ações</h4>
+        </div><br>
+        <tr>
+            <th scope="col">CÓDIGO</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Serial Equipamento</th>
+            <th scope="col">Ônibus</th>
+            <th scope="col">Data</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>        
+    <tbody>
 
-</script>
-
+       
+        <tr>
+            <td>12</td>
+			<td>Reparo em cabo de vídeo</td>
+			<td>SVR800M926</td>
+			<td>580</td>
+			<td>2019-05-30</td>
+            <td>Pendente</td>
+		</tr>
+		<tr>
+			<td>13</td>
+			<td>Reparo em cabo de vídeo</td>
+			<td>JJE12347</td>
+			<td>689</td>
+			<td>2019-05-30</td>
+            <td>Em andamento</td>
+		</tr>
+		<tr>
+			<td>14</td>
+			<td>Reparo em cabo de vídeo</td>
+			<td>BRV8596</td>
+			<td>230</td>
+			<td>2019-05-30</td>
+            <td>Encerrado</td>
+        </tr>         
+      
+    </tbody>
+</table>
+<div class="text-center">
+    
+</div>
 
 
 @endsection

@@ -56,5 +56,11 @@ class Funcionario extends Authenticatable
                         ->orWhere('email', 'like', '%'.$search.'%')
                         ->paginate($paginate);
     }
+
+
+    public static function listarTodosOsTecnicos()
+    {
+        return Funcionario::where('nivel', 0)->get();
+    }
   
 }

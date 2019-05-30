@@ -15,6 +15,7 @@ class Imediata extends Model
         'descricao',
         'equipamento_id',
         'funcionario_id',
+        'status',
     ];
 
     protected $hidden     = [
@@ -25,6 +26,11 @@ class Imediata extends Model
     public function equipamento()
     {
         return $this->belongsTo(Equipamento::class);
+    }
+
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class);
     }
 
 
@@ -43,4 +49,23 @@ class Imediata extends Model
                         ->orWhere('equipamentos.serial', 'like', '%'.$search.'%')
                         ->paginate($paginate);
     }
+
+
+    public static function listarImediatasPendentes()
+    {
+        return Imediata::where('status', 0)->get();
+    }
+
+
+    public static function listarImediatasEmAndamento()
+    {
+        return Imediata::where('status', 1)->get();
+    }
+
+
+    public static function listarImediatasEncerradas()
+    {
+        return Imediata::where('status', 2)->get();
+    }
+
 }

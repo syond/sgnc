@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Empresa;
 use App\Equipamento;
 use App\Onibus;
+use App\Funcionario;
 use App\Http\Requests\ImediataStoreRequest;
 use Auth;
 
@@ -18,7 +19,13 @@ class ImediataController extends Controller
     {
         $imediatas = Imediata::listarJoinImediataEquipamento(5);
 
-        return view('tecnico.imediata.index', compact('imediatas'));
+        $funcionarios = Funcionario::listarTodosOsTecnicos();
+
+        $imediatas_pendentes = Imediata::listarImediatasPendentes();
+        $imediatas_emandamento  = Imediata::listarImediatasEmAndamento();
+        $imediatas_encerradas   = Imediata::listarImediatasEncerradas();
+
+        return view('tecnico.imediata.index', compact('imediatas', 'funcionarios', 'imediatas_pendentes', 'imediatas_emandamento', 'imediatas_encerradas'));
     }
 
 

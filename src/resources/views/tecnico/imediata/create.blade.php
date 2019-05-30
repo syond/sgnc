@@ -71,7 +71,7 @@
 
         $.each(data, function(index, onibusObj)
         {
-          $('#onibus_id').append('<option value="'+ onibusObj.id +'">'+ onibusObj.placa +'</option>');
+          $('#onibus_id').append('<option value="'+ onibusObj.id +'">'+ onibusObj.numero +'</option>');
         });
       });
       

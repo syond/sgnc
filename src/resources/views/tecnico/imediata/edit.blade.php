@@ -52,10 +52,15 @@
                 <option value="{{ $imediata->equipamento->id }}" disabled selected>{{ $imediata->equipamento->serial }}</option>
                 </select>
             </div>
-            
-
-
-
+            <div class="form-group">
+              <label for="status">Status</label>
+                <select name="status" id="status" class="form-control">
+                  <option value="" disabled selected>Selecione o status</option>
+                  <option value="0">Pendente</option>
+                  <option value="1">Em andamento</option>
+                  <option value="2">Encerrado</option>
+                </select>
+            </div>
                 <input type="submit" class="btn btn-default" value="Alterar">
             </div>
   
@@ -77,7 +82,7 @@
 
         $.each(data, function(index, onibusObj)
         {
-          $('#onibus_id').append('<option value="'+ onibusObj.id +'">'+ onibusObj.placa +'</option>');
+          $('#onibus_id').append('<option value="'+ onibusObj.id +'">'+ onibusObj.numero +'</option>');
         });
       });
       
