@@ -33,7 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<h2>Login</h2>
 
-		
+			@include('layouts/flash-message')
 			
 			@if(Auth::guest())
 
@@ -43,18 +43,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				@csrf
 
 				<div class="col-md-6">
-					<div class="login-mail">
-						<input type="text" name="matricula" placeholder="Matrícula" required="">
-						<i class="glyphicon glyphicon-user"></i>
+
+					<div class="login-mail {{ $errors->has('matricula') ? 'has-error' : '' }} ">
+						<input type="text" name="matricula" placeholder="Matrícula" >
+						<i class="fa fa-user"></i>
+
 					</div>
-					<div class="login-mail">
+
+					<div class="login-mail {{ $errors->has('matricula') ? 'has-error' : '' }}">
 						<input type="password" name="password" placeholder="Senha" >
 						<i class="fa fa-lock"></i>
+
 					</div>
-					<a class="news-letter " href="#">
-							<label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Lembrar-me</label>
+
+					<a class="news-letter " href="#" value="{{ old('remember') ? 'checked' : '' }}">
+							<label class="checkbox1"><input type="checkbox" name="lembrarme" ><i> </i>Lembrar-me</label>
 					</a>
-					<a class="news-letter " href="#">
+					<a class="news-letter " href="{{ route('password.request') }}">
 							<label class="esqueciminhasenha">Esqueci minha senha</label>
 					</a>	
 				</div>	

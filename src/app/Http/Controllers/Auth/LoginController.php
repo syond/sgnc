@@ -78,22 +78,17 @@ class LoginController extends Controller
 
     protected function login(Request $request)
     {
-        $dados = $request->only('matricula', 'password');
-
-        try {
-
-            Auth::attempt($dados);
-            //dd(Auth::attempt($dados));
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
-
-        }
         
-                
-        //return view('dashboard')->with('data', $request->session()->get('nome'));
-          return view ('dashboard');  
+
+        if(Auth::attempt(['matricula' => $request->matricula, 'password' => $request->password]))
+        {
+            return redirect('dashboard');
+        }
+        else
+        {
+            return redirect('/login')
+                ->with('error', 'Dados inválidos. Verifique se a matricula e senha estão corretas.'); 
+        }         
     }
     
     public function logout()

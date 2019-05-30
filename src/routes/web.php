@@ -5,7 +5,7 @@
  * com middleware de autenticação e checagem se o usuário
  * é administrador ou não.
  *  */
-Route::get  ('/', function(){
+Route::get('/', function(){
 
     return view('auth.login');
 
