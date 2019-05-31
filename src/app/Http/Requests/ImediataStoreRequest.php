@@ -16,12 +16,12 @@ class ImediataStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'              => 'required|max:50',
+            'nome'              => 'required',
             'data'              => 'required',
             'descricao'         => 'required',
-            'status'            => '',
             'equipamento_id'    => '',
             'funcionario_id'    => 'required,' . $this->imediata,
+            'status'            => '',
         ];
     }
 
@@ -29,7 +29,6 @@ class ImediataStoreRequest extends FormRequest
     {
         return [
             'nome.required'         =>  'Preenchimento do NOME é obrigatório.',
-            'nome.max'              =>  'NOME muito longo.',
 
             'data.required'         =>  'Preenchimento da DATA é obrigatório.',
 

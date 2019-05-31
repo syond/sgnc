@@ -36,7 +36,9 @@ class Imediata extends Model
 
     public static function listarJoinImediataEquipamento($paginate)
     {
-        return Equipamento::join('imediatas', 'imediatas.equipamento_id', 'equipamentos.id')->paginate($paginate);
+        return Equipamento::join('imediatas', 'imediatas.equipamento_id', 'equipamentos.id')
+                        ->orderBy('imediatas.created_at', 'DESC')
+                        ->paginate($paginate);
     }
 
     

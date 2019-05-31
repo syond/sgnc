@@ -21,11 +21,9 @@ class ImediataController extends Controller
 
         $funcionarios = Funcionario::listarTodosOsTecnicos();
 
-        $imediatas_pendentes = Imediata::listarImediatasPendentes();
-        $imediatas_emandamento  = Imediata::listarImediatasEmAndamento();
-        $imediatas_encerradas   = Imediata::listarImediatasEncerradas();
+        
 
-        return view('tecnico.imediata.index', compact('imediatas', 'funcionarios', 'imediatas_pendentes', 'imediatas_emandamento', 'imediatas_encerradas'));
+        return view('tecnico.imediata.index', compact('imediatas', 'funcionarios'));
     }
 
 
@@ -87,7 +85,7 @@ class ImediataController extends Controller
 
         $funcionario_id = Auth::id();
 
-        $dados['funcionario_id']    = $funcionario_id;
+        $dados['funcionario_id'] = $funcionario_id;
 
         Imediata::create($dados);
 
