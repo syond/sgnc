@@ -78,8 +78,6 @@ class LoginController extends Controller
 
     protected function login(Request $request)
     {
-        
-
         if(Auth::attempt(['matricula' => $request->matricula, 'password' => $request->password]))
         {
             return redirect('dashboard');

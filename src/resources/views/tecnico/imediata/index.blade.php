@@ -70,17 +70,63 @@
         @foreach($imediatas as $key => $value)
 
         <tr>
-            <td>{{ $value->id }}</td>
+            <td><a type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">{{ $value->id }}</a></td>
             <td>{{ $value->nome }}</td>
             <td>{{ $value->serial }}</td>
             <td>{{ $value->onibus->numero }}</td>
             <td>{{ $value->funcionario_id }}</td>
             <td>{{ $value->data }}</td>
-            <td>{{ $value->status }}</td>
+            
+            @if($value->status == 0)
+                <td><span class="badge badge-warning">Pendente</span></td>
+            @endif
+            @if($value->status == 1)
+                <td><span class="badge badge-primary">Em andamento</span></td>
+            @endif
+            @if($value->status == 2)
+                <td><span class="badge badge-success">Encerrado</span></td>
+            @endif
 
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalhes da Ação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <h4>{{ $value->nome }}</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_criacao" class="col-form-label">Data de criação:</label>
+                        <span>{{ $value->created_at }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_execucao" class="col-form-label">Data de execução:</label>
+                        <span>{{ $value->data }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao" class="col-form-label">Descrição:</label>
+                        <span>{{ $value->descricao }}</span>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        
 
             <td>
-                <form action="{{ route('acao-imediata.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
+                <form action="{{ route('acao-imediata.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
                     <a type="submit" href="{{ route('acao-imediata.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                     @csrf
                     @method('DELETE')     
@@ -88,7 +134,9 @@
                 </form>       
             </td>
         </tr>         
-        @endforeach     
+
+        @endforeach
+
     </tbody>
 </table>
 <div class="text-center">

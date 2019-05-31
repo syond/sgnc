@@ -19,7 +19,7 @@ class ImediataStoreRequest extends FormRequest
             'nome'              => 'required|max:50',
             'data'              => 'required',
             'descricao'         => 'required',
-            'status'            => 'required',
+            'status'            => '',
             'equipamento_id'    => '',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
