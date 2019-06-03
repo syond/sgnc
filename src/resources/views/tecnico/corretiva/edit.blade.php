@@ -32,20 +32,22 @@
             <div class="form-group">
                 <label for="empresa">Empresa</label>
                 <select name="empresa" id="empresa" class="form-control">
-                    
-                        
+                    <option value="0" disabled selected>{{ $corretiva->equipamento->onibus->empresa->nome_fantasia }}</option>
+                    @foreach($corretiva->equipamento->onibus->empresa->get() as $empresa)
+                    <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">
                 <label for="onibus">Ônibus</label>
                 <select name="onibus_id" id="onibus_id" class="form-control">
-                    
+                    <option value="{{ $corretiva->equipamento->onibus->id }}" disabled selected>{{ $corretiva->equipamento->onibus->numero }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="equipamento_id">Equipamento</label>
                 <select name="equipamento_id" id="equipamento_id" class="form-control">
-                    
+                    <option value="{{ $corretiva->equipamento->id }}" disabled selected>{{ $corretiva->equipamento->serial }}</option>
                 </select>
             </div>
                 <input type="submit" class="btn btn-default" value="Alterar">

@@ -43,13 +43,13 @@
             <div class="form-group">
                 <label for="onibus">Ônibus</label>
                 <select name="onibus_id" id="onibus_id" class="form-control">
-                    <option value="{{ $imediata->equipamento->onibus->id }}" disabled selected>{{ $imediata->equipamento->onibus->placa }}</option>
+                    <option value="{{ $imediata->equipamento->onibus->id }}" disabled selected>{{ $imediata->equipamento->onibus->numero }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="equipamento_id">Equipamento</label>
                 <select name="equipamento_id" id="equipamento_id" class="form-control">
-                <option value="{{ $imediata->equipamento->id }}" disabled selected>{{ $imediata->equipamento->serial }}</option>
+                  <option value="{{ $imediata->equipamento->id }}" disabled selected>{{ $imediata->equipamento->serial }}</option>
                 </select>
             </div>
                 <input type="submit" class="btn btn-default" value="Alterar">

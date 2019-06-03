@@ -48,7 +48,7 @@
             <td>{{ $value->nome }}</td>
             <td>{{ $value->email }}</td>
             @if($value->nivel == 1)
-                <td>Administrador</td>
+                <td>Supervisor</td>
             @endif
             @if($value->nivel == 0)
                 <td>Técnico</td>

@@ -68,8 +68,6 @@
         <tr>
             <th scope="col">CÓDIGO</th>
             <th scope="col">Nome</th>
-            <th scope="col">Serial Equipamento</th>
-            <th scope="col">Ônibus</th>
             <th scope="col">Responsável</th>
             <th scope="col">Ação</th>
         </tr>
@@ -77,11 +75,9 @@
     <tbody>
 
         @foreach($imediatas as $key => $value)
-        <tr id="dados" data-toggle="modal" data-target="#exampleModal" data-status="{{ $value->status }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">
+        <tr>
             <td>{{ $value->id }}</td>
-            <td>{{ $value->nome }}</td>
-            <td>{{ $value->equipamento->serial }}</td>
-            <td>{{ $value->equipamento->onibus->numero }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
             <td>{{ $value->equipamento->onibus->empresa->funcionario->nome }}</td>
 
             <td>
@@ -118,6 +114,14 @@
                         <div class="form-group">
                             <label for="data_de_criacao" class="col-form-label">Data de execução</label>
                             <input disabled type="date" id="data_de_execucao" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="onibus" class="col-form-label">Ônibus</label>
+                            <input disabled type="text" id="onibus" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="serial" class="col-form-label">Serial do equipamento</label>
+                            <input disabled type="text" id="serial" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="descricao" class="col-form-label">Descrição</label>
@@ -175,8 +179,9 @@
         var nome                = button.data('nome')
         var data_de_criacao     = button.data('data_de_criacao')
         var data_de_execucao    = button.data('data_de_execucao')
+        var onibus              = button.data('onibus')
+        var serial              = button.data('serial')
         var descricao           = button.data('descricao')
-        var status              = button.data('status')
 
 
         var modal = $(this)
@@ -186,8 +191,9 @@
         modal.find('.modal-body #nome').val(nome)
         modal.find('.modal-body #data_de_criacao').val(data_de_criacao)
         modal.find('.modal-body #data_de_execucao').val(data_de_execucao)
+        modal.find('.modal-body #onibus').val(onibus)
+        modal.find('.modal-body #serial').val(serial)
         modal.find('.modal-body #descricao').val(descricao)
-        modal.find('.modal-body #status').val(status)
 
         
     })

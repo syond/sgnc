@@ -36,6 +36,26 @@ class Empresa extends Model
         return $this->hasMany(Setor::class);
     }
 
+    public function equipamentos()
+    {
+        return $this->hasMany(Equipamento::class);
+    }
+
+    public function imediatas()
+    {
+        return $this->hasMany(Imediata::class);
+    }
+
+    public function corretivas()
+    {
+        return $this->hasMany(Corretiva::class);
+    }
+
+    public function nao_conformidades()
+    {
+        return $this->hasMany(NaoConformidade::class);
+    }
+
 
 
     public static function listarJoinEmpresaFuncionario($paginate)

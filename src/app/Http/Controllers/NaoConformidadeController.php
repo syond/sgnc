@@ -90,20 +90,26 @@ class NaoConformidadeController extends Controller
     }
 
 
-    public function edit(NaoConformidade $naoConformidade)
+    public function edit($id)
     {
-        //
+        $nao_conformidade = NaoConformidade::find($id);
+
+        return view('tecnico.naoconformidade.edit', compact('nao_conformidade'));
     }
 
 
-    public function update(Request $request, NaoConformidade $naoConformidade)
+    public function update(NaoConformidadeStoreRequest $request, $id)
     {
-        //
+        $nao_conformidade = NaoConformidade::find($id)->update($request->all());
+
+        return redirect()->route('nao-conformidade.index')->with('success', 'Não Conformidade atualizada com sucesso!');
     }
 
 
-    public function destroy(NaoConformidade $naoConformidade)
+    public function destroy($id)
     {
-        //
+        NaoConformidade::find($id)->delete();
+        
+        return back()->with('success', 'Não Conformidade deletada com sucesso!');
     }
 }

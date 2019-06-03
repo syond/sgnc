@@ -27,6 +27,11 @@ class Equipamento extends Model
         return $this->belongsTo(Onibus::class);
     }
 
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
+
 
 
     public static function listarJoinEquipamentoOnibus($paginate)

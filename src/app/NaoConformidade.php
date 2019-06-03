@@ -27,6 +27,11 @@ class NaoConformidade extends Model
         return $this->belongsTo(Equipamento::class, 'equipamento_id');
     }
 
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
+
 
     public static function listarJoinNaoConformidadeEquipamentoFuncionario($paginate)
     {
