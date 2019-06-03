@@ -36,6 +36,7 @@ Route::get ('/dashboard', 'DashboardController@index')->middleware('auth');
 
 Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.funcionario');
 Route::get ('admin/funcionario/search', 'FuncionarioController@search')->name('funcionario.search');
+Route::get ('admin/funcionario/json-setor', 'FuncionarioController@setorSelect');
 Route::resource('admin/funcionario', 'FuncionarioController')->middleware('auth')->middleware('check.admin');
 
 Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');
@@ -60,13 +61,20 @@ Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middlewa
  * Rotas do menu TÉCNICO
  *  */
 Route::get ('tecnico/nao-conformidade', 'NaoConformidadeController@index')->name('tecnico.naoconformidade');
+Route::get ('tecnico/nao-conformidade/search', 'NaoConformidadeController@search')->name('nao-conformidade.search');
+Route::get ('tecnico/nao-conformidade/json-onibus', 'NaoConformidadeController@onibusSelect');
+Route::get ('tecnico/nao-conformidade/json-equipamento', 'NaoConformidadeController@equipamentoSelect');
 Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController')->middleware('auth');
 
 Route::get ('tecnico/acao-corretiva', 'CorretivaController@index')->name('tecnico.acaocorretiva');
+Route::get ('tecnico/acao-corretiva/search', 'CorretivaController@search')->name('acao-corretiva.search');
+Route::get ('tecnico/acao-corretiva/json-onibus', 'CorretivaController@onibusSelect');
+Route::get ('tecnico/acao-corretiva/json-equipamento', 'CorretivaController@equipamentoSelect');
 Route::resource ('tecnico/acao-corretiva', 'CorretivaController')->middleware('auth');
 
 Route::get ('tecnico/acao-imediata', 'ImediataController@index')->name('tecnico.acaoimediata');
 Route::get ('tecnico/acao-imediata/search', 'ImediataController@search')->name('acao-imediata.search');
 Route::get ('tecnico/acao-imediata/json-onibus', 'ImediataController@onibusSelect');
 Route::get ('tecnico/acao-imediata/json-equipamento', 'ImediataController@equipamentoSelect');
+Route::get ('tecnico/acao-imediata/live-select', 'ImediataController@liveSelect')->name('acao-imediata.liveSelect');
 Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');

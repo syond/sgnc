@@ -22,17 +22,25 @@ class Funcionario extends Authenticatable
     'email',
     'foto',
     'nivel',
+    'setor_id',
+    'empresa_id',
   ];
 
   protected $hidden     = [
     'password', 
-    'remember_token'
+    'remember_token',
+    
   ];
 
   
   public function empresas()
   {
     return $this->hasMany(Empresa::class);
+  }
+
+  public function setor()
+  {
+    return $this->belongsTo(Setor::class, 'setor_id');
   }
 
 
@@ -61,6 +69,16 @@ class Funcionario extends Authenticatable
     public static function listarTodosOsTecnicos()
     {
         return Funcionario::where('nivel', 0)->get();
+    }
+
+    public static function listarTodosOsAdministradores()
+    {
+        return Funcionario::where('nivel', 1)->get();
+    }
+
+    public static function listarTodos()
+    {
+        return Funcionario::all();
     }
   
 }

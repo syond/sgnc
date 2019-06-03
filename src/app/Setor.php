@@ -17,12 +17,17 @@ class Setor extends Model
 
     protected $hidden     = [
          
-      ];
+    ];
       
 
     public function empresa()
     {
-        return $this->belongsTo(Empresa::class);
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
+
+    public function funcionarios()
+    {
+        return $this->hasMany(Funcionario::class, 'funcionario_id');
     }
 
 

@@ -11,17 +11,17 @@ use App\Onibus;
 use App\Funcionario;
 use App\Http\Requests\ImediataStoreRequest;
 use Auth;
+use DB;
 
 class ImediataController extends Controller
 {
 
     public function index()
     {
-        $imediatas = Imediata::listarJoinImediataEquipamento(5);
+        $imediatas = Imediata::listarTodos(5);
 
-        $funcionarios = Funcionario::listarTodosOsTecnicos();
-
-        
+        //para a filtragem por técnico
+        $funcionarios = Funcionario::listarTodos();
 
         return view('tecnico.imediata.index', compact('imediatas', 'funcionarios'));
     }
@@ -32,6 +32,27 @@ class ImediataController extends Controller
         $empresas   = Empresa::all();
 
         return view('tecnico.imediata.create', compact('empresas'));
+    }
+
+
+    /**
+     * Função para o LIVE <SELECT> dos dados da tabela
+     */
+    public function liveSelect(Request $request)
+    {
+        if($request->ajax())
+        {
+            $query = $request->get('query');
+            
+            if($query != '')
+            {
+
+            }
+            else
+            {
+                
+            }
+        }
     }
 
 

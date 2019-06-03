@@ -39,7 +39,9 @@ class Onibus extends Model
 
     public static function listarJoinOnibusEmpresa($paginate)
     {
-        return Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id')->paginate($paginate);
+        return Empresa::join('onibus', 'onibus.empresa_id', 'empresas.id')
+                        ->orderBy('onibus.created_at', 'DESC')
+                        ->paginate($paginate);
     }
 
     

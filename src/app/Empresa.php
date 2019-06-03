@@ -40,7 +40,9 @@ class Empresa extends Model
 
     public static function listarJoinEmpresaFuncionario($paginate)
     {
-        return Funcionario::join('empresas', 'empresas.funcionario_id', 'funcionarios.id')->paginate($paginate);
+        return Funcionario::join('empresas', 'empresas.funcionario_id', 'funcionarios.id')
+                        ->orderBy('empresas.created_at', 'DESC')
+                        ->paginate($paginate);
     }
 
     

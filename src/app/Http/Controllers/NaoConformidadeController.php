@@ -4,80 +4,104 @@ namespace App\Http\Controllers;
 
 use App\NaoConformidade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\NaoConformidadeStoreRequest;
+use App\Funcionario;
+use App\Empresa;
+use App\Onibus;
+use App\Equipamento;
+use Auth;
 
 class NaoConformidadeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('tecnico.conformidade.index');
+        $nao_conformidades = NaoConformidade::listarJoinNaoConformidadeEquipamentoFuncionario(5);
+
+        //para a filtragem por técnico
+        $funcionarios = Funcionario::listarTodos();
+
+        return view('tecnico.naoconformidade.index', compact('nao_conformidades', 'funcionarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $empresas   = Empresa::all();
+
+        return view('tecnico.naoconformidade.create', compact('empresas'));
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Função para o <SELECT> dinâmico no campo Onibus
      */
-    public function store(Request $request)
+    public function onibusSelect()
     {
-        //
+        $empresa_id = Input::get('empresa_id');
+
+        $onibus = Onibus::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($onibus);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\NaoConformidade  $naoConformidade
-     * @return \Illuminate\Http\Response
+     * Função para o <SELECT> dinâmico no campo Equipamento
      */
-    public function show(NaoConformidade $naoConformidade)
+    public function equipamentoSelect()
     {
-        //
+        $onibus_id = Input::get('onibus_id');
+
+        $equipamento = Equipamento::where('onibus_id', $onibus_id)->get();
+
+        return response()->json($equipamento);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\NaoConformidade  $naoConformidade
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+
+        $nao_conformidade = NaoConformidade::buscarNaoConformidadeCadastrada($search, 5);
+        
+        
+        if(count($nao_conformidade) > 0)
+        {
+            return view('tecnico.nao-conformidade.index', compact('nao_conformidade'));
+        }
+            else
+            {
+                return view('tecnico.nao-conformidade.index', compact('nao_conformidade'))->withErrors("Nenhum registro encontrado.");
+            } 
+    }
+
+    public function store(NaoConformidadeStoreRequest $request)
+    {
+        $dados = $request->validated();        
+
+        $funcionario_id = Auth::id();
+
+        $dados['funcionario_id'] = $funcionario_id;
+
+        NaoConformidade::create($dados);
+
+        return redirect()->route('nao-conformidade.index')->with('success', "Não Conformidade cadastrada com sucesso!");
+    }
+
+
     public function edit(NaoConformidade $naoConformidade)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\NaoConformidade  $naoConformidade
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, NaoConformidade $naoConformidade)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\NaoConformidade  $naoConformidade
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(NaoConformidade $naoConformidade)
     {
         //

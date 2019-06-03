@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ImediataStoreRequest extends FormRequest
+class NaoConformidadeStoreRequest extends FormRequest
 {
 
     public function authorize()

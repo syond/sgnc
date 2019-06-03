@@ -10,21 +10,8 @@
 
 @section('content')
 
-
- 	<div class="grid-form">
-      <div class="grid-form1">
-          <h3 id="forms-example" class="">Cadastro de Funcionário</h3>
-
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div>
-    @endif
-
+  <h3 id="forms-example" class="">Cadastro de Funcionário</h3>
+  <hr>
   <form method="POST" action="{{ route('funcionario.store') }}">  
 
       @csrf
@@ -50,6 +37,24 @@
         </select>
       </div>
       <div class="form-group">
+        <label for="empresa_id">Empresa</label>
+        <select name="empresa_id" id="empresa_id" class="form-control">
+          <option value="0" disabled selected>Selecione a Empresa</option>
+          @foreach($empresas as $empresa)
+            <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
+          @endforeach
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="setor_id">Setor</label>
+        <select name="setor_id" id="setor_id" class="form-control">
+          <option value="0" disabled selected>Selecione o Setor</option>
+
+          <option value=""></option>
+
+        </select>
+      </div>
+      <div class="form-group">
         <label for="senha">Senha</label>
         <input type="password" class="form-control" name="password" placeholder="Senha">
       </div>
@@ -66,9 +71,26 @@
        </div>
      
 
+       <script type="text/javascript">
+            $('#empresa_id').on('change', function(e){
+
+              var empresa_id = e.target.value;
+
+              $.get('/admin/funcionario/json-setor?empresa_id=' + empresa_id, function(data)
+              {
+                
+                $('#setor_id').empty();
+                $('#setor_id').append('<option value="" disabled selected>Selecione o Setor</option>');
+
+                $.each(data, function(index, setorObj)
+                {
+                  $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
+                });
+              });
+              
+            });
+          
+        </script>
+
+
 @endsection
-
-
-</body>
-</html>
-

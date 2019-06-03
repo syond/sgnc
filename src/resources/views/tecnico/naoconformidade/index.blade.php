@@ -1,8 +1,8 @@
 @extends('layouts/layout')
 
-@section('title', 'Ação Corretiva')
+@section('title', 'Não Conformidade')
 
-@section('nav-map-name', 'Ação Corretiva')
+@section('nav-map-name', 'Não Conformidade')
 
 @section('content')
 
@@ -15,7 +15,7 @@
 </style>
 
 
-<h3 id="forms-example" class="">Ação Corretiva</h3>
+<h3 id="forms-example" class="">Não Conformidade</h3>
 <hr>
 <div class="row">
 
@@ -34,7 +34,7 @@
 		<label for="onibus">Ônibus</label>
 		<select name="onibus" id="onibus" class="form-control">
 			<option value="" disabled selected></option>
-            @foreach($corretivas as $key => $value)
+            @foreach($nao_conformidades as $key => $value)
         	<option value="{{ $value->equipamento->onibus->id }}">{{ $value->equipamento->onibus->numero }}</option>
             @endforeach
         </select>
@@ -46,12 +46,12 @@
     </div>
 
     <div class="col-sm-4">
-        <form class="" action="{{ route('acao-corretiva.create') }}">
+        <form class="" action="{{ route('nao-conformidade.create') }}">
             <button class="btn btn-success btn-lg">Cadastrar</button>
         </form>
     </div>
     <div class="col-sm-4">
-        <form class="navbar-left-right" action="{{ route('acao-corretiva.search') }}">
+        <form class="navbar-left-right" action="{{ route('nao-conformidade.search') }}">
             <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
             <input type="submit" value="" class="fa fa-search">
         </form>  
@@ -74,7 +74,7 @@
     </thead>        
     <tbody>
 
-        @foreach($corretivas as $key => $value)
+        @foreach($nao_conformidades as $key => $value)
 
         <tr>
             <td>{{ $value->c_id }}</td>
@@ -84,8 +84,8 @@
             <td>{{ $value->f_nome }}</td>
 
             <td>
-                <form action="{{ route('acao-corretiva.destroy', $value->c_id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
-                    <a type="submit" href="{{ route('acao-corretiva.edit', $value->c_id) }}" class="btn btn-warning">Editar</a>                       
+                <form action="{{ route('nao-conformidade.destroy', $value->c_id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
+                    <a type="submit" href="{{ route('nao-conformidade.edit', $value->c_id) }}" class="btn btn-warning">Editar</a>                       
                     @csrf
                     @method('DELETE')     
                     <button type="submit" class="btn btn-danger">Excluir</button>
@@ -139,7 +139,7 @@
     </tbody>
 </table>
 <div class="text-center">
-    {{ $corretivas->links() }}
+    {{ $nao_conformidades->links() }}
 </div>
 
 

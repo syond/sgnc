@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 //importando model
 use App\Funcionario;
+use App\Empresa;
+use App\Setor;
+
 //importando o Request personalizado
 use App\Http\Requests\FuncionarioStoreRequest;
 
@@ -16,7 +20,7 @@ class FuncionarioController extends Controller
 
     public function index()
     {
-        $funcionarios = Funcionario::all();
+        $funcionarios = Funcionario::orderBy('created_at', 'DESC')->get();
 
         return view('administrador.funcionario.index', compact('funcionarios'));
     }
@@ -24,7 +28,9 @@ class FuncionarioController extends Controller
 
     public function create()
     {
-        return view('administrador.funcionario.create');
+        $empresas = Empresa::all();
+
+        return view('administrador.funcionario.create', compact('empresas'));
     }
 
 
@@ -46,6 +52,19 @@ class FuncionarioController extends Controller
     }
 
 
+    /**
+     * Função para o <SELECT> dinâmico no campo SETOR
+     */
+    public function setorSelect()
+    {
+        $empresa_id = Input::get('empresa_id');
+
+        $setor = Setor::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($setor);
+    }
+    
+
     public function store(FuncionarioStoreRequest $request)
     {
 
@@ -66,7 +85,7 @@ class FuncionarioController extends Controller
     }
 
 
-    public function update(SetorStoreRequest $request, $id)
+    public function update(FuncionarioStoreRequest $request, $id)
     {
         $funcionario = Funcionario::find($id)->update($request->all());
 

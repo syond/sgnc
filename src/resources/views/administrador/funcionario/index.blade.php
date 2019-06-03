@@ -7,6 +7,8 @@
 @section('content')
 
 
+
+
 <h3 id="forms-example" class="">Funcionário</h3>
 <hr>
 <div class="row">
@@ -33,19 +35,29 @@
             <th scope="col">Nome</th>
             <th scope="col">Email</th>
             <th scope="col">Nível de Acesso</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Setor</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>        
     <tbody>
-        @foreach($funcionarios as $value)        
+        @foreach($funcionarios as $key => $value)
+
         <tr>
             <td>{{ $value->matricula }}</td>
             <td>{{ $value->nome }}</td>
             <td>{{ $value->email }}</td>
-            <td>{{ $value->nivel }}</td>
+            @if($value->nivel == 1)
+                <td>Administrador</td>
+            @endif
+            @if($value->nivel == 0)
+                <td>Técnico</td>
+            @endif
+            <td>//</td>
+            <td>{{ $value->setor['nome'] }}</td>
                     
             <td>
-                <form action="{{ route('funcionario.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
+                <form style="margin:0px" action="{{ route('funcionario.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
                     <a type="submit" href="{{ route('funcionario.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                     @csrf
                     @method('DELETE')     

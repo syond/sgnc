@@ -15,13 +15,15 @@
 </style>
 
 
+
+
 <h3 id="forms-example" class="">Ação Imediata</h3>
 <hr>
 <div class="row">
 
     <div class="col-sm-4">
-		<label for="equipamento_id">Técnico Responsável</label>
-		<select name="equipamento_id" id="equipamento_id" class="form-control">
+		<label for="tecnico_responsavel">Técnico Responsável</label>
+		<select name="tecnico_responsavel" id="tecnico_responsavel" class="form-control">
 			<option value="" disabled selected></option>
             @foreach($funcionarios as $value)
         	<option value="{{ $value->id }}">{{ $value->nome }}</option>
@@ -31,18 +33,18 @@
 
 
     <div class="col-sm-4">
-		<label for="status">Status</label>
-		<select name="status" id="status" class="form-control">
+		<label for="onibus">Ônibus</label>
+		<select name="onibus" id="onibus" class="form-control">
 			<option value="" disabled selected></option>
-        	<option value="">Pendente</option>
-			<option value="">Em andamento</option>
-			<option value="">Encerrado</option>
+            @foreach($imediatas as $key => $value)
+        	<option value="{{ $value->equipamento->onibus->id }}">{{ $value->equipamento->onibus->numero }}</option>
+            @endforeach
         </select>
     </div>
 
     <div class="col-sm-4">
-        <label for="equipamento_id">Data</label>
-        <input type="date" name="equipamento_id" id="equipamento_id" class="form-control">
+        <label for="data">Data</label>
+        <input type="date" name="data" id="data" class="form-control">
     </div>
 
     <div class="col-sm-4">
@@ -69,30 +71,18 @@
             <th scope="col">Serial Equipamento</th>
             <th scope="col">Ônibus</th>
             <th scope="col">Responsável</th>
-            <th scope="col">Status</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>        
     <tbody>
 
         @foreach($imediatas as $key => $value)
-
         <tr id="dados" data-toggle="modal" data-target="#exampleModal" data-status="{{ $value->status }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">
             <td>{{ $value->id }}</td>
             <td>{{ $value->nome }}</td>
-            <td>{{ $value->serial }}</td>
-            <td>{{ $value->onibus->numero }}</td>
-            <td>{{ $value->funcionario_id }}</td>
-            
-            @if($value->status == 0)
-                <td><span class="badge badge-warning">Pendente</span></td>
-            @endif
-            @if($value->status == 1)
-                <td><span class="badge badge-primary">Em andamento</span></td>
-            @endif
-            @if($value->status == 2)
-                <td><span class="badge badge-success">Encerrado</span></td>
-            @endif
+            <td>{{ $value->equipamento->serial }}</td>
+            <td>{{ $value->equipamento->onibus->numero }}</td>
+            <td>{{ $value->equipamento->onibus->empresa->funcionario->nome }}</td>
 
             <td>
                 <form action="{{ route('acao-imediata.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
@@ -115,9 +105,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('acao-imediata.update', $value->id) }}">
-                    @csrf
-                    @method('PATCH')
+                    <form>
+
                         <div class="form-group">
                             <label for="nome" class="col-form-label">Nome</label>
                             <input disabled type="text" id="nome" class="form-control">
@@ -134,18 +123,10 @@
                             <label for="descricao" class="col-form-label">Descrição</label>
                             <textarea disabled rows="3" style="resize:none" id="descricao" class="form-control"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="status">Alterar status</label>
-                            <select name="status" id="status" class="form-control">
-                                <option value="" disabled selected>Selecione o status</option>
-                                <option value="0">Pendente</option>
-                                <option value="1">Em andamento</option>
-                                <option value="2">Encerrado</option>
-                            </select>
-                        </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <input type="submit" class="btn btn-primary"></a>
+
                         </div>
                     </form>
                 </div>
@@ -165,6 +146,26 @@
 
 
 <script>
+
+    //
+    $(document).ready(function(){
+
+        function fetch_imediatas_funcionarios(query = '')
+        {
+            $.ajax({
+                url:"{{ route('acao-imediata.liveSelect') }}",
+                method:'GET',
+                data:{query:query},
+                dataType:'json',
+                success:function(data)
+                {
+                    $('tbody').html(data.table_data);
+                }
+            })
+        }
+    });
+
+
 
     //INICIO SCRIPT MODAL - LISTAR DADOS
     $('#exampleModal').on('show.bs.modal', function (event) {
@@ -191,52 +192,6 @@
         
     })
     //FIM SCRIPT MODAL - LISTAR DADOS
-    
-
-
-    //INICIO SCRIPT SELECT
-    $('#empresa').on('change', function(e){
-      console.log(e);
-
-      var empresa_id = e.target.value;
-
-      $.get('/tecnico/acao-imediata/json-onibus?empresa_id=' + empresa_id, function(data)
-      {
-        console.log(data);
-        
-        $('#onibus_id').empty();
-        $('#onibus_id').append('<option value="" disabled selected>Selecione o Ônibus</option>');
-
-        $.each(data, function(index, onibusObj)
-        {
-          $('#onibus_id').append('<option value="'+ onibusObj.id +'">'+ onibusObj.numero +'</option>');
-        });
-      });
-      
-    });
-
-
-
-    $('#onibus_id').on('change', function(e){
-      console.log(e);
-
-      var onibus_id = e.target.value;
-
-      $.get('/tecnico/acao-imediata/json-equipamento?onibus_id=' + onibus_id, function(data)
-      {
-        console.log(data);
-        
-        $('#equipamento_id').empty();
-        $('#equipamento_id').append('<option value="" disabled selected>Selecione o Equipamento</option>');
-
-        $.each(data, function(index, equipamentoObj)
-        {
-          $('#equipamento_id').append('<option value="'+ equipamentoObj.id +'">'+ equipamentoObj.serial +'</option>');
-        });
-      });
-      
-    });
-    //FIM SCRIPT SELECT
 
 </script>
 

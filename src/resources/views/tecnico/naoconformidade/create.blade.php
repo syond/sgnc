@@ -1,15 +1,15 @@
 @extends('layouts/layout')
 
-@section('title', 'Cadastro de Ação Corretiva')
+@section('title', 'Cadastro de Não Conformidade')
 
-@section('nav-map-name', 'Cadastro de Ação Corretiva')
+@section('nav-map-name', 'Cadastro de Não Conformidade')
 		    
 
 @section('content')
 
-  <h3 id="forms-example" class="">Cadastro de Ação Corretiva</h3>
+  <h3 id="forms-example" class="">Cadastro de Não Conformidade</h3>
   <hr>
-  <form method="POST" action="{{ route('acao-corretiva.store') }}">
+  <form method="POST" action="{{ route('nao-conformidade.store') }}">
 
       @csrf
 
@@ -61,7 +61,7 @@
 
       var empresa_id = e.target.value;
 
-      $.get('/tecnico/acao-corretiva/json-onibus?empresa_id=' + empresa_id, function(data)
+      $.get('/tecnico/nao-conformidade/json-onibus?empresa_id=' + empresa_id, function(data)
       {
         
         $('#onibus_id').empty();
@@ -81,7 +81,7 @@
 
       var onibus_id = e.target.value;
 
-      $.get('/tecnico/acao-corretiva/json-equipamento?onibus_id=' + onibus_id, function(data)
+      $.get('/tecnico/nao-conformidade/json-equipamento?onibus_id=' + onibus_id, function(data)
       {
         
         $('#equipamento_id').empty();

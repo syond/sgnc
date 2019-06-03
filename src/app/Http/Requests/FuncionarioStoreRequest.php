@@ -24,12 +24,14 @@ class FuncionarioStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'matricula' =>  'required|numeric|unique:funcionarios',
-            'password'  =>  'required|min:6|max:8',
-            'nome'      =>  'required|min:3',
-            'email'     =>  'required|email',
-            'foto'      =>  'nullable',
-            'nivel'     =>  'required',
+            'matricula'     =>  'required|numeric|unique:funcionarios,matricula,' . $this->funcionario,
+            'password'      =>  'required|min:6|max:8,' . $this->funcionario,
+            'nome'          =>  'required|min:3',
+            'email'         =>  'required|email',
+            'foto'          =>  'nullable',
+            'nivel'         =>  'required',
+            'setor_id'      =>  '',
+            'empresa_id'    =>  '',
         ];
     }
 

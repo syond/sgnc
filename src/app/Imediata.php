@@ -15,7 +15,6 @@ class Imediata extends Model
         'descricao',
         'equipamento_id',
         'funcionario_id',
-        'status',
     ];
 
     protected $hidden     = [
@@ -25,20 +24,13 @@ class Imediata extends Model
     
     public function equipamento()
     {
-        return $this->belongsTo(Equipamento::class);
-    }
-
-    public function funcionario()
-    {
-        return $this->belongsTo(Funcionario::class);
+        return $this->belongsTo(Equipamento::class, 'equipamento_id');
     }
 
 
-    public static function listarJoinImediataEquipamento($paginate)
+    public static function listarTodos($paginate)
     {
-        return Equipamento::join('imediatas', 'imediatas.equipamento_id', 'equipamentos.id')
-                        ->orderBy('imediatas.created_at', 'DESC')
-                        ->paginate($paginate);
+        return Imediata::orderBy('created_at', 'DESC')->paginate($paginate);
     }
 
     
