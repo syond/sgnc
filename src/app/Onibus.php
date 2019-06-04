@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
 class Onibus extends Model
 {
+    use SoftDeletes;
+
     protected $primarykey = 'id';
     protected $table = 'onibus';
 

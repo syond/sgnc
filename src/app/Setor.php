@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setor extends Model
 {
+    use SoftDeletes;
+    
     protected $primarykey = 'id';
     protected $table = 'setores';
 

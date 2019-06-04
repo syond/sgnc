@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 //importando o HASH
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Funcionario extends Authenticatable
 {
+
+  use SoftDeletes;
 
   protected $primaryKey = 'id';
   protected $table      = 'funcionarios';
