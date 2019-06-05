@@ -10,6 +10,7 @@ use App\Funcionario;
 use App\Empresa;
 use App\Onibus;
 use App\Equipamento;
+use App\Setor;
 use Auth;
 
 class NaoConformidadeController extends Controller
@@ -17,7 +18,7 @@ class NaoConformidadeController extends Controller
 
     public function index()
     {
-        $nao_conformidades = NaoConformidade::listarJoinNaoConformidadeEquipamentoFuncionario(5);
+        $nao_conformidades = NaoConformidade::listarTodos(5);
 
         //para a filtragem por técnico
         $funcionarios = Funcionario::listarTodos();
@@ -56,6 +57,19 @@ class NaoConformidadeController extends Controller
         $equipamento = Equipamento::where('onibus_id', $onibus_id)->get();
 
         return response()->json($equipamento);
+    }
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Setor
+     */
+    public function setorSelect()
+    {
+        $empresa_id = Input::get('empresa_id');
+
+        $setor = Setor::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($setor);
     }
 
     

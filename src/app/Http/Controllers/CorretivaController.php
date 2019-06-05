@@ -9,6 +9,7 @@ use App\Http\Requests\CorretivaStoreRequest;
 use App\Funcionario;
 use App\Empresa;
 use App\Onibus;
+use App\Setor;
 use App\Equipamento;
 use Auth;
 
@@ -17,7 +18,7 @@ class CorretivaController extends Controller
 
     public function index()
     {
-        $corretivas = Corretiva::listarJoinCorretivaEquipamentoFuncionario(5);
+        $corretivas = Corretiva::listarTodos(5);
 
         //para a filtragem por técnico
         $funcionarios = Funcionario::listarTodos();
@@ -57,6 +58,18 @@ class CorretivaController extends Controller
         $equipamento = Equipamento::where('onibus_id', $onibus_id)->get();
 
         return response()->json($equipamento);
+    }
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Setor
+     */
+    public function setorSelect()
+    {
+        $empresa_id = Input::get('empresa_id');
+
+        $setor = Setor::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($setor);
     }
 
     

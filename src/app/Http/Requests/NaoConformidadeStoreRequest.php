@@ -20,6 +20,7 @@ class NaoConformidadeStoreRequest extends FormRequest
             'data'              => 'required',
             'descricao'         => 'required',
             'equipamento_id'    => '',
+            'setor_id'      =>  '',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
     }

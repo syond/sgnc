@@ -39,6 +39,12 @@
                 </select>
             </div>
             <div class="form-group">
+              <label for="setor_id">Setor</label>
+              <select name="setor_id" id="setor_id" class="form-control">
+                <option value="{{ $corretiva->setor->id }}" disabled selected>{{ $corretiva->setor->nome }}</option>
+              </select>
+            </div>
+            <div class="form-group">
                 <label for="onibus">Ônibus</label>
                 <select name="onibus_id" id="onibus_id" class="form-control">
                     <option value="{{ $corretiva->equipamento->onibus->id }}" disabled selected>{{ $corretiva->equipamento->onibus->numero }}</option>
@@ -93,6 +99,27 @@
     });
     });
 
+    });
+
+
+    $('#empresa').on('change', function(e){
+      console.log(e);
+
+      var empresa_id = e.target.value;
+
+      $.get('/tecnico/acao-corretiva/json-setor?empresa_id=' + empresa_id, function(data)
+      {
+        console.log(data);
+        
+        $('#setor_id').empty();
+        $('#setor_id').append('<option value="" disabled selected>Selecione o Setor</option>');
+
+        $.each(data, function(index, setorObj)
+        {
+          $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
+        });
+      });
+      
     });
   
 </script>

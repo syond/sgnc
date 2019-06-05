@@ -18,6 +18,7 @@ class NaoConformidade extends Model
         'descricao',
         'equipamento_id',
         'funcionario_id',
+        'setor_id',
     ];
 
     protected $hidden     = [
@@ -35,8 +36,15 @@ class NaoConformidade extends Model
         return $this->belongsTo(Empresa::class);
     }
 
+    public function setor()
+    {
+        return $this->belongsTo(Setor::class);
+    }
 
-    public static function listarJoinNaoConformidadeEquipamentoFuncionario($paginate)
+
+    
+
+    /* public static function listarJoinNaoConformidadeEquipamentoFuncionario($paginate)
     {
         return NaoConformidade::join('equipamentos', 'equipamentos.id', 'nao_conformidades.equipamento_id')
                         ->join('funcionarios', 'funcionarios.id', 'nao_conformidades.funcionario_id')
@@ -48,7 +56,7 @@ class NaoConformidade extends Model
                                 'nao_conformidades.created_at as c_created_at')
                         ->orderBy('nao_conformidades.created_at', 'DESC')
                         ->paginate($paginate);
-    }
+    } */
 
 
     public static function listarTodos($paginate)

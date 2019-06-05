@@ -67,12 +67,14 @@ Route::get ('tecnico/nao-conformidade', 'NaoConformidadeController@index')->name
 Route::get ('tecnico/nao-conformidade/search', 'NaoConformidadeController@search')->name('nao-conformidade.search');
 Route::get ('tecnico/nao-conformidade/json-onibus', 'NaoConformidadeController@onibusSelect');
 Route::get ('tecnico/nao-conformidade/json-equipamento', 'NaoConformidadeController@equipamentoSelect');
+Route::get ('tecnico/nao-conformidade/json-setor', 'NaoConformidadeController@setorSelect');
 Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController')->middleware('auth');
 
 Route::get ('tecnico/acao-corretiva', 'CorretivaController@index')->name('tecnico.acaocorretiva');
 Route::get ('tecnico/acao-corretiva/search', 'CorretivaController@search')->name('acao-corretiva.search');
 Route::get ('tecnico/acao-corretiva/json-onibus', 'CorretivaController@onibusSelect');
 Route::get ('tecnico/acao-corretiva/json-equipamento', 'CorretivaController@equipamentoSelect');
+Route::get ('tecnico/acao-corretiva/json-setor', 'CorretivaController@setorSelect');
 Route::resource ('tecnico/acao-corretiva', 'CorretivaController')->middleware('auth');
 
 Route::get ('tecnico/acao-imediata', 'ImediataController@index')->name('tecnico.acaoimediata');

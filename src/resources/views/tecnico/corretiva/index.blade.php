@@ -75,17 +75,18 @@
     <tbody>
 
         @foreach($corretivas as $key => $value)
+        
 
         <tr>
-            <td>{{ $value->c_id }}</td>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->c_created_at }}" data-nome="{{ $value->c_nome }}" data-id="{{ $value->c_id }}">{{ $value->c_nome }}</td>
-            <td>{{ $value->e_serial }}</td>
+            <td>{{ $value->id }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
+            <td>{{ $value->equipamento->serial }}</td>
             <td>{{ $value->equipamento->onibus->numero }}</td>
-            <td>{{ $value->f_nome }}</td>
+            <td>{{ $value->equipamento->onibus->empresa->funcionario->nome }}</td>
 
             <td>
-                <form action="{{ route('acao-corretiva.destroy', $value->c_id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
-                    <a type="submit" href="{{ route('acao-corretiva.edit', $value->c_id) }}" class="btn btn-warning">Editar</a>                       
+                <form action="{{ route('acao-corretiva.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
+                    <a type="submit" href="{{ route('acao-corretiva.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                     @csrf
                     @method('DELETE')     
                     <button type="submit" class="btn btn-danger">Excluir</button>
@@ -105,29 +106,42 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="nome" class="col-form-label">Nome</label>
-                            <input disabled type="text" id="nome" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="data_de_criacao" class="col-form-label">Data de criação</label>
-                            <input disabled type="text"  id="data_de_criacao" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="data_de_criacao" class="col-form-label">Data de execução</label>
-                            <input disabled type="date" id="data_de_execucao" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="descricao" class="col-form-label">Descrição</label>
-                            <textarea disabled rows="3" style="resize:none" id="descricao" class="form-control"></textarea>
-                        </div>
+                <form>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <div class="form-group">
+                        <label for="nome" class="col-form-label">Nome</label>
+                        <input disabled type="text" id="nome" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_de_criacao" class="col-form-label">Data de criação</label>
+                        <input disabled type="text"  id="data_de_criacao" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_de_criacao" class="col-form-label">Data de execução</label>
+                        <input disabled type="date" id="data_de_execucao" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="setor" class="col-form-label">Setor</label>
+                        <input disabled type="text" id="setor" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="onibus" class="col-form-label">Ônibus</label>
+                        <input disabled type="text" id="onibus" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="serial" class="col-form-label">Serial do equipamento</label>
+                        <input disabled type="text" id="serial" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao" class="col-form-label">Descrição</label>
+                        <textarea disabled rows="3" style="resize:none" id="descricao" class="form-control"></textarea>
+                    </div>
 
-                        </div>
-                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+                </div>
+                </form>
                 </div>
                
                 </div>
@@ -149,23 +163,27 @@
     $('#exampleModal').on('show.bs.modal', function (event) {
 
     var button = $(event.relatedTarget)
-    var id                  = button.data('id')
-    var nome                = button.data('nome')
-    var data_de_criacao     = button.data('data_de_criacao')
-    var data_de_execucao    = button.data('data_de_execucao')
-    var descricao           = button.data('descricao')
-    var status              = button.data('status')
+        var id                  = button.data('id')
+        var nome                = button.data('nome')
+        var data_de_criacao     = button.data('data_de_criacao')
+        var data_de_execucao    = button.data('data_de_execucao')
+        var onibus              = button.data('onibus')
+        var serial              = button.data('serial')
+        var descricao           = button.data('descricao')
+        var setor               = button.data('setor')
 
 
     var modal = $(this)
 
-    modal.find('.modal-title').text('Detalhes da Ação Imediata: ' + id)
+    modal.find('.modal-title').text('Detalhes da Ação Corretiva: ' + id)
 
     modal.find('.modal-body #nome').val(nome)
-    modal.find('.modal-body #data_de_criacao').val(data_de_criacao)
-    modal.find('.modal-body #data_de_execucao').val(data_de_execucao)
-    modal.find('.modal-body #descricao').val(descricao)
-    modal.find('.modal-body #status').val(status)
+        modal.find('.modal-body #data_de_criacao').val(data_de_criacao)
+        modal.find('.modal-body #data_de_execucao').val(data_de_execucao)
+        modal.find('.modal-body #onibus').val(onibus)
+        modal.find('.modal-body #serial').val(serial)
+        modal.find('.modal-body #descricao').val(descricao)
+        modal.find('.modal-body #setor').val(setor)
 
 
     })

@@ -18,6 +18,7 @@ class Corretiva extends Model
         'descricao',
         'equipamento_id',
         'funcionario_id',
+        'setor_id',
     ];
 
     protected $hidden     = [
@@ -35,8 +36,15 @@ class Corretiva extends Model
         return $this->belongsTo(Empresa::class);
     }
 
+    public function setor()
+    {
+        return $this->belongsTo(Setor::class);
+    }
 
-    public static function listarJoinCorretivaEquipamentoFuncionario($paginate)
+
+    //NÃO SEI SE É MAIS NECESSÁRIO ESSE BLOCO DE CÓDIGO
+
+    /* public static function listarJoinCorretivaEquipamentoFuncionario($paginate)
     {
         return Corretiva::join('equipamentos', 'equipamentos.id', 'corretivas.equipamento_id')
                         ->join('funcionarios', 'funcionarios.id', 'corretivas.funcionario_id')
@@ -49,8 +57,9 @@ class Corretiva extends Model
                         ->orderBy('corretivas.created_at', 'DESC')
                         ->paginate($paginate);
     }
+ */
 
-
+ 
     public static function listarTodos($paginate)
     {
         return Corretiva::orderBy('created_at', 'DESC')->paginate($paginate);
