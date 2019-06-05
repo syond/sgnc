@@ -51,7 +51,7 @@
                     
 
                     <td>
-                        <form action="{{ route('empresa.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('AVISO!!!! Ao excluir uma empresa também serão excluídos SETORES e ÔNIBUS relacionados a ela. Tem certeza que seja excluir ?')">        
+                        <form action="{{ route('empresa.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('AVISO!!!! Ao excluir uma empresa também serão excluídos SETORES e ÔNIBUS relacionados a ela. Tem certeza que seja excluir ?')">        
                             <a type="submit" href="{{ route('empresa.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                             @csrf
                             @method('DELETE')     

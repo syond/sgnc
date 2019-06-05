@@ -4,17 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\RncStoreRequest;
 use App\Funcionario;
 use App\Empresa;
+use App\Corretiva;
+use App\Equipamento;
+use App\Imediata;
+use App\NaoConformidade;
+use App\Onibus;
+use App\Setor;
+use App\Rnc;
 use Auth;
 
 class RncController extends Controller
 {
     public function index()
     {
-        $empresas   = Empresa::all();
+        $rnc = Rnc::listarTodos(5);
 
-        return view('sistema.rnc.index', compact('empresas'));
+        //para a filtragem por técnico
+        $funcionarios = Funcionario::listarTodos();
+
+        return view('sistema.rnc.index', compact('rnc', 'funcionarios'));
     }
 
     public function relatorioFuncionarioEmpresas()
@@ -32,4 +44,126 @@ class RncController extends Controller
         //retorna para a view anterior com a variável $funcionario disponível para uso na view
         return back()->compact('funcionario');
     }
+
+    public function create()
+    {
+        $empresas   = Empresa::all();
+        $tecnicos = Funcionario::where('nivel', 0)->get();
+        $supervisores = Funcionario::where('nivel', 1)->get();
+
+        return view('sistema.rnc.create', compact('empresas', 'tecnicos', 'supervisores'));
+    }
+
+
+    public function store(RncStoreRequest $request)
+    {
+        $dados = $request->validated();        
+
+        $funcionario_id = Auth::id();
+
+        $dados['funcionario_id'] = $funcionario_id;
+
+        Rnc::create($dados);
+
+        return redirect()->route('rnc.index')->with('success', "RNC cadastrado com sucesso!");
+    }
+
+
+    public function search(Request $request)
+    {
+        /* $search = $request->get('search');
+
+        $nao_conformidade = NaoConformidade::buscarNaoConformidadeCadastrada($search, 5);
+        
+        
+        if(count($nao_conformidade) > 0)
+        {
+            return view('tecnico.nao-conformidade.index', compact('nao_conformidade'));
+        }
+            else
+            {
+                return view('tecnico.nao-conformidade.index', compact('nao_conformidade'))->withErrors("Nenhum registro encontrado.");
+            }  */
+    }
+
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Onibus
+     */
+    public function onibusSelect()
+    {
+        $empresa_id = Input::get('empresa_id');
+
+        $onibus = Onibus::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($onibus);
+    }
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Equipamento
+     */
+    public function equipamentoSelect()
+    {
+        $onibus_id = Input::get('onibus_id');
+
+        $equipamento = Equipamento::where('onibus_id', $onibus_id)->get();
+
+        return response()->json($equipamento);
+    }
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Setor
+     */
+    public function setorSelect()
+    {
+        $empresa_id = Input::get('empresa_id');
+
+        $setor = Setor::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($setor);
+    }
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Setor
+     */
+    public function naoConformidadeSelect()
+    {
+        $equipamento_id = Input::get('equipamento_id');
+
+        $nao_conformidade = NaoConformidade::where('equipamento_id', $equipamento_id)->get();
+
+        return response()->json($nao_conformidade);
+    }
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Setor
+     */
+    public function imediataSelect()
+    {
+        $equipamento_id = Input::get('equipamento_id');
+
+        $imediata = Imediata::where('equipamento_id', $equipamento_id)->get();
+
+        return response()->json($imediata);
+    }
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Setor
+     */
+    public function corretivaSelect()
+    {
+        $equipamento_id = Input::get('equipamento_id');
+
+        $corretiva = Corretiva::where('equipamento_id', $equipamento_id)->get();
+
+        return response()->json($corretiva);
+    }
+
+
+
 }

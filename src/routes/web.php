@@ -57,6 +57,15 @@ Route::get ('admin/setor/search', 'SetorController@search')->name('setor.search'
 Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middleware('check.admin');
 
 Route::get ('rnc', 'RncController@index')->name('rnc');
+Route::get ('rnc/search', 'RncController@search')->name('rnc.search');
+Route::get ('rnc/json-setor', 'RncController@setorSelect');
+Route::get ('rnc/json-onibus', 'RncController@onibusSelect');
+Route::get ('rnc/json-equipamento', 'RncController@equipamentoSelect');
+Route::get ('rnc/json-nao-conformidade', 'RncController@naoConformidadeSelect');
+Route::get ('rnc/json-imediata', 'RncController@imediataSelect');
+Route::get ('rnc/json-corretiva', 'RncController@corretivaSelect');
+Route::get ('rnc/json-tecnico', 'RncController@tecnicoSelect');
+Route::get ('rnc/json-supervisor', 'RncController@supervisorSelect');
 Route::resource ('rnc', 'RncController')->middleware('auth');
 
 

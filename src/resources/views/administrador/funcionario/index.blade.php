@@ -57,7 +57,7 @@
             <td>{{ $value->setor['nome'] }}</td>
                     
             <td>
-                <form style="margin:0px" action="{{ route('funcionario.destroy', $value->id) }}" method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
+                <form style="margin:0px" action="{{ route('funcionario.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
                     <a type="submit" href="{{ route('funcionario.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
                     @csrf
                     @method('DELETE')     
