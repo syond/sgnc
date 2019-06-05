@@ -9,6 +9,7 @@ use App\Empresa;
 use App\Equipamento;
 use App\Onibus;
 use App\Funcionario;
+use App\Setor;
 use App\Http\Requests\ImediataStoreRequest;
 use Auth;
 use DB;
@@ -79,6 +80,19 @@ class ImediataController extends Controller
         $equipamento = Equipamento::where('onibus_id', $onibus_id)->get();
 
         return response()->json($equipamento);
+    }
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Setor
+     */
+    public function setorSelect()
+    {
+        $empresa_id = Input::get('empresa_id');
+
+        $setor = Setor::where('empresa_id', $empresa_id)->get();
+
+        return response()->json($setor);
     }
 
     

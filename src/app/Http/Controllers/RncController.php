@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Funcionario;
+use App\Empresa;
 use Auth;
 
-class RelatorioController extends Controller
+class RncController extends Controller
 {
     public function index()
     {
-        return view('sistema.relatorio.relatorio');
+        $empresas   = Empresa::all();
+
+        return view('sistema.rnc.index', compact('empresas'));
     }
 
     public function relatorioFuncionarioEmpresas()

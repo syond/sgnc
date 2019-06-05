@@ -18,6 +18,7 @@ class Imediata extends Model
         'descricao',
         'equipamento_id',
         'funcionario_id',
+        'setor_id',
     ];
 
     protected $hidden     = [
@@ -33,6 +34,11 @@ class Imediata extends Model
     public function empresa()
     {
         return $this->belongsTo(Empresa::class);
+    }
+
+    public function setor()
+    {
+        return $this->belongsTo(Setor::class);
     }
 
 

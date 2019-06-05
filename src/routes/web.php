@@ -56,6 +56,9 @@ Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');
 Route::get ('admin/setor/search', 'SetorController@search')->name('setor.search');
 Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middleware('check.admin');
 
+Route::get ('rnc', 'RncController@index')->name('rnc');
+Route::resource ('rnc', 'RncController')->middleware('auth');
+
 
 /**
  * Rotas do menu TÉCNICO
@@ -76,5 +79,6 @@ Route::get ('tecnico/acao-imediata', 'ImediataController@index')->name('tecnico.
 Route::get ('tecnico/acao-imediata/search', 'ImediataController@search')->name('acao-imediata.search');
 Route::get ('tecnico/acao-imediata/json-onibus', 'ImediataController@onibusSelect');
 Route::get ('tecnico/acao-imediata/json-equipamento', 'ImediataController@equipamentoSelect');
+Route::get ('tecnico/acao-imediata/json-setor', 'ImediataController@setorSelect');
 Route::get ('tecnico/acao-imediata/live-select', 'ImediataController@liveSelect')->name('acao-imediata.liveSelect');
 Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');

@@ -77,7 +77,7 @@
         @foreach($imediatas as $key => $value)
         <tr>
             <td>{{ $value->id }}</td>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
             <td>{{ $value->equipamento->onibus->empresa->funcionario->nome }}</td>
 
             <td>
@@ -114,6 +114,10 @@
                         <div class="form-group">
                             <label for="data_de_criacao" class="col-form-label">Data de execução</label>
                             <input disabled type="date" id="data_de_execucao" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="setor" class="col-form-label">Setor</label>
+                            <input disabled type="text" id="setor" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="onibus" class="col-form-label">Ônibus</label>
@@ -182,6 +186,7 @@
         var onibus              = button.data('onibus')
         var serial              = button.data('serial')
         var descricao           = button.data('descricao')
+        var setor               = button.data('setor')
 
 
         var modal = $(this)
@@ -194,6 +199,7 @@
         modal.find('.modal-body #onibus').val(onibus)
         modal.find('.modal-body #serial').val(serial)
         modal.find('.modal-body #descricao').val(descricao)
+        modal.find('.modal-body #setor').val(setor)
 
         
     })

@@ -10,7 +10,6 @@
                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Administrador</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="graficos.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Graficos</a></li>
-                            <li><a href="{{ url('relatorio') }}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i>Relatórios</a></li>
                             <li><a href="{{ url('admin/funcionario') }}" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon"></i>Funcionário</a></li>
                             <li><a href="{{ url('admin/onibus') }}" class=" hvr-bounce-to-right"><i class="fa fa-bus nav_icon"></i>Ônibus</a></li>
                             <li><a href="{{ url('admin/equipamento') }}" class=" hvr-bounce-to-right"><i class="fa fa-cogs nav_icon"></i>Equipamento</a></li>
@@ -28,7 +27,7 @@
                         </ul>
                 </li>
                    
-                            
+                <li><a href="{{ url('rnc') }}" class=" hvr-bounce-to-right"><i class="fa fa-th nav_icon"></i>RNC</a></li>            
 
             </ul>
         </div>

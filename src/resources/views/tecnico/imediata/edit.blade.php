@@ -41,6 +41,12 @@
                 </select>
             </div>
             <div class="form-group">
+              <label for="setor_id">Setor</label>
+              <select name="setor_id" id="setor_id" class="form-control">
+                <option value="{{ $imediata->setor->id }}" disabled selected>{{ $imediata->setor->nome }}</option>
+              </select>
+            </div>
+            <div class="form-group">
                 <label for="onibus">Ônibus</label>
                 <select name="onibus_id" id="onibus_id" class="form-control">
                     <option value="{{ $imediata->equipamento->onibus->id }}" disabled selected>{{ $imediata->equipamento->onibus->numero }}</option>
@@ -96,6 +102,27 @@
         $.each(data, function(index, equipamentoObj)
         {
           $('#equipamento_id').append('<option value="'+ equipamentoObj.id +'">'+ equipamentoObj.serial +'</option>');
+        });
+      });
+      
+    });
+
+
+    $('#empresa').on('change', function(e){
+      console.log(e);
+
+      var empresa_id = e.target.value;
+
+      $.get('/tecnico/acao-imediata/json-setor?empresa_id=' + empresa_id, function(data)
+      {
+        console.log(data);
+        
+        $('#setor_id').empty();
+        $('#setor_id').append('<option value="" disabled selected>Selecione o Setor</option>');
+
+        $.each(data, function(index, setorObj)
+        {
+          $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
         });
       });
       
