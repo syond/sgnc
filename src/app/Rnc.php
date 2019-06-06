@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Input;
 
 class Rnc extends Model
 {
@@ -79,14 +80,23 @@ class Rnc extends Model
     }
 
 
-    public static function listarTecnicoDoRelatorio()
+    public static function listarTecnicoDoRelatorioPeloId()
     {
-        return Rnc::join('funcionarios', 'rnc.tecnico_id', 'funcionarios.id');
-        
-        /* return Rnc::join('')
-                    ->select('rnc.*', 'funcionarios.*')
-                    ->where('rnc.tecnico_id', 'funcionarios.id')
-                    ->orWhere('rnc.supervisor_id', 'funcionarios.id'); */
+        /* return Rnc::select(Rnc::raw("SELECT a.id, a.tecnico_id, b.nome FROM rnc as A INNER JOIN funcionarios as B on a.tecnico_id = b.id")); */
+
+        return Rnc::join('funcionarios as func', 'rnc.tecnico_id', 'func.id')
+                    ->select('rnc.id', 'rnc.tecnico_id', 'func.nome')
+                    ->get();
+    }
+
+
+    public static function listarSupervisorDoRelatorioPeloId()
+    {
+        /* return Rnc::select(Rnc::raw("SELECT a.id, a.tecnico_id, b.nome FROM rnc as A INNER JOIN funcionarios as B on a.tecnico_id = b.id")); */
+
+        return Rnc::join('funcionarios as func', 'rnc.supervisor_id', 'func.id')
+                    ->select('rnc.id', 'rnc.supervisor_id', 'func.nome')
+                    ->get();
     }
 
     

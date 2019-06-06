@@ -35,18 +35,20 @@
             <h4>RNC's Cadastrados</h4>
         </div><br>
         <tr>
-            <th scope="col">Data</th>
+            <th scope="col">Data/hora</th>
             <th scope="col">Descrição</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>        
     <tbody>
-    @dd($teste)
-        @foreach($rnc as $key => $value)         
 
+        @foreach($rnc as $key => $value)  
+        
         <tr>
             <td>{{ $value->created_at }}</td>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->empresa->nome_fantasia }}" data-nao_conformidade="id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->empresa->nome_fantasia }}" data-nao_conformidade="{{ $value->naoconformidade->nome }}" data-corretiva="{{ $value->corretiva->nome }}" data-imediata="{{ $value->imediata->nome }}" data-id="{{ $value->id }}">{{ $value->descricao }}>" data-corretiva="{{ $value->corretiva->nome }}" data-imediata="{{ $value->imediata->nome }}" data-id="{{ $value->id }}">{{ $value->descricao }}</td>
+
+            
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->empresa->nome_fantasia }}" data-nao_conformidade="{{ $value->naoconformidade->nome }}" data-corretiva="{{ $value->corretiva->nome }}" data-imediata="{{ $value->imediata->nome }}" data-id="{{ $value->id }}" data-tecnico="{{ $value->tecnico_id }}" data-supervisor="{{ $value->supervisor_id }}">{{ $value->descricao }}</td>
                     
                     
 
@@ -107,6 +109,14 @@
                         <input disabled type="text" id="imediata" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="tecnico" class="col-form-label">Técnico</label>
+                        <input disabled type="text" id="tecnico" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="supervisor" class="col-form-label">Supervisor</label>
+                        <input disabled type="text" id="supervisor" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="descricao" class="col-form-label">Descrição</label>
                         <textarea disabled rows="3" style="resize:none" id="descricao" class="form-control"></textarea>
                     </div>
@@ -146,6 +156,8 @@
         var corretiva           = button.data('corretiva')
         var imediata            = button.data('imediata')
         var descricao           = button.data('descricao')
+        var tecnico             = button.data('tecnico')
+        var supervisor          = button.data('supervisor')
         
 
 
@@ -162,6 +174,8 @@
         modal.find('.modal-body #corretiva').val(corretiva)
         modal.find('.modal-body #imediata').val(imediata)
         modal.find('.modal-body #descricao').val(descricao)
+        modal.find('.modal-body #tecnico').val(tecnico)
+        modal.find('.modal-body #supervisor').val(supervisor)
         
 
 
