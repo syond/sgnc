@@ -21,6 +21,8 @@ class Rnc extends Model
         'nao_conformidade_id',
         'imediata_id',
         'corretiva_id',
+        'tecnico_id',
+        'supervisor_id',
         'funcionario_id',
         
     ];
@@ -50,7 +52,7 @@ class Rnc extends Model
         return $this->belongsTo(Onibus::class);
     }
 
-    public function naoconformidade()
+    public function naoConformidade()
     {
         return $this->belongsTo(NaoConformidade::class);
     }
@@ -74,6 +76,17 @@ class Rnc extends Model
     public static function listarTodos($paginate)
     {
         return Rnc::orderBy('created_at', 'DESC')->paginate($paginate);
+    }
+
+
+    public static function listarTecnicoDoRelatorio()
+    {
+        return Rnc::join('funcionarios', 'rnc.tecnico_id', 'funcionarios.id');
+        
+        /* return Rnc::join('')
+                    ->select('rnc.*', 'funcionarios.*')
+                    ->where('rnc.tecnico_id', 'funcionarios.id')
+                    ->orWhere('rnc.supervisor_id', 'funcionarios.id'); */
     }
 
     

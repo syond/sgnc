@@ -24,6 +24,8 @@ class RncStoreRequest extends FormRequest
             'nao_conformidade_id'  => '',
             'imediata_id'       => '',
             'corretiva_id'      => '',
+            'tecnico_id'        => '',
+            'supervisor_id'     => '',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
     }

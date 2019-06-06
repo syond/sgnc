@@ -23,10 +23,12 @@ class RncController extends Controller
     {
         $rnc = Rnc::listarTodos(5);
 
+        $teste = Rnc::listarTecnicoDoRelatorio();
+
         //para a filtragem por técnico
         $funcionarios = Funcionario::listarTodos();
 
-        return view('sistema.rnc.index', compact('rnc', 'funcionarios'));
+        return view('sistema.rnc.index', compact('rnc', 'funcionarios', 'teste'));
     }
 
     public function relatorioFuncionarioEmpresas()
