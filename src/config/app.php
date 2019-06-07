@@ -181,6 +181,7 @@ return [
          */
         LaravelLegends\PtBrValidator\ValidatorProvider::class,
         geekcom\ValidatorDocs\ValidatorProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
     ],
 
