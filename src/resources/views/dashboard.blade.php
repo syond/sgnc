@@ -11,10 +11,7 @@
 <div class="row">
 
 	<div class="col-sm-6">
-		<span>Não Conformidades Cadastradas</span>
-		<div>
 			{!! $nao_conformidade_chart->container() !!}
-		</div>
 	</div> 
 	   
 

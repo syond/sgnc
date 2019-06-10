@@ -30,10 +30,7 @@ class Equipamento extends Model
         return $this->belongsTo(Onibus::class);
     }
 
-    public function empresa()
-    {
-        return $this->belongsTo(Empresa::class);
-    }
+
 
 
 

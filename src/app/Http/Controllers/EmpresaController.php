@@ -56,11 +56,8 @@ class EmpresaController extends Controller
     {
             $dados = $request->validated();        
 
-            //Capturando ID do usuário logado
-            $funcionario_id = Auth::id();
 
             //Implementa o atributo "funcionario_id" diretamente com o id do usuário logado
-            $dados['funcionario_id'] = $funcionario_id;
             $dados['cnpj'] = str_replace(["/", ".", "-"], "", $request->cnpj);
 
             Empresa::create($dados);

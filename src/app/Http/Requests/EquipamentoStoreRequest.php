@@ -20,7 +20,7 @@ class EquipamentoStoreRequest extends FormRequest
             'modelo'            => 'required|max:50',
             'serial'            => 'required|max:50|unique:equipamentos,serial,' . $this->equipamento,
             'ano'               => 'required|numeric',
-            'onibus_id'         => '',
+            'onibus_id'         => 'required',
             'funcionario_id'    => 'required,' . $this->equipamento,
         ];
     }
@@ -28,18 +28,20 @@ class EquipamentoStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'fabrica.required'  =>  'Preenchimento da FABRICA é obrigatório.',
-            'modelo.required'   =>  'Preenchimento do MODELO é obrigatório.',
+            'fabrica.required'      =>  'Preenchimento da FABRICA é obrigatório.',
+            'modelo.required'       =>  'Preenchimento do MODELO é obrigatório.',
 
-            'fabrica.max'       =>  'FABRICA muito longo.',
-            'modelo.max'        =>  'MODELO muito longo.',
-            'serial.max'        =>  'SERIAL muito longo.',
+            'onibus_id.required'    => 'Selecione um ônibus.',
+
+            'fabrica.max'           =>  'FABRICA muito longo.',
+            'modelo.max'            =>  'MODELO muito longo.',
+            'serial.max'            =>  'SERIAL muito longo.',
             
-            'serial.required'   =>  'Preenchimento do SERIAL é obrigatório.',
-            'serial.unique'     =>  'Serial já cadastrado!',
+            'serial.required'       =>  'Preenchimento do SERIAL é obrigatório.',
+            'serial.unique'         =>  'Serial já cadastrado!',
             
-            'ano.required'      =>  'Preenchimento do ANO é obrigatório.',    
-            'ano.numeric'       =>  'O campo ANO deve conter apenas números!',
+            'ano.required'          =>  'Preenchimento do ANO é obrigatório.',    
+            'ano.numeric'           =>  'O campo ANO deve conter apenas números!',
         ];
     }
 }

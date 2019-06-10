@@ -56,10 +56,13 @@
       </div>
       <div class="form-group">
         <label for="senha">Senha</label>
-        <input type="password" class="form-control" name="password" placeholder="Senha">
+        <input type="password" class="form-control" name="password" placeholder="Senha" maxlength="8">
       </div>
-    </div>
+
+
       <button type="submit" class="btn btn-default">Enviar</button>
+    </div>
+      
   </form>
   </div>
 

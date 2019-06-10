@@ -22,7 +22,7 @@ class OnibusStoreRequest extends FormRequest
             'chassi'            => 'required|max:17|unique:onibus,chassi,' . $this->onibus,
             'numero'            => 'required|unique:onibus,numero,' . $this->onibus,
             'ano'               => 'required|numeric',
-            'empresa_id'        => '',
+            'empresa_id'        => 'required',
             'funcionario_id'    => 'required,' . $this->onibus,
         ];
     }
@@ -30,22 +30,24 @@ class OnibusStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'modelo.required'   =>  'Preenchimento da MODELO é obrigatório.',
-            'placa.required'    =>  'Preenchimento do PLACA é obrigatório.',
-            'chassi.required'   =>  'Preenchimento do CHASSI é obrigatório.',
-            'numero.required'   =>  'Preenchimento do NUMERO é obrigatório.',
-            'ano.required'      =>  'Preenchimento do ANO é obrigatório.',
+            'modelo.required'       =>  'Preenchimento da MODELO é obrigatório.',
+            'placa.required'        =>  'Preenchimento do PLACA é obrigatório.',
+            'chassi.required'       =>  'Preenchimento do CHASSI é obrigatório.',
+            'numero.required'       =>  'Preenchimento do NUMERO é obrigatório.',
+            'ano.required'          =>  'Preenchimento do ANO é obrigatório.',
 
-            'modelo.max'      =>  'MODELO inválido!',
-            'placa.max'       =>  'PLACA inválida!',
-            'chassi.max'      =>  'CHASSI inválido!',
+            'empresa_id.required'   => 'Selecione uma empresa.',
 
-            'numero.numeric'    => 'O campo NUMERO deve conter apenas números!',
-            'ano.numeric'       => 'O campo ANO deve conter apenas números!',
+            'modelo.max'            =>  'MODELO inválido!',
+            'placa.max'             =>  'PLACA inválida!',
+            'chassi.max'            =>  'CHASSI inválido!',
 
-            'placa.unique'      =>  'PLACA já cadastrada!',
-            'chassi.unique'     =>  'CHASSI já cadastrado!',
-            'numero.unique'     =>  'NUMERO já cadastrado!',           
+            'numero.numeric'        => 'O campo NUMERO deve conter apenas números!',
+            'ano.numeric'           => 'O campo ANO deve conter apenas números!',
+
+            'placa.unique'          =>  'PLACA já cadastrada!',
+            'chassi.unique'         =>  'CHASSI já cadastrado!',
+            'numero.unique'         =>  'NUMERO já cadastrado!',           
         ];
     }
 }

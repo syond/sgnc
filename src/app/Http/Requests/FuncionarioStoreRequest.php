@@ -30,8 +30,8 @@ class FuncionarioStoreRequest extends FormRequest
             'email'         =>  'required|email',
             'foto'          =>  'nullable',
             'nivel'         =>  'required',
-            'setor_id'      =>  '',
-            'empresa_id'    =>  '',
+            'setor_id'      =>  'required',
+            'empresa_id'    =>  'required',
         ];
     }
 
@@ -72,6 +72,10 @@ class FuncionarioStoreRequest extends FormRequest
             'password.max'          =>  'A senha deve conter no MÍNIMO 6 e no MÁXIMO 8 caracteres',
             
             'nivel.required'        =>  'Selecione um nível de acesso para esse usuário.',
+
+            'setor_id.required'     =>  'Selecione um setor para esse usuário.',
+
+            'empresa_id.required'   =>  'Selecione uma empresa para esse usuário.',
         ];
     }
     

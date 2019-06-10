@@ -27,7 +27,6 @@ class EmpresaStoreRequest extends FormRequest
             'cnpj'              => 'required|cnpj|unique:empresas,cnpj,' . $this->empresa,
             'nome_fantasia'     => 'required|max:50',
             'razao_social'      => 'required|max:50',
-            'funcionario_id'    => 'required,' . $this->empresa,
         ];
     }
 

@@ -17,7 +17,7 @@ class SetorStoreRequest extends FormRequest
     {
         return [
             'nome'              => 'required|max:50',
-            'empresa_id'        => '',
+            'empresa_id'        => 'required',
             'funcionario_id'    => 'required,' . $this->setor,
         ];
     }
@@ -26,7 +26,9 @@ class SetorStoreRequest extends FormRequest
     {
         return [
             'nome.required' =>  'Preenchimento da FABRICA é obrigatório.',
-            'nome.max'      =>  'NOME muito longo.'
+            'nome.max'      =>  'NOME muito longo.',
+
+            'empresa_id.required'   => 'Selecione uma empresa.',
         ];
     }
 }
