@@ -36,14 +36,14 @@ class Funcionario extends Authenticatable
   ];
 
   
-  public function empresas()
+  public function empresa()
   {
-    return $this->hasMany(Empresa::class);
+    return $this->belongsTo(Empresa::class);
   }
 
   public function setor()
   {
-    return $this->belongsTo(Setor::class, 'setor_id');
+    return $this->belongsTo(Setor::class);
   }
 
 

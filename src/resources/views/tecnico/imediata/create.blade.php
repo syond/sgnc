@@ -54,6 +54,12 @@
         <option value="0" disabled selected>Selecione o Equipamento</option>
       </select>
     </div>
+    <div class="form-group">
+      <label for="nao_conformidade_id">Não Conformidade</label>
+      <select name="nao_conformidade_id" id="nao_conformidade_id" class="form-control">
+        <option value="0" disabled selected>Selecione a Não Conformidade</option>
+      </select>
+    </div>
         
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
@@ -103,13 +109,11 @@
 
 
     $('#empresa').on('change', function(e){
-      console.log(e);
 
       var empresa_id = e.target.value;
 
       $.get('/tecnico/acao-imediata/json-setor?empresa_id=' + empresa_id, function(data)
       {
-        console.log(data);
         
         $('#setor_id').empty();
         $('#setor_id').append('<option value="" disabled selected>Selecione o Setor</option>');
@@ -117,6 +121,26 @@
         $.each(data, function(index, setorObj)
         {
           $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
+        });
+      });
+      
+    });
+
+
+
+    $('#equipamento_id').on('change', function(e){
+
+      var equipamento_id = e.target.value;
+
+      $.get('/tecnico/acao-imediata/json-nao-conformidade?equipamento_id=' + equipamento_id, function(data)
+      {
+        
+        $('#nao_conformidade_id').empty();
+        $('#nao_conformidade_id').append('<option value="" disabled selected>Selecione a Não Conformidade</option>');
+
+        $.each(data, function(index, naoConformidadeObj)
+        {
+          $('#nao_conformidade_id').append('<option value="'+ naoConformidadeObj.id +'">'+ naoConformidadeObj.nome +'</option>');
         });
       });
       

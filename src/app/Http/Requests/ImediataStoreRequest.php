@@ -16,12 +16,13 @@ class ImediataStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'              => 'required',
-            'data'              => 'required',
-            'descricao'         => 'required',
-            'equipamento_id'    => '',
-            'setor_id'          => '',
-            'funcionario_id'    => 'required,' . $this->imediata,
+            'nome'                  => 'required',
+            'data'                  => 'required',
+            'descricao'             => 'required',
+            'equipamento_id'        => '',
+            'setor_id'              => '',
+            'nao_conformidade_id'   => '',
+            'funcionario_id'        => 'required,' . $this->imediata,
         ];
     }
 

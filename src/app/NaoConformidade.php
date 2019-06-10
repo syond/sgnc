@@ -26,6 +26,11 @@ class NaoConformidade extends Model
     ];
 
     
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class);
+    }
+
     public function equipamento()
     {
         return $this->belongsTo(Equipamento::class, 'equipamento_id');
@@ -42,7 +47,10 @@ class NaoConformidade extends Model
     }
 
 
-    
+    public function imediatas()
+    {
+        return $this->hasMany('App\Imediata');
+    }
 
     /* public static function listarJoinNaoConformidadeEquipamentoFuncionario($paginate)
     {

@@ -58,6 +58,12 @@
                   <option value="{{ $imediata->equipamento->id }}" disabled selected>{{ $imediata->equipamento->serial }}</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="nao_conformidade_id">Não Conformidade</label>
+                <select name="nao_conformidade_id" id="nao_conformidade_id" class="form-control">
+                  <option value="{{ $imediata->nao_conformidade->id }}" disabled selected>{{ $imediata->nao_conformidade->nome }}</option>
+                </select>
+            </div>
                 <input type="submit" class="btn btn-default" value="Alterar">
             </div>
   
@@ -123,6 +129,27 @@
         $.each(data, function(index, setorObj)
         {
           $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
+        });
+      });
+      
+    });
+
+
+    $('#equipamento_id').on('change', function(e){
+      console.log(e);
+
+      var equipamento_id = e.target.value;
+
+      $.get('/tecnico/acao-imediata/json-nao-conformidade?equipamento_id=' + equipamento_id, function(data)
+      {
+        console.log(data);
+        
+        $('#nao_conformidade_id').empty();
+        $('#nao_conformidade_id').append('<option value="" disabled selected>Selecione a Não Conformidade</option>');
+
+        $.each(data, function(index, naoConformidadeObj)
+        {
+          $('#nao_conformidade_id').append('<option value="'+ naoConformidadeObj.id +'">'+ naoConformidadeObj.nome +'</option>');
         });
       });
       

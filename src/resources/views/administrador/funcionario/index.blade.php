@@ -53,8 +53,8 @@
             @if($value->nivel == 0)
                 <td>Técnico</td>
             @endif
-            <td>//</td>
-            <td>{{ $value->setor['nome'] }}</td>
+            <td>{{ $value->empresa->nome_fantasia }}</td>
+            <td>{{ $value->setor->nome }}</td>
                     
             <td>
                 <form style="margin:0px" action="{{ route('funcionario.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        

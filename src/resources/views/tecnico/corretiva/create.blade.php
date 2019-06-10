@@ -54,6 +54,12 @@
         <option value="0" disabled selected>Selecione o Equipamento</option>
       </select>
     </div>
+    <div class="form-group">
+      <label for="imediata_id">Ação Imediata</label>
+      <select name="imediata_id" id="imediata_id" class="form-control">
+        <option value="0" disabled selected>Selecione a Não Conformidade</option>
+      </select>
+    </div>
         
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
@@ -103,13 +109,11 @@
 
 
     $('#empresa').on('change', function(e){
-      console.log(e);
 
       var empresa_id = e.target.value;
 
       $.get('/tecnico/acao-corretiva/json-setor?empresa_id=' + empresa_id, function(data)
       {
-        console.log(data);
         
         $('#setor_id').empty();
         $('#setor_id').append('<option value="" disabled selected>Selecione o Setor</option>');
@@ -117,6 +121,25 @@
         $.each(data, function(index, setorObj)
         {
           $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
+        });
+      });
+      
+    });
+
+
+    $('#equipamento_id').on('change', function(e){
+
+      var equipamento_id = e.target.value;
+
+      $.get('/tecnico/acao-corretiva/json-imediata?equipamento_id=' + equipamento_id, function(data)
+      {
+        
+        $('#imediata_id').empty();
+        $('#imediata_id').append('<option value="" disabled selected>Selecione a Ação Imediata</option>');
+
+        $.each(data, function(index, imediataObj)
+        {
+          $('#imediata_id').append('<option value="'+ imediataObj.id +'">'+ imediataObj.nome +'</option>');
         });
       });
       

@@ -56,6 +56,12 @@
                     <option value="{{ $corretiva->equipamento->id }}" disabled selected>{{ $corretiva->equipamento->serial }}</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="imediata_id">Ação Imediata</label>
+                <select name="imediata_id" id="imediata_id" class="form-control">
+                  <option value="{{ $corretiva->imediata->id }}" disabled selected>{{ $corretiva->imediata->nome }}</option>
+                </select>
+            </div>
                 <input type="submit" class="btn btn-default" value="Alterar">
             </div>
   
@@ -120,6 +126,26 @@
         });
       });
       
+    });
+
+
+
+    $('#equipamento_id').on('change', function(e){
+
+    var equipamento_id = e.target.value;
+
+    $.get('/tecnico/acao-corretiva/json-imediata?equipamento_id=' + equipamento_id, function(data)
+    {
+    
+    $('#imediata_id').empty();
+    $('#imediata_id').append('<option value="" disabled selected>Selecione a Ação Imediata</option>');
+
+    $.each(data, function(index, imediataObj)
+    {
+        $('#imediata_id').append('<option value="'+ imediataObj.id +'">'+ imediataObj.nome +'</option>');
+    });
+    });
+
     });
   
 </script>

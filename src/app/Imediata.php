@@ -19,13 +19,16 @@ class Imediata extends Model
         'equipamento_id',
         'funcionario_id',
         'setor_id',
+        'nao_conformidade_id',
     ];
 
     protected $hidden     = [
         //
     ];
 
-    
+    /**
+     * Relacionamentos BelongsTo
+     */
     public function equipamento()
     {
         return $this->belongsTo(Equipamento::class, 'equipamento_id');
@@ -41,6 +44,28 @@ class Imediata extends Model
         return $this->belongsTo(Setor::class);
     }
 
+    public function nao_conformidade()
+    {
+        return $this->belongsTo(NaoConformidade::class);
+    }
+
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class);
+    }
+
+
+
+    /**
+     * Relacionamentos HasMany
+     */
+    public function corretivas()
+    {
+        return $this->hasMany(Corretiva::class);
+    }
+
+
+    
 
     public static function listarTodos($paginate)
     {

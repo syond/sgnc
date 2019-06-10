@@ -21,6 +21,7 @@ class CorretivaStoreRequest extends FormRequest
             'descricao'         => 'required',
             'equipamento_id'    => '',
             'setor_id'          => '',
+            'imediata_id'       => '',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
     }

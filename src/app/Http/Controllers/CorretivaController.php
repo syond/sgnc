@@ -11,6 +11,7 @@ use App\Empresa;
 use App\Onibus;
 use App\Setor;
 use App\Equipamento;
+use App\Imediata;
 use Auth;
 
 class CorretivaController extends Controller
@@ -70,6 +71,19 @@ class CorretivaController extends Controller
         $setor = Setor::where('empresa_id', $empresa_id)->get();
 
         return response()->json($setor);
+    }
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Não Conformidade
+     */
+    public function imediataSelect()
+    {
+        $equipamento_id = Input::get('equipamento_id');
+
+        $imediata_id = Imediata::where('equipamento_id', $equipamento_id)->get();
+
+        return response()->json($imediata_id);
     }
 
     

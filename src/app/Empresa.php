@@ -24,9 +24,9 @@ class Empresa extends Model
       ];
 
 
-    public function funcionario()
+    public function funcionarios()
     {
-        return $this->belongsTo(Funcionario::class);
+        return $this->hasMany(Funcionario::class);
     }
 
     public function onibus()

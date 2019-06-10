@@ -21,9 +21,9 @@
                 <li>
                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-desktop nav_icon"></i> <span class="nav-label">Técnico</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="{{ url('tecnico/acao-imediata') }}" class=" hvr-bounce-to-right"> <i class="fa fa-clipboard nav_icon"></i>Ação Imediata</a></li>
-                            <li><a href="{{ url('tecnico/acao-corretiva') }}" class=" hvr-bounce-to-right"><i class="fa fa-check nav_icon"></i>Ação Corretiva</a></li>
                             <li><a href="{{ url('tecnico/nao-conformidade') }}" class=" hvr-bounce-to-right"><i class="fa fa-tasks nav_icon"></i>Não Conformidade</a></li>
+                            <li><a href="{{ url('tecnico/acao-imediata') }}" class=" hvr-bounce-to-right"> <i class="fa fa-clipboard nav_icon"></i>Ação Imediata</a></li>
+                            <li><a href="{{ url('tecnico/acao-corretiva') }}" class=" hvr-bounce-to-right"><i class="fa fa-check nav_icon"></i>Ação Corretiva</a></li>       
                         </ul>
                 </li>
                    

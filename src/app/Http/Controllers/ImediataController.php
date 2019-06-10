@@ -10,6 +10,7 @@ use App\Equipamento;
 use App\Onibus;
 use App\Funcionario;
 use App\Setor;
+use App\NaoConformidade;
 use App\Http\Requests\ImediataStoreRequest;
 use Auth;
 use DB;
@@ -93,6 +94,20 @@ class ImediataController extends Controller
         $setor = Setor::where('empresa_id', $empresa_id)->get();
 
         return response()->json($setor);
+    }
+
+
+
+    /**
+     * Função para o <SELECT> dinâmico no campo Não Conformidade
+     */
+    public function naoConformidadeSelect()
+    {
+        $equipamento_id = Input::get('equipamento_id');
+
+        $nao_conformidade = NaoConformidade::where('equipamento_id', $equipamento_id)->get();
+
+        return response()->json($nao_conformidade);
     }
 
     

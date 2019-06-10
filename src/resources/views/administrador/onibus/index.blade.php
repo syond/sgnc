@@ -40,7 +40,7 @@
     <tbody>
 
         @foreach($onibus as $key => $value)  
-
+        
         <tr>
             <td>{{ $value->modelo }}</td>
             <td>{{ $value->placa }}</td>

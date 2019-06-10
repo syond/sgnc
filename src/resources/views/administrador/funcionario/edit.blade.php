@@ -35,6 +35,23 @@
         </select>
       </div>
       <div class="form-group">
+                <label for="empresa">Empresa</label>
+                <select name="empresa" id="empresa" class="form-control">
+                    <option value="0" disabled selected>{{ $funcionario->empresa->nome_fantasia }}</option>
+
+                    @foreach($funcionario->empresa->get() as $empresa)
+                    <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
+                    @endforeach
+                        
+                </select>
+            </div>
+      <div class="form-group">
+        <label for="setor_id">Setor</label>
+        <select name="setor_id" id="setor_id" class="form-control">
+          <option value="{{ $funcionario->setor->id }}" disabled selected>{{ $funcionario->setor->nome }}</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label for="senha">Senha antiga</label>
         <input type="password" class="form-control" name="password" >
       </div>

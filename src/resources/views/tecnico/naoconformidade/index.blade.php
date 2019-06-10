@@ -77,7 +77,7 @@
         <tr>
             <td>{{ $value->id }}</td>
             <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
-            <td>{{ $value->equipamento->onibus->empresa->funcionario->nome }}</td>
+            <td>{{ $value->funcionario->nome }}</td>
 
             <td>
                 <form action="{{ route('nao-conformidade.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        

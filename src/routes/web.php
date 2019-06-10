@@ -59,13 +59,6 @@ Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middlewa
 Route::get ('rnc', 'RncController@index')->name('rnc');
 Route::get ('rnc/search', 'RncController@search')->name('rnc.search');
 Route::get ('rnc/json-setor', 'RncController@setorSelect');
-Route::get ('rnc/json-onibus', 'RncController@onibusSelect');
-Route::get ('rnc/json-equipamento', 'RncController@equipamentoSelect');
-Route::get ('rnc/json-nao-conformidade', 'RncController@naoConformidadeSelect');
-Route::get ('rnc/json-imediata', 'RncController@imediataSelect');
-Route::get ('rnc/json-corretiva', 'RncController@corretivaSelect');
-Route::get ('rnc/json-tecnico', 'RncController@tecnicoSelect');
-Route::get ('rnc/json-supervisor', 'RncController@supervisorSelect');
 Route::resource ('rnc', 'RncController')->middleware('auth');
 
 
@@ -84,6 +77,7 @@ Route::get ('tecnico/acao-corretiva/search', 'CorretivaController@search')->name
 Route::get ('tecnico/acao-corretiva/json-onibus', 'CorretivaController@onibusSelect');
 Route::get ('tecnico/acao-corretiva/json-equipamento', 'CorretivaController@equipamentoSelect');
 Route::get ('tecnico/acao-corretiva/json-setor', 'CorretivaController@setorSelect');
+Route::get ('tecnico/acao-corretiva/json-imediata', 'CorretivaController@imediataSelect');
 Route::resource ('tecnico/acao-corretiva', 'CorretivaController')->middleware('auth');
 
 Route::get ('tecnico/acao-imediata', 'ImediataController@index')->name('tecnico.acaoimediata');
@@ -91,5 +85,6 @@ Route::get ('tecnico/acao-imediata/search', 'ImediataController@search')->name('
 Route::get ('tecnico/acao-imediata/json-onibus', 'ImediataController@onibusSelect');
 Route::get ('tecnico/acao-imediata/json-equipamento', 'ImediataController@equipamentoSelect');
 Route::get ('tecnico/acao-imediata/json-setor', 'ImediataController@setorSelect');
+Route::get ('tecnico/acao-imediata/json-nao-conformidade', 'ImediataController@naoConformidadeSelect');
 Route::get ('tecnico/acao-imediata/live-select', 'ImediataController@liveSelect')->name('acao-imediata.liveSelect');
 Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');

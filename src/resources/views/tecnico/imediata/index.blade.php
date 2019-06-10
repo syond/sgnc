@@ -75,10 +75,11 @@
     <tbody>
 
         @foreach($imediatas as $key => $value)
+
         <tr>
             <td>{{ $value->id }}</td>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
-            <td>{{ $value->equipamento->onibus->empresa->funcionario->nome }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-nao_conformidade="{{ $value->nao_conformidade->id }}" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
+            <td>{{ $value->funcionario->nome }}</td>
 
             <td>
                 <form action="{{ route('acao-imediata.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
@@ -128,9 +129,14 @@
                             <input disabled type="text" id="serial" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label for="nao_conformidade" class="col-form-label">Código da Não Conformidade</label>
+                            <input disabled type="text" id="nao_conformidade" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label for="descricao" class="col-form-label">Descrição</label>
                             <textarea disabled rows="3" style="resize:none" id="descricao" class="form-control"></textarea>
                         </div>
+                        
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -187,6 +193,8 @@
         var serial              = button.data('serial')
         var descricao           = button.data('descricao')
         var setor               = button.data('setor')
+        var nao_conformidade    = button.data('nao_conformidade')
+
 
 
         var modal = $(this)
@@ -200,6 +208,8 @@
         modal.find('.modal-body #serial').val(serial)
         modal.find('.modal-body #descricao').val(descricao)
         modal.find('.modal-body #setor').val(setor)
+        modal.find('.modal-body #nao_conformidade').val(nao_conformidade)
+
 
         
     })

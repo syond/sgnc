@@ -30,7 +30,7 @@ class Setor extends Model
 
     public function funcionarios()
     {
-        return $this->hasMany(Funcionario::class, 'funcionario_id');
+        return $this->hasMany(Funcionario::class);
     }
 
 
