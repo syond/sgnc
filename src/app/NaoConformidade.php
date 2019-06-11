@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NaoConformidade extends Model
 {
-    use SoftDeletes;
 
     protected $primaryKey = 'id';
     protected $table      = 'nao_conformidades';

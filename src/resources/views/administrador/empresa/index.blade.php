@@ -42,6 +42,7 @@
             </thead>        
             <tbody>
                 @foreach($empresa as $key => $value)
+                
                 <tr>
                     <td id="cnpj">{{ $value->cnpj }}</td>
                     <td>{{ $value->nome_fantasia }}</td>

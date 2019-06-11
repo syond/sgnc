@@ -13,8 +13,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Funcionario extends Authenticatable
 {
 
-  use SoftDeletes;
-
   protected $primaryKey = 'id';
   protected $table      = 'funcionarios';
 

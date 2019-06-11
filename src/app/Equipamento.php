@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Equipamento extends Model
 {
-    use SoftDeletes;
 
     protected $primarykey = 'id';
     protected $table = 'equipamentos';
@@ -25,12 +24,17 @@ class Equipamento extends Model
          
     ];
 
+
+
     public function onibus()
     {
         return $this->belongsTo(Onibus::class);
     }
 
-
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
 
 
 

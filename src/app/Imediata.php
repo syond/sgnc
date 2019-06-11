@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Imediata extends Model
 {
-    use SoftDeletes;
 
     protected $primaryKey = 'id';
     protected $table      = 'imediatas';

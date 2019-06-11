@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Corretiva extends Model
 {
-    use SoftDeletes;
 
     protected $primaryKey = 'id';
     protected $table      = 'corretivas';

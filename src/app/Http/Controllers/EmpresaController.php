@@ -59,6 +59,7 @@ class EmpresaController extends Controller
 
             //Implementa o atributo "funcionario_id" diretamente com o id do usuário logado
             $dados['cnpj'] = str_replace(["/", ".", "-"], "", $request->cnpj);
+            $dados['funcionario_id'] = Auth::id();
 
             Empresa::create($dados);
 

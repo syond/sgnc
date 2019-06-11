@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Input;
 
 class Rnc extends Model
 {
-    use SoftDeletes;
 
     protected $primaryKey = 'id';
     protected $table      = 'rnc';
