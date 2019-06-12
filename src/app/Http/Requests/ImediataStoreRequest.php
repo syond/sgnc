@@ -19,9 +19,9 @@ class ImediataStoreRequest extends FormRequest
             'nome'                  => 'required',
             'data'                  => 'required',
             'descricao'             => 'required',
-            'equipamento_id'        => '',
-            'setor_id'              => '',
-            'nao_conformidade_id'   => '',
+            'nao_conformidade_id'   => 'required',
+            'equipamento_id'        => 'required',
+            'setor_id'              => 'required',
             'funcionario_id'        => 'required,' . $this->imediata,
         ];
     }
@@ -34,6 +34,12 @@ class ImediataStoreRequest extends FormRequest
             'data.required'         =>  'Preenchimento da DATA é obrigatório.',
 
             'descricao.required'    =>  'Preenchimento da DESCRIÇÃO é obrigatório.',
+
+            'nao_conformidade_id'   =>  'Selecione a Não Conformidade.',
+
+            'equipamento_id'        =>  'Selecione o Equipamento.',
+
+            'setor_id'              =>  'Selecione um Setor.',
         ];
     }
 }

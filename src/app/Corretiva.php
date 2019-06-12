@@ -17,8 +17,8 @@ class Corretiva extends Model
         'descricao',
         'equipamento_id',
         'funcionario_id',
-        'setor_id',
         'imediata_id',
+        'setor_id',
     ];
 
     protected $hidden     = [
@@ -31,16 +31,6 @@ class Corretiva extends Model
         return $this->belongsTo(Funcionario::class);
     }
 
-    public function equipamento()
-    {
-        return $this->belongsTo(Equipamento::class, 'equipamento_id');
-    }
-
-    public function empresa()
-    {
-        return $this->belongsTo(Empresa::class);
-    }
-
     public function setor()
     {
         return $this->belongsTo(Setor::class);
@@ -49,6 +39,11 @@ class Corretiva extends Model
     public function imediata()
     {
         return $this->belongsTo(Imediata::class);
+    }
+
+    public function equipamento()
+    {
+        return $this->belongsTo(Equipamento::class);
     }
 
 

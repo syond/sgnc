@@ -24,8 +24,9 @@ class ImediataController extends Controller
 
         //para a filtragem por técnico
         $funcionarios = Funcionario::listarTodos();
+        $onibus = Onibus::listarTodos();
 
-        return view('tecnico.imediata.index', compact('imediatas', 'funcionarios'));
+        return view('tecnico.imediata.index', compact('imediatas', 'funcionarios', 'onibus'));
     }
 
 

@@ -34,8 +34,8 @@
 		<label for="onibus">Ônibus</label>
 		<select name="onibus" id="onibus" class="form-control">
 			<option value="" disabled selected></option>
-            @foreach($corretivas as $key => $value)
-        	<option value="{{ $value->equipamento->onibus->id }}">{{ $value->equipamento->onibus->numero }}</option>
+            @foreach($onibus as $key => $value)
+        	<option value="{{ $value->id }}">{{ $value->numero }}</option>
             @endforeach
         </select>
     </div>
@@ -66,8 +66,6 @@
         <tr>
             <th scope="col">CÓDIGO</th>
             <th scope="col">Nome</th>
-            <th scope="col">Serial Equipamento</th>
-            <th scope="col">Ônibus</th>
             <th scope="col">Responsável</th>
             <th scope="col">Ação</th>
         </tr>
@@ -79,8 +77,6 @@
         <tr>
             <td>{{ $value->id }}</td>
             <td id="dados" data-toggle="modal" data-target="#exampleModal" data-imediata="{{ $value->imediata->id }}" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
-            <td>{{ $value->equipamento->serial }}</td>
-            <td>{{ $value->equipamento->onibus->numero }}</td>
             <td>{{ $value->funcionario->nome }}</td>
 
             <td>

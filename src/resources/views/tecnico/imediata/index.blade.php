@@ -35,9 +35,9 @@
     <div class="col-sm-4">
 		<label for="onibus">Ônibus</label>
 		<select name="onibus" id="onibus" class="form-control">
-			<option value="" disabled selected></option>
-            @foreach($imediatas as $key => $value)
-        	<option value="{{ $value->equipamento->onibus->id }}">{{ $value->equipamento->onibus->numero }}</option>
+            <option value="" disabled selected></option>
+            @foreach($onibus as $value)
+        	    <option value="{{ $value->id }}">{{ $value->numero }}</option>
             @endforeach
         </select>
     </div>

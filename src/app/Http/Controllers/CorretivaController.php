@@ -23,8 +23,9 @@ class CorretivaController extends Controller
 
         //para a filtragem por técnico
         $funcionarios = Funcionario::listarTodos();
+        $onibus = Onibus::listarTodos();
 
-        return view('tecnico.corretiva.index', compact('corretivas', 'funcionarios'));
+        return view('tecnico.corretiva.index', compact('corretivas', 'funcionarios', 'onibus'));
     }
 
 

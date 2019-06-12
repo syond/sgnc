@@ -108,26 +108,6 @@
     });
 
 
-    $('#empresa').on('change', function(e){
-
-      var empresa_id = e.target.value;
-
-      $.get('/tecnico/acao-imediata/json-setor?empresa_id=' + empresa_id, function(data)
-      {
-        
-        $('#setor_id').empty();
-        $('#setor_id').append('<option value="" disabled selected>Selecione o Setor</option>');
-
-        $.each(data, function(index, setorObj)
-        {
-          $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
-        });
-      });
-      
-    });
-
-
-
     $('#equipamento_id').on('change', function(e){
 
       var equipamento_id = e.target.value;
@@ -141,6 +121,27 @@
         $.each(data, function(index, naoConformidadeObj)
         {
           $('#nao_conformidade_id').append('<option value="'+ naoConformidadeObj.id +'">'+ naoConformidadeObj.nome +'</option>');
+        });
+      });
+      
+    });
+
+
+    $('#empresa').on('change', function(e){
+      console.log(e);
+
+      var empresa_id = e.target.value;
+
+      $.get('/tecnico/nao-conformidade/json-setor?empresa_id=' + empresa_id, function(data)
+      {
+        console.log(data);
+        
+        $('#setor_id').empty();
+        $('#setor_id').append('<option value="" disabled selected>Selecione o Setor</option>');
+
+        $.each(data, function(index, setorObj)
+        {
+          $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
         });
       });
       

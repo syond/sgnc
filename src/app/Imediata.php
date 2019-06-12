@@ -15,10 +15,10 @@ class Imediata extends Model
         'nome',
         'data',
         'descricao',
-        'equipamento_id',
         'funcionario_id',
-        'setor_id',
+        'equipamento_id',
         'nao_conformidade_id',
+        'setor_id',
     ];
 
     protected $hidden     = [
@@ -28,24 +28,19 @@ class Imediata extends Model
     /**
      * Relacionamentos BelongsTo
      */
-    public function equipamento()
+    public function nao_conformidade()
     {
-        return $this->belongsTo(Equipamento::class, 'equipamento_id');
+        return $this->belongsTo(NaoConformidade::class);
     }
-
-    public function empresa()
-    {
-        return $this->belongsTo(Empresa::class);
-    }
-
+    
     public function setor()
     {
         return $this->belongsTo(Setor::class);
     }
 
-    public function nao_conformidade()
+    public function equipamento()
     {
-        return $this->belongsTo(NaoConformidade::class);
+        return $this->belongsTo(Equipamento::class);
     }
 
     public function funcionario()

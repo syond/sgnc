@@ -48,7 +48,12 @@ class NaoConformidade extends Model
 
     public function imediatas()
     {
-        return $this->hasMany('App\Imediata');
+        return $this->hasMany(Imediata::class);
+    }
+
+    public function corretivas()
+    {
+        return $this->hasMany(Corretiva::class);
     }
 
     /* public static function listarJoinNaoConformidadeEquipamentoFuncionario($paginate)

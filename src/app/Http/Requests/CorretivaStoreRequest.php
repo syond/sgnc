@@ -19,9 +19,9 @@ class CorretivaStoreRequest extends FormRequest
             'nome'              => 'required',
             'data'              => 'required',
             'descricao'         => 'required',
-            'equipamento_id'    => '',
-            'setor_id'          => '',
-            'imediata_id'       => '',
+            'equipamento_id'    => 'required',
+            'imediata_id'       => 'required',
+            'setor_id'          => 'required',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
     }
@@ -34,6 +34,12 @@ class CorretivaStoreRequest extends FormRequest
             'data.required'         =>  'Preenchimento da DATA é obrigatório.',
 
             'descricao.required'    =>  'Preenchimento da DESCRIÇÃO é obrigatório.',
+
+            'equipamento_id'        =>  'Selecione um Equipamento.',
+
+            'imediata_id'           =>  'Selecione uma Ação Imediata.',
+
+            'setor_id'              =>  'Selecione um Setor.',
         ];
     }
 }
