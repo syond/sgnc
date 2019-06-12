@@ -43,18 +43,17 @@
     <tbody>
 
         @foreach($rnc as $key => $value)  
-        
         <tr>
-            <td>{{ $value->created_at }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->setor->empresa->nome_fantasia }}" data-id="{{ $value->id }}">{{ $value->created_at }}</td>
 
             
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->empresa->nome_fantasia }}" data-nao_conformidade="{{ $value->naoconformidade->nome }}" data-corretiva="{{ $value->corretiva->nome }}" data-imediata="{{ $value->imediata->nome }}" data-id="{{ $value->id }}" data-tecnico="{{ $value->tecnico_id }}" data-supervisor="{{ $value->supervisor_id }}">{{ $value->descricao }}</td>
+            <td>{{ $value->descricao }}</td>
                     
                     
 
             <td>
-                <form action="{{ route('rnc.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">        
-                    <a type="submit" href="{{ route('rnc.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
+                <form action="{{ route('rnc.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">                             
+                    <a type="submit" href="{{ route('rnc.relatorio') }}" class="btn btn-warning">Visualizar</a>
                     @csrf
                     @method('DELETE')     
                     <button type="submit" class="btn btn-danger">Excluir</button>
@@ -87,26 +86,6 @@
                     <div class="form-group">
                         <label for="setor" class="col-form-label">Setor</label>
                         <input disabled type="text" id="setor" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="onibus" class="col-form-label">Ônibus</label>
-                        <input disabled type="text" id="onibus" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="serial" class="col-form-label">Serial do Equipamento</label>
-                        <input disabled type="text" id="serial" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="nao_conformidade" class="col-form-label">Ação de Não Conformidade</label>
-                        <input disabled type="text" id="nao_conformidade" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="corretiva" class="col-form-label">Ação Corretiva</label>
-                        <input disabled type="text" id="corretiva" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="imediata" class="col-form-label">Ação Imediata</label>
-                        <input disabled type="text" id="imediata" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="tecnico" class="col-form-label">Técnico</label>
@@ -163,7 +142,7 @@
 
     var modal = $(this)
 
-    modal.find('.modal-title').text('Detalhes da Ação Corretiva: ' + id)
+    modal.find('.modal-title').text('Detalhes do Relatório de Não Conformidade: ' + id)
 
         modal.find('.modal-body #data').val(data)
         modal.find('.modal-body #empresa').val(empresa)

@@ -16,13 +16,6 @@ class Rnc extends Model
         'descricao',
         'empresa_id',
         'setor_id',
-        'onibus_id',
-        'equipamento_id',
-        'nao_conformidade_id',
-        'imediata_id',
-        'corretiva_id',
-        'tecnico_id',
-        'supervisor_id',
         'funcionario_id',
         
     ];
@@ -34,7 +27,7 @@ class Rnc extends Model
     
     public function equipamento()
     {
-        return $this->belongsTo(Equipamento::class, 'equipamento_id');
+        return $this->belongsTo(Equipamento::class);
     }
 
     public function empresa()

@@ -81,7 +81,11 @@ class FuncionarioController extends Controller
     {
         $funcionario = Funcionario::find($id);
 
-        return view('administrador.funcionario.edit', compact('funcionario'));
+        $empresas = Empresa::listarTodos();
+
+        $setores = Setor::listarTodos();
+
+        return view('administrador.funcionario.edit', compact('funcionario', 'empresas', 'setores'));
     }
 
 

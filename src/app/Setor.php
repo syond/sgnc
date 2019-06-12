@@ -32,7 +32,17 @@ class Setor extends Model
         return $this->hasMany(Funcionario::class);
     }
 
+    public function nao_conformidades()
+    {
+        return $this->hasMany(NaoConformidade::class);
+    }
 
+
+
+    public static function listarTodos()
+    {
+        return Setor::all();
+    }
 
     public static function listarJoinSetorEmpresa($paginate)
     {

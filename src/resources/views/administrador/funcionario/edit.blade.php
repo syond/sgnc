@@ -7,6 +7,7 @@
 
 @section('content')
 
+
   <h3 id="forms-example" class="">Editar Funcionário</h3>
   <hr>
   <form method="POST" action="{{ route('funcionario.update', $funcionario->id) }}">
@@ -35,20 +36,30 @@
         </select>
       </div>
       <div class="form-group">
-                <label for="empresa">Empresa</label>
-                <select name="empresa" id="empresa" class="form-control">
-                    <option value="0" disabled selected>{{ $funcionario->empresa->nome_fantasia }}</option>
-
-                    @foreach($funcionario->empresa->get() as $empresa)
+                <label for="empresa_id">Empresa</label>
+                <select name="empresa_id" id="empresa_id" class="form-control">
+                @if($funcionario->empresa == null)
+                  <option value="0" disabled selected>Selecione uma Empresa</option>
+                  @foreach($empresas as $empresa)
                     <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
-                    @endforeach
+                  @endforeach
+                @else
+                  <option value="0" disabled selected>{{ $funcionario->empresa->nome_fantasia }}</option>
+                  @foreach($empresas as $empresa)
+                    <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
+                  @endforeach
+                @endif
                         
                 </select>
             </div>
       <div class="form-group">
         <label for="setor_id">Setor</label>
         <select name="setor_id" id="setor_id" class="form-control">
-          <option value="{{ $funcionario->setor->id }}" disabled selected>{{ $funcionario->setor->nome }}</option>
+                @if($funcionario->setor == null)
+                  <option value="0" disabled selected>Selecione um Setor</option>
+                @else
+                  <option value="{{ $funcionario->setor->id }}" disabled selected>{{ $funcionario->setor->nome }}</option>
+                @endif
         </select>
       </div>
       <div class="form-group">
@@ -64,5 +75,27 @@
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
   </div>
+
+
+
+  <script type="text/javascript">
+            $('#empresa_id').on('change', function(e){
+
+              var empresa_id = e.target.value;
+
+              $.get('/admin/funcionario/json-setor?empresa_id=' + empresa_id, function(data)
+              {
+                
+                $('#setor_id').empty();
+
+                $.each(data, function(index, setorObj)
+                {
+                  $('#setor_id').append('<option value="'+ setorObj.id +'">'+ setorObj.nome +'</option>');
+                });
+              });
+              
+            });
+          
+        </script>
 
 @endsection

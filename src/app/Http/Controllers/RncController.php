@@ -56,10 +56,8 @@ class RncController extends Controller
     public function create()
     {
         $empresas   = Empresa::all();
-        $tecnicos = Funcionario::where('nivel', 0)->get();
-        $supervisores = Funcionario::where('nivel', 1)->get();
 
-        return view('sistema.rnc.create', compact('empresas', 'tecnicos', 'supervisores'));
+        return view('sistema.rnc.create', compact('empresas'));
     }
 
 
@@ -73,7 +71,21 @@ class RncController extends Controller
 
         Rnc::create($dados);
 
-        return redirect()->route('rnc.index')->with('success', "RNC cadastrado com sucesso!");
+        return redirect()->route('rnc.relatorio')->with('success', "RNC cadastrado com sucesso!");
+    }
+
+
+    public function gerarRelatorio(Request $request)
+    {
+        $de = date($request->input('de'));
+        $ate = date($request->input('ate'));
+        $setor = $request->input('setor_id');
+
+        NaoConformidade::where('setor_id', $setor)->whereBetween('data', [$de, $ate])->get();
+
+        
+
+        return view('sistema.rnc.relatorio');
     }
 
 

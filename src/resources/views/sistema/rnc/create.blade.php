@@ -35,9 +35,9 @@
     <div class="form-group">
       
         <label for="setor_id">Período</label>
-        <input type="date" class="form-control" name="data1">
+        <input type="date" class="form-control" name="de">
         até
-        <input type="date" class="form-control" name="data2">
+        <input type="date" class="form-control" name="ate">
       
     </div>
     

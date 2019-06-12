@@ -61,6 +61,12 @@ class Empresa extends Model
 
 
 
+    public static function listarTodos()
+    {
+        return Empresa::all();
+    }
+
+
     public static function listarJoinEmpresaFuncionario($paginate)
     {
         return Funcionario::join('empresas', 'empresas.funcionario_id', 'funcionarios.id')

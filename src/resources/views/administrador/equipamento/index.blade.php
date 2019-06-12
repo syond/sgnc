@@ -33,7 +33,7 @@
             <th scope="col">Modelo</th>
             <th scope="col">Serial</th>
             <th scope="col">Ano</th>
-            <th scope="col">Ônibus:</th>
+            <th scope="col">Ônibus</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>        

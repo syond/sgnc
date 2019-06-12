@@ -42,7 +42,6 @@
     </thead>        
     <tbody>
         @foreach($funcionarios as $key => $value)
-
         <tr>
             <td>{{ $value->matricula }}</td>
             <td>{{ $value->nome }}</td>
@@ -53,9 +52,16 @@
             @if($value->nivel == 0)
                 <td>Técnico</td>
             @endif
-            <td>{{ $value->empresa->nome_fantasia }}</td>
-            <td>{{ $value->setor->nome }}</td>
-                    
+            @if($value->empresa == null)
+                <td></td>
+            @else
+                <td>{{ $value->empresa->nome_fantasia }}</td>
+            @endif
+            @if($value->setor == null)
+                <td></td>
+            @else
+                <td>{{ $value->setor->nome }}</td>
+            @endif 
             <td>
                 <form style="margin:0px" action="{{ route('funcionario.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que seja excluir ?')">        
                     <a type="submit" href="{{ route('funcionario.edit', $value->id) }}" class="btn btn-warning">Editar</a>                       
@@ -64,7 +70,9 @@
                     <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>            
             </td>
-        </tr>         
+        </tr>
+        
+                 
         @endforeach
     </tbody>
 </table>
