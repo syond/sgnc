@@ -13,7 +13,6 @@ class Imediata extends Model
 
     protected $fillable   = [
         'nome',
-        'data',
         'descricao',
         'funcionario_id',
         'equipamento_id',

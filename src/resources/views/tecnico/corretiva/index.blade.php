@@ -76,7 +76,7 @@
         
         <tr>
             <td>{{ $value->id }}</td>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-imediata="{{ $value->imediata->id }}" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_execucao="{{ $value->data }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-imediata="{{ $value->imediata->id }}" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
             <td>{{ $value->funcionario->nome }}</td>
 
             <td>
@@ -110,10 +110,6 @@
                     <div class="form-group">
                         <label for="data_de_criacao" class="col-form-label">Data de criação</label>
                         <input disabled type="text"  id="data_de_criacao" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="data_de_criacao" class="col-form-label">Data de execução</label>
-                        <input disabled type="date" id="data_de_execucao" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="setor" class="col-form-label">Setor</label>
@@ -167,7 +163,6 @@
         var id                  = button.data('id')
         var nome                = button.data('nome')
         var data_de_criacao     = button.data('data_de_criacao')
-        var data_de_execucao    = button.data('data_de_execucao')
         var onibus              = button.data('onibus')
         var serial              = button.data('serial')
         var descricao           = button.data('descricao')
@@ -181,7 +176,6 @@
 
     modal.find('.modal-body #nome').val(nome)
         modal.find('.modal-body #data_de_criacao').val(data_de_criacao)
-        modal.find('.modal-body #data_de_execucao').val(data_de_execucao)
         modal.find('.modal-body #onibus').val(onibus)
         modal.find('.modal-body #serial').val(serial)
         modal.find('.modal-body #descricao').val(descricao)

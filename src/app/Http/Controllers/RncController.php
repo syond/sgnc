@@ -63,10 +63,10 @@ class RncController extends Controller
 
     public function store(RncStoreRequest $request)
     {
-        $dados = $request->validated();        
-
+        $dados = $request->validated();
+        
         $funcionario_id = Auth::id();
-
+        
         $dados['funcionario_id'] = $funcionario_id;
 
         Rnc::create($dados);
@@ -81,11 +81,9 @@ class RncController extends Controller
         $ate = date($request->input('ate'));
         $setor = $request->input('setor_id');
 
-        NaoConformidade::where('setor_id', $setor)->whereBetween('data', [$de, $ate])->get();
+        $nao_conformidades = NaoConformidade::where('setor_id', $setor)->whereBetween('created_at', [$de, $ate])->get();
 
-        
-
-        return view('sistema.rnc.relatorio');
+        return view('sistema.rnc.relatorio', compact('nao_conformidades'));
     }
 
 

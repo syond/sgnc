@@ -21,12 +21,7 @@
             <div class="form-group">
                 <label for="descricao">Descrição</label>
                 <textarea rows="5" style="resize: none" class="form-control" name="descricao" id="descricao" >{{ old('nao_conformidades', $nao_conformidade->descricao) }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="data">Data</label>
-                <input type="date" class="form-control" name="data" id="data" value="{{ old('nao_conformidades', $nao_conformidade->data) }}">
-            </div>            
-            
+            </div>          
             
 
             <div class="form-group">

@@ -13,7 +13,6 @@ class NaoConformidade extends Model
 
     protected $fillable   = [
         'nome',
-        'data',
         'descricao',
         'equipamento_id',
         'funcionario_id',

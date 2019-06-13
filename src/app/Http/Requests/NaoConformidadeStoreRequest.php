@@ -17,10 +17,9 @@ class NaoConformidadeStoreRequest extends FormRequest
     {
         return [
             'nome'              => 'required',
-            'data'              => 'required',
             'descricao'         => 'required',
-            'equipamento_id'    => '',
-            'setor_id'          =>  '',
+            'equipamento_id'    => 'required',
+            'setor_id'          => 'required',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
     }
@@ -30,9 +29,11 @@ class NaoConformidadeStoreRequest extends FormRequest
         return [
             'nome.required'         =>  'Preenchimento do NOME é obrigatório.',
 
-            'data.required'         =>  'Preenchimento da DATA é obrigatório.',
-
             'descricao.required'    =>  'Preenchimento da DESCRIÇÃO é obrigatório.',
+
+            'equipamento_id.required'    =>  'Selecione um Equipamento.',
+
+            'setor_id.required'     =>  'Selecione um Setor.',
         ];
     }
 }
