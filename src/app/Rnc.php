@@ -17,6 +17,8 @@ class Rnc extends Model
         'empresa_id',
         'setor_id',
         'funcionario_id',
+        'de_data',
+        'ate_data',
         
     ];
 

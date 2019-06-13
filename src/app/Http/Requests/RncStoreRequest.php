@@ -18,6 +18,8 @@ class RncStoreRequest extends FormRequest
         return [
             'descricao'         => 'required',
             'setor_id'          => 'required',
+            'de_data'           => 'required',
+            'ate_data'          => 'required',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
     }
@@ -29,6 +31,10 @@ class RncStoreRequest extends FormRequest
             'descricao.required'    =>  'Preenchimento da DESCRIÇÃO é obrigatório.',
 
             'setor.required'        =>  'Selecione o Setor.',
+
+            'de_data.required'      => 'Preencha a data inicial.',
+
+            'ate_data.required'     => 'Preencha a data final.',
         ];
     }
 }

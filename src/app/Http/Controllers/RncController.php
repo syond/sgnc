@@ -74,11 +74,23 @@ class RncController extends Controller
         return redirect()->route('rnc.relatorio')->with('success', "RNC cadastrado com sucesso!");
     }
 
-
-    public function gerarRelatorio(Request $request)
+    public function destroy($id)
     {
-        $de = date($request->input('de'));
-        $ate = date($request->input('ate'));
+        Rnc::find($id)->delete();
+        
+        return back()->with('success', 'RNC deletado com sucesso!');
+    }
+
+
+    public function gerarRelatorio(Request $request, $id)
+    {
+
+        $de_data = Rnc::where('de_data', $de);
+
+
+        dd($ate_data = Rnc::where('ate_data', $ate)->get());
+
+
         $setor = $request->input('setor_id');
 
         $nao_conformidades = NaoConformidade::where('setor_id', $setor)->whereBetween('created_at', [$de, $ate])->get();
