@@ -58,7 +58,7 @@ Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middlewa
 
 Route::get ('rnc', 'RncController@index')->name('rnc');
 Route::get ('rnc/search', 'RncController@search')->name('rnc.search');
-Route::get ('rnc/relatorio', 'RncController@gerarRelatorio')->name('rnc.relatorio');
+Route::get ('rnc/{id}/relatorio', 'RncController@gerarRelatorio')->name('rnc.relatorio');
 Route::get ('rnc/json-setor', 'RncController@setorSelect');
 Route::resource ('rnc', 'RncController')->middleware('auth');
 

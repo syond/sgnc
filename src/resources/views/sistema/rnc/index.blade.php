@@ -53,7 +53,7 @@
 
             <td>
                 <form action="{{ route('rnc.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">                             
-                    <a type="submit" href="{{ route('rnc.relatorio') }}" class="btn btn-warning">Visualizar</a>
+                    <a type="submit" href="{{ route('rnc.relatorio', $value->id) }}" class="btn btn-warning">Visualizar</a>
                     @csrf
                     @method('DELETE')     
                     <button type="submit" class="btn btn-danger">Excluir</button>

@@ -71,31 +71,29 @@ class RncController extends Controller
 
         Rnc::create($dados);
 
-        return redirect()->route('rnc.relatorio')->with('success', "RNC cadastrado com sucesso!");
+        return redirect()->route('rnc.index')->with('success', "RNC cadastrado com sucesso!");
     }
+
+
+    public function gerarRelatorio($id)
+    {
+        $rnc = Rnc::find($id);
+
+        $de_data = Rnc::select('de_data')->where('id', $rnc->id)->first()->de_data;
+        $ate_data = Rnc::select('ate_data')->where('id', $rnc->id)->first()->ate_data;
+        $setor = Rnc::select('setor_id')->where('id', $rnc->id)->first()->setor_id;
+
+        $nao_conformidades = NaoConformidade::where('setor_id', $setor)->whereBetween('created_at', [$de_data, $ate_data])->get();
+
+        return view('sistema.rnc.relatorio', compact('nao_conformidades'));
+    }
+
 
     public function destroy($id)
     {
         Rnc::find($id)->delete();
         
         return back()->with('success', 'RNC deletado com sucesso!');
-    }
-
-
-    public function gerarRelatorio(Request $request, $id)
-    {
-
-        $de_data = Rnc::where('de_data', $de);
-
-
-        dd($ate_data = Rnc::where('ate_data', $ate)->get());
-
-
-        $setor = $request->input('setor_id');
-
-        $nao_conformidades = NaoConformidade::where('setor_id', $setor)->whereBetween('created_at', [$de, $ate])->get();
-
-        return view('sistema.rnc.relatorio', compact('nao_conformidades'));
     }
 
 
