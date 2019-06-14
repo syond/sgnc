@@ -20,9 +20,11 @@
     </div>
     
 </div>
+
 <hr>
+
 <table cellspacing="0" width="100%">
-    <thead class="thead-dark">        
+    <thead class="thead-dark" style="border-bottom: 1px solid #000;">        
         <tr>
             <th scope="col">CÓDIGO</th>
             <th scope="col">Nome</th>
@@ -31,7 +33,7 @@
             <th scope="col">Técnico</th>
         </tr>
     </thead>        
-    <tbody>
+    <tbody style="border-bottom: 1px solid #000;">
         @foreach($nao_conformidades as $value)
             <tr>
                 <td>{{ $value->id }}</td>
@@ -42,6 +44,15 @@
             </tr>
         @endforeach
     </tbody>
+
+    <tfoot>
+        <tr>
+            <th scope="row">Data RNC</th>
+            <td>{{ \Carbon\Carbon::parse($dados_rnc->created_at)->format('d/m/Y') }}</td>
+            <th scope="row">Total NC's</th>
+            <td>{{ $qtd_nc }}</td>
+        </tr>
+    </tfoot>
 </table>
 
 @endsection
