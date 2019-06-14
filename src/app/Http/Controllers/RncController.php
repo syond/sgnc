@@ -85,7 +85,11 @@ class RncController extends Controller
 
         $nao_conformidades = NaoConformidade::where('setor_id', $setor)->whereBetween('created_at', [$de_data, $ate_data])->get();
 
-        return view('sistema.rnc.relatorio', compact('nao_conformidades'));
+
+        $dados_nc = NaoConformidade::where('setor_id', $setor)->first();
+        $dados_rnc = Rnc::find($id);
+
+        return view('sistema.rnc.relatorio', compact('nao_conformidades', 'dados_nc', 'dados_rnc'));
     }
 
 

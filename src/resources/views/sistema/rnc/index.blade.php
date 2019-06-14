@@ -44,7 +44,7 @@
 
         @foreach($rnc as $key => $value)  
         <tr>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->setor->empresa->nome_fantasia }}" data-id="{{ $value->id }}">{{ $value->created_at }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-tecnico="{{ $value->funcionario->nome }}" data-de_data="{{ $value->de_data }}" data-ate_data="{{ $value->ate_data }}" data-setor="{{ $value->setor->nome }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->setor->empresa->nome_fantasia }}" data-id="{{ $value->id }}">{{ $value->created_at }}</td>
 
             
             <td>{{ $value->descricao }}</td>
@@ -53,7 +53,7 @@
 
             <td>
                 <form action="{{ route('rnc.destroy', $value->id) }}" style="margin:0px " method="POST" onsubmit = "return confirm('Tem certeza que deseja excluir ?')">                             
-                    <a type="submit" href="{{ route('rnc.relatorio', $value->id) }}" class="btn btn-warning">Visualizar</a>
+                    <a type="submit" href="{{ route('rnc.relatorio', $value->id) }}" class="btn btn-warning">Relatório</a>
                     @csrf
                     @method('DELETE')     
                     <button type="submit" class="btn btn-danger">Excluir</button>
@@ -76,8 +76,16 @@
                 <form>
 
                     <div class="form-group">
-                        <label for="data" class="col-form-label">Data</label>
+                        <label for="data" class="col-form-label">Data de criação</label>
                         <input disabled type="text" id="data" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="de_data" class="col-form-label">Data Inicial</label>
+                        <input disabled type="text" id="de_data" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="ate_data" class="col-form-label">Data Final</label>
+                        <input disabled type="text" id="ate_data" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="empresa" class="col-form-label">Empresa</label>
@@ -92,10 +100,6 @@
                         <input disabled type="text" id="tecnico" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="supervisor" class="col-form-label">Supervisor</label>
-                        <input disabled type="text" id="supervisor" class="form-control">
-                    </div>
-                    <div class="form-group">
                         <label for="descricao" class="col-form-label">Descrição</label>
                         <textarea disabled rows="3" style="resize:none" id="descricao" class="form-control"></textarea>
                     </div>
@@ -103,7 +107,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 
-                </div>
+                    </div>
                 </form>
                 </div>
 
@@ -137,6 +141,8 @@
         var descricao           = button.data('descricao')
         var tecnico             = button.data('tecnico')
         var supervisor          = button.data('supervisor')
+        var de_data             = button.data('de_data')
+        var ate_data            = button.data('ate_data')
         
 
 
@@ -155,6 +161,8 @@
         modal.find('.modal-body #descricao').val(descricao)
         modal.find('.modal-body #tecnico').val(tecnico)
         modal.find('.modal-body #supervisor').val(supervisor)
+        modal.find('.modal-body #de_data').val(de_data)
+        modal.find('.modal-body #ate_data').val(ate_data)
         
 
 

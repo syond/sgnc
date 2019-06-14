@@ -44,7 +44,7 @@
                 <td>{{ $value->modelo }}</td>
                 <td>{{ $value->serial }}</td>
                 <td>{{ $value->ano }}</td>
-                <td>{{ $value->placa }}</td>
+                <td>{{ $value->numero }}</td>
                         
                         
 
