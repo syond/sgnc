@@ -121,29 +121,6 @@ class RncController extends Controller
 
 
 
-    /**
-     * Função para o <SELECT> dinâmico no campo Onibus
-     */
-    public function onibusSelect()
-    {
-        $empresa_id = Input::get('empresa_id');
-
-        $onibus = Onibus::where('empresa_id', $empresa_id)->get();
-
-        return response()->json($onibus);
-    }
-
-    /**
-     * Função para o <SELECT> dinâmico no campo Equipamento
-     */
-    public function equipamentoSelect()
-    {
-        $onibus_id = Input::get('onibus_id');
-
-        $equipamento = Equipamento::where('onibus_id', $onibus_id)->get();
-
-        return response()->json($equipamento);
-    }
 
 
     /**
@@ -158,44 +135,6 @@ class RncController extends Controller
         return response()->json($setor);
     }
 
-
-    /**
-     * Função para o <SELECT> dinâmico no campo Setor
-     */
-    public function naoConformidadeSelect()
-    {
-        $equipamento_id = Input::get('equipamento_id');
-
-        $nao_conformidade = NaoConformidade::where('equipamento_id', $equipamento_id)->get();
-
-        return response()->json($nao_conformidade);
-    }
-
-
-    /**
-     * Função para o <SELECT> dinâmico no campo Setor
-     */
-    public function imediataSelect()
-    {
-        $equipamento_id = Input::get('equipamento_id');
-
-        $imediata = Imediata::where('equipamento_id', $equipamento_id)->get();
-
-        return response()->json($imediata);
-    }
-
-
-    /**
-     * Função para o <SELECT> dinâmico no campo Setor
-     */
-    public function corretivaSelect()
-    {
-        $equipamento_id = Input::get('equipamento_id');
-
-        $corretiva = Corretiva::where('equipamento_id', $equipamento_id)->get();
-
-        return response()->json($corretiva);
-    }
 
 
 

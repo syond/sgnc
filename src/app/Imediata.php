@@ -76,22 +76,4 @@ class Imediata extends Model
                         ->paginate($paginate);
     }
 
-
-    public static function listarImediatasPendentes()
-    {
-        return Imediata::where('status', 0)->get();
-    }
-
-
-    public static function listarImediatasEmAndamento()
-    {
-        return Imediata::where('status', 1)->get();
-    }
-
-
-    public static function listarImediatasEncerradas()
-    {
-        return Imediata::where('status', 2)->get();
-    }
-
 }

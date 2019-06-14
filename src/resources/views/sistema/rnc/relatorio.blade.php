@@ -8,14 +8,17 @@
 
 
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-2">
         <h2>RNC</h2>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <li>Empresa: {{ $dados_nc->setor->empresa->nome_fantasia }}</li>
         <li>Setor: {{ $dados_nc->setor->nome }}</li>
         <li>Período: {{ \Carbon\Carbon::parse($dados_rnc->de_data)->format('d/m/Y') }} à {{ \Carbon\Carbon::parse($dados_rnc->ate_data)->format('d/m/Y') }}</li>
+    </div>
+
+    <div class="col-sm-6">
         <li>Descrição: {{ $dados_rnc->descricao }} </li>
     </div>
     

@@ -35,18 +35,6 @@ class FuncionarioStoreRequest extends FormRequest
         ];
     }
 
-    /**
-     *  Filters to be applied to the input.
-     *
-     * @return array
-     */
-    public function filters()
-    {
-        return [
-            //'email'   =>  'trim|lowercase',
-            //'name'    =>  'trim|capitalize|escape'
-        ];
-    }
 
     /**
      * Mensagens customizadas para validação

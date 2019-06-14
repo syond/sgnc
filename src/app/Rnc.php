@@ -73,26 +73,6 @@ class Rnc extends Model
         return Rnc::orderBy('created_at', 'DESC')->paginate($paginate);
     }
 
-
-    public static function listarTecnicoDoRelatorioPeloId()
-    {
-        /* return Rnc::select(Rnc::raw("SELECT a.id, a.tecnico_id, b.nome FROM rnc as A INNER JOIN funcionarios as B on a.tecnico_id = b.id")); */
-
-        return Rnc::join('funcionarios as func', 'rnc.tecnico_id', 'func.id')
-                    ->select('rnc.id', 'rnc.tecnico_id', 'func.nome')
-                    ->get();
-    }
-
-
-    public static function listarSupervisorDoRelatorioPeloId()
-    {
-        /* return Rnc::select(Rnc::raw("SELECT a.id, a.tecnico_id, b.nome FROM rnc as A INNER JOIN funcionarios as B on a.tecnico_id = b.id")); */
-
-        return Rnc::join('funcionarios as func', 'rnc.supervisor_id', 'func.id')
-                    ->select('rnc.id', 'rnc.supervisor_id', 'func.nome')
-                    ->get();
-    }
-
     
     /* public static function buscarCorretivaCadastrada($search, $paginate)
     {
