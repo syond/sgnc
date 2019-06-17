@@ -76,7 +76,7 @@
         
         <tr>
             <td>{{ $value->id }}</td>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-imediata="{{ $value->imediata->id }}" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-imediata="{{ $value->imediata->id }}" data-setor="{{ $value->imediata->nao_conformidade->setor->nome }}" data-serial="{{ $value->imediata->nao_conformidade->equipamento->serial }}" data-onibus="{{ $value->imediata->nao_conformidade->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_criacao="{{ $value->created_at }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
             <td>{{ $value->funcionario->nome }}</td>
 
             <td>

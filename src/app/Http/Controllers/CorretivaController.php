@@ -84,6 +84,8 @@ class CorretivaController extends Controller
 
         $imediata_id = Imediata::where('equipamento_id', $equipamento_id)->get();
 
+        Imediata::join('nao_conformidades', 'nao_conformidades.id', 'imediatas.nao_conformidade_id')
+
         return response()->json($imediata_id);
     }
 

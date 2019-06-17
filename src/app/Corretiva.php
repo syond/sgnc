@@ -14,10 +14,8 @@ class Corretiva extends Model
     protected $fillable   = [
         'nome',
         'descricao',
-        'equipamento_id',
         'funcionario_id',
         'imediata_id',
-        'setor_id',
     ];
 
     protected $hidden     = [
