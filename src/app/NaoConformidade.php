@@ -44,16 +44,12 @@ class NaoConformidade extends Model
         return $this->belongsTo(Setor::class);
     }
 
-
-    public function imediatas()
+    public function imediata()
     {
-        return $this->hasMany(Imediata::class);
+        return $this->hasOne(Imediata::class);
     }
 
-    public function corretivas()
-    {
-        return $this->hasMany(Corretiva::class);
-    }
+
 
     /* public static function listarJoinNaoConformidadeEquipamentoFuncionario($paginate)
     {

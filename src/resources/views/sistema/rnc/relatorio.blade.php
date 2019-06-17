@@ -30,9 +30,12 @@
     <thead class="thead-dark" style="border-bottom: 1px solid #000;">        
         <tr>
             <th scope="col">CÓDIGO</th>
+            <th scope="col">Data</th>
             <th scope="col">Nome</th>
             <th scope="col">Ônibus</th>
             <th scope="col">Equipamento</th>
+            <th scope="col">Cod.Imediata</th>
+            <th scope="col">Cod.Corretiva</th>
             <th scope="col">Técnico</th>
         </tr>
     </thead>        
@@ -40,9 +43,25 @@
         @foreach($nao_conformidades as $value)
             <tr>
                 <td>{{ $value->id }}</td>
+                <td>{{ \Carbon\Carbon::parse($value->created_at)->format('d/m/Y') }}</td>
                 <td>{{ $value->nome }}</td>
                 <td>{{ $value->equipamento->onibus->numero }}</td>
                 <td>{{ $value->equipamento->serial }}</td>
+
+                @if($value->imediata == null)
+                    <td></td>
+                    <td></td>
+                @else
+
+                    <td>{{ $value->imediata->id }}</td>
+                    @if($value->imediata->corretiva == null)
+                        <td></td>
+                    @else
+                        <td>{{ $value->imediata->corretiva->id }}</td>
+                    @endif
+                    
+                @endif
+
                 <td>{{ $value->funcionario->nome }}</td>
             </tr>
         @endforeach

@@ -39,6 +39,7 @@ class Corretiva extends Model
     {
         return $this->belongsTo(Imediata::class);
     }
+    
 
     public function equipamento()
     {

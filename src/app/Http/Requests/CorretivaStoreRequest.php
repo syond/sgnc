@@ -19,24 +19,25 @@ class CorretivaStoreRequest extends FormRequest
             'nome'              => 'required',
             'descricao'         => 'required',
             'equipamento_id'    => 'required',
-            'imediata_id'       => 'required',
+            'imediata_id'       => 'required|unique:corretivas,imediata_id,' . dd($this->corretiva),
             'setor_id'          => 'required',
-            'funcionario_id'    => 'required,' . $this->imediata,
+            'funcionario_id'    => 'required,' . $this->corretiva,
         ];
     }
 
     public function messages()
     {
         return [
-            'nome.required'         =>  'Preenchimento do NOME é obrigatório.',
+            'nome.required'             =>  'Preenchimento do NOME é obrigatório.',
 
-            'descricao.required'    =>  'Preenchimento da DESCRIÇÃO é obrigatório.',
+            'descricao.required'        =>  'Preenchimento da DESCRIÇÃO é obrigatório.',
 
-            'equipamento_id.required'        =>  'Selecione um Equipamento.',
+            'equipamento_id.required'   =>  'Selecione um Equipamento.',
 
-            'imediata_id.required'           =>  'Selecione uma Ação Imediata.',
+            'imediata_id.required'      =>  'Selecione uma Ação Imediata.',
+            'imediata_id.unique'        =>  'Corretiva já cadastrada nessa Ação Imediata.',
 
-            'setor_id.required'              =>  'Selecione um Setor.',
+            'setor_id.required'         =>  'Selecione um Setor.',
         ];
     }
 }

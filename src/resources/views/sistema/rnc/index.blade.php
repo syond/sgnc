@@ -35,7 +35,7 @@
             <h4>RNC's Cadastrados</h4>
         </div><br>
         <tr>
-            <th scope="col">Data/hora</th>
+            <th scope="col">Data</th>
             <th scope="col">Descrição</th>
             <th scope="col">Ação</th>
         </tr>
@@ -44,7 +44,7 @@
 
         @foreach($rnc as $key => $value)  
         <tr>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-tecnico="{{ $value->funcionario->nome }}" data-de_data="{{ $value->de_data }}" data-ate_data="{{ $value->ate_data }}" data-setor="{{ $value->setor->nome }}" data-descricao="{{ $value->descricao }}" data-data="{{ $value->created_at }}" data-empresa="{{ $value->setor->empresa->nome_fantasia }}" data-id="{{ $value->id }}">{{ $value->created_at }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-tecnico="{{ $value->funcionario->nome }}" data-de_data="{{ \Carbon\Carbon::parse($value->de_data)->format('d/m/Y') }}" data-ate_data="{{ \Carbon\Carbon::parse($value->ate_data)->format('d/m/Y') }}" data-setor="{{ $value->setor->nome }}" data-descricao="{{ $value->descricao }}" data-data="{{ \Carbon\Carbon::parse($value->created_at)->format('d/m/Y') }}" data-empresa="{{ $value->setor->empresa->nome_fantasia }}" data-id="{{ $value->id }}">{{ \Carbon\Carbon::parse($value->created_at)->format('d/m/Y') }}</td>
 
             
             <td>{{ $value->descricao }}</td>

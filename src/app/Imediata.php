@@ -47,14 +47,9 @@ class Imediata extends Model
         return $this->belongsTo(Funcionario::class);
     }
 
-
-
-    /**
-     * Relacionamentos HasMany
-     */
-    public function corretivas()
+    public function corretiva()
     {
-        return $this->hasMany(Corretiva::class);
+        return $this->hasOne(Corretiva::class);
     }
 
 
