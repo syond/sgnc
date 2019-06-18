@@ -20,42 +20,54 @@
 <div class="row">
 
     <div class="col-sm-4">
-		<label for="tecnico_responsavel">Técnico Responsável</label>
-		<select name="tecnico_responsavel" id="tecnico_responsavel" class="form-control">
-			<option value="" disabled selected></option>
-            @foreach($funcionarios as $value)
-        	<option value="{{ $value->id }}">{{ $value->nome }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="tecnico_responsavel">Técnico</label>
+            <select name="tecnico_responsavel" id="tecnico_responsavel" class="form-control">
+                <option value="" disabled selected></option>
+                @foreach($funcionarios as $value)
+                <option value="{{ $value->id }}">{{ $value->nome }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div>
+            <label for="onibus">Ônibus</label>
+            <select name="onibus" id="onibus" class="form-control">
+                <option value="" disabled selected></option>
+                @foreach($onibus as $key => $value)
+                    <option value="{{ $value->id }}">{{ $value->numero }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div>
+            <label for="setor">Setor</label>
+            <select name="setor" id="setor" class="form-control">
+                <option value="" disabled selected></option>
+                @foreach($setores as $key => $value)
+                <option value="{{ $value->id }}">{{ $value->nome }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div>
+            <label for="data">Data</label>
+            <input type="date" style="border-radius: 4px; border-color: #aaa; height: 28px;" name="data" id="data" class="form-control">
+        </div>
     </div>
 
 
     <div class="col-sm-4">
-		<label for="onibus">Ônibus</label>
-		<select name="onibus" id="onibus" class="form-control">
-			<option value="" disabled selected></option>
-            @foreach($nao_conformidades as $key => $value)
-        	<option value="{{ $value->equipamento->onibus->id }}">{{ $value->equipamento->onibus->numero }}</option>
-            @endforeach
-        </select>
+        <div>
+            <form class="" action="{{ route('nao-conformidade.create') }}">
+                <input type="button" id="filtrar" class="btn btn-alert btn-lg" value="Filtrar">
+                <button class="btn btn-success btn-lg">Cadastrar</button>
+            </form>
+        </div>
     </div>
-
-    <div class="col-sm-4">
-        <label for="data">Data</label>
-        <input type="date" name="data" id="data" class="form-control">
-    </div>
-
-    <div class="col-sm-4">
-        <form class="" action="{{ route('nao-conformidade.create') }}">
-            <button class="btn btn-success btn-lg">Cadastrar</button>
-        </form>
-    </div>
-    <div class="col-sm-4">
-        <form class="navbar-left-right" action="{{ route('nao-conformidade.search') }}">
-            <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
-            <input type="submit" value="" class="fa fa-search">
-        </form>  
-    </div>
+    
 </div>       
 <hr>
 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -148,6 +160,21 @@
 
 
 <script>
+
+$(document).ready(function() {
+    $('#tecnico_responsavel').select2({
+        placeholder: 'Selecionar',
+        allowClear: true,
+    });
+    $('#onibus').select2({
+        placeholder: 'Selecionar',
+        allowClear: true,
+    });
+    $('#setor').select2({
+        placeholder: 'Selecionar',
+        allowClear: true,
+    });
+});
 
     //INICIO SCRIPT MODAL - LISTAR DADOS
     $('#exampleModal').on('show.bs.modal', function (event) {

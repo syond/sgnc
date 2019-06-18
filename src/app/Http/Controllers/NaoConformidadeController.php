@@ -22,8 +22,10 @@ class NaoConformidadeController extends Controller
 
         //para a filtragem por técnico
         $funcionarios = Funcionario::listarTodos();
+        $onibus = Onibus::listarTodos();
+        $setores = Setor::listarTodos();
 
-        return view('tecnico.naoconformidade.index', compact('nao_conformidades', 'funcionarios'));
+        return view('tecnico.naoconformidade.index', compact('nao_conformidades', 'funcionarios', 'onibus', 'setores'));
     }
 
 

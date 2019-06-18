@@ -10,9 +10,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
-<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"> 
-<script src="{{ asset('js/jquery.min.js') }}"> </script>
+<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type='text/css'> 
+<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
 <!-- Mainly scripts -->
+<script src="{{ asset('js/jquery.min.js') }}"> </script>
 <script src="{{ asset('js/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
 <!-- Custom and plugin javascript -->
@@ -21,6 +22,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('js/screenfull.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('js/Chart.min.js') }}"></script>
+<script src="{{ asset('js/select2.min.js') }}"></script>
+
 
 <script>
 		$(function () {
