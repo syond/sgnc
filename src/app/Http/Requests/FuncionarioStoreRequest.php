@@ -30,8 +30,8 @@ class FuncionarioStoreRequest extends FormRequest
             'email'         =>  'required|email',
             'foto'          =>  'nullable',
             'nivel'         =>  'required',
-            'setor_id'      =>  'required',
-            'empresa_id'    =>  'required',
+            'setor_id'      =>  '',
+            'empresa_id'    =>  '',
         ];
     }
 

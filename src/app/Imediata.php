@@ -15,6 +15,7 @@ class Imediata extends Model
         'nome',
         'descricao',
         'funcionario_id',
+        'equipamento_id',
         'nao_conformidade_id',
     ];
 

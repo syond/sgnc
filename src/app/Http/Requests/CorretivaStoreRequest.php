@@ -18,7 +18,7 @@ class CorretivaStoreRequest extends FormRequest
         return [
             'nome'              => 'required',
             'descricao'         => 'required',
-            'imediata_id'       => 'required|unique:corretivas,imediata_id,' . dd($this->corretiva),
+            'imediata_id'       => 'required|unique:corretivas,imediata_id,' . dd($this->corretivas->id),
             'funcionario_id'    => 'required,' . $this->corretiva,
         ];
     }

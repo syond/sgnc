@@ -18,8 +18,9 @@ class ImediataStoreRequest extends FormRequest
         return [
             'nome'                  => 'required',
             'descricao'             => 'required',
-            'nao_conformidade_id'   => 'required',
-            'funcionario_id'        => 'required,' . $this->imediata,
+            'nao_conformidade_id'   => 'required|unique:imediatas,nao_conformidade_id,' . $this->imediata,
+            'equipamento_id'        => 'required',
+            'funcionario_id'        => 'required,' . dd($this->imediata),
         ];
     }
 
