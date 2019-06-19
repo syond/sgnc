@@ -21,8 +21,8 @@
 
     <div class="col-sm-4">
         <div>
-            <label for="tecnico_responsavel">Técnico</label>
-            <select name="tecnico_responsavel" id="tecnico_responsavel" class="form-control">
+            <label for="tecnico">Técnico</label>
+            <select name="tecnico" id="tecnico" class="form-control">
                 <option value="" disabled selected></option>
                 @foreach($funcionarios as $value)
                 <option value="{{ $value->id }}">{{ $value->nome }}</option>
@@ -161,8 +161,29 @@
 
 <script>
 
+$(document).ready(function(){
+  $("#filtrar").click(function(){
+    var tecnico = $("#tecnico").val();
+    var onibus = $('#onibus').val();
+    var setor = $('#setor').val();
+    
+    $.ajax({
+      type: 'get',
+      dataType: 'html',
+      url: '{{url('/tecnico/nao-conformidade/filtro')}}',
+      data: 'tecnico_id=' + tecnico + '&onibus_id=' + onibus + '&setor_id=' + setor,
+      success:function(response){
+        console.log(response);
+        alert(response);
+        $("#productData").html(response);
+      }
+    });
+  });
+});
+
+
 $(document).ready(function() {
-    $('#tecnico_responsavel').select2({
+    $('#tecnico').select2({
         placeholder: 'Selecionar',
         allowClear: true,
     });

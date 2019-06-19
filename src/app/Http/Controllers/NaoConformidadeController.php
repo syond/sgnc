@@ -75,6 +75,25 @@ class NaoConformidadeController extends Controller
     }
 
     
+    public function filtroSelect(Request $request)
+    {
+        $tecnico_id = $request->tecnico_id;
+        $onibus_id  = $request->onibus_id;
+        $setor_id   = $request->setor_id;
+
+        if($tecnico_id != "")
+        {
+            $dados = NaoConformidade::with('Funcionario')
+                                    ->where('nao_conformidades.funcionario_id', $tecnico_id)
+                                    ->get();
+            
+            
+
+            return response()->json(['dados' => $dados]);
+        }else{}
+        
+    }
+
     public function search(Request $request)
     {
         $search = $request->get('search');

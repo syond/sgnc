@@ -71,6 +71,7 @@ Route::get ('tecnico/nao-conformidade/search', 'NaoConformidadeController@search
 Route::get ('tecnico/nao-conformidade/json-onibus', 'NaoConformidadeController@onibusSelect');
 Route::get ('tecnico/nao-conformidade/json-equipamento', 'NaoConformidadeController@equipamentoSelect');
 Route::get ('tecnico/nao-conformidade/json-setor', 'NaoConformidadeController@setorSelect');
+Route::get ('tecnico/nao-conformidade/filtro','NaoConformidadeController@filtroSelect');
 Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController')->middleware('auth');
 
 Route::get ('tecnico/acao-corretiva', 'CorretivaController@index')->name('tecnico.acaocorretiva');
