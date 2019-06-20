@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 //importando o HASH
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
+//importanto AUTENTICAÇÃO
 use Illuminate\Foundation\Auth\User as Authenticatable;
+//importando PasswordResetEmail
+use Illuminate\Notifications\Notifiable;
 
 class Funcionario extends Authenticatable
 {
+  use Notifiable;
 
   protected $primaryKey = 'id';
   protected $table      = 'funcionarios';

@@ -15,6 +15,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/bootstrap.min.js"> </script>
 </head>
 <body>
+
+@if(Auth::guest())
+
 	<div class="login">
 		
 	<h1><a href="">SGNC</a></h1>
@@ -35,8 +38,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			@include('layouts/flash-message')
 			
-			@if(Auth::guest())
-
 
 			<form method="POST" action="{{ route('login') }}">
 
@@ -44,15 +45,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<div class="col-md-6">
 
-					<div class="login-mail {{ $errors->has('matricula') ? 'has-error' : '' }} ">
-						<input type="text" name="matricula" placeholder="Matrícula" >
-						<i class="fa fa-user"></i>
+					<div class="login-mail">
+						<input type="number" style="border:none;" name="matricula" placeholder="Matrícula" >
+						
 
 					</div>
 
-					<div class="login-mail {{ $errors->has('matricula') ? 'has-error' : '' }}">
-						<input type="password" name="password" placeholder="Senha" >
-						<i class="fa fa-lock"></i>
+					<div class="login-mail">
+						<input type="password" style="border:none;" name="password" placeholder="Senha" >
+						
 
 					</div>
 
@@ -74,14 +75,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</form>
 
 
-			@endif
-
 
 		</div>
 	</div>
 		<!---->
 <div class="copy-right">
 	<p> &copy; Universidade Estacio de Sá - Campus : Cabo Frio .</p>	    </div>  
+
+
+@endif
+
+
 <!---->
 <!--scrolling js-->
 	<script src="js/jquery.nicescroll.js"></script>
