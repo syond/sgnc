@@ -80,6 +80,7 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
+            'Prophecy\\' => 9,
             'PhpParser\\' => 10,
         ),
         'O' => 
@@ -99,6 +100,10 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
             'LaravelLegends\\PtBrValidator\\' => 29,
+        ),
+        'K' => 
+        array (
+            'Khill\\Lavacharts\\' => 17,
         ),
         'J' => 
         array (
@@ -125,6 +130,7 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
             'Dompdf\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\DBAL\\' => 14,
+            'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\' => 16,
@@ -134,7 +140,6 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         array (
             'Cron\\' => 5,
             'ConsoleTVs\\Charts\\' => 18,
-            'Carbon\\' => 7,
         ),
         'B' => 
         array (
@@ -283,6 +288,10 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Prophecy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -310,6 +319,10 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         'LaravelLegends\\PtBrValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravellegends/pt-br-validator/src/pt-br-validator',
+        ),
+        'Khill\\Lavacharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/khill/lavacharts/src',
         ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
@@ -355,6 +368,10 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         array (
             0 => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL',
         ),
+        'Doctrine\\Common\\Lexer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
+        ),
         'Doctrine\\Common\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
@@ -379,10 +396,6 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         array (
             0 => __DIR__ . '/..' . '/consoletvs/charts/src',
         ),
-        'Carbon\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
         'BeyondCode\\DumpServer\\' => 
         array (
             0 => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src',
@@ -401,7 +414,18 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         ),
     );
 
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/nesbot/carbon/src',
+    );
+
     public static $prefixesPsr0 = array (
+        'U' => 
+        array (
+            'UpdateHelper\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/kylekatarnls/update-helper/src',
+            ),
+        ),
         'S' => 
         array (
             'Svg\\' => 
@@ -415,10 +439,6 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         ),
         'P' => 
         array (
-            'Prophecy\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
-            ),
             'PhpOption\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpoption/phpoption/src',
@@ -435,13 +455,6 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),
         ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Lexer\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
-            ),
-        ),
     );
 
     public static $classMap = array (
@@ -455,9 +468,7 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         'App\\Funcionario' => __DIR__ . '/../..' . '/app/Funcionario.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
-        'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
-        'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CorretivaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorretivaController.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
@@ -489,6 +500,7 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         'App\\Http\\Requests\\SetorStoreRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SetorStoreRequest.php',
         'App\\Imediata' => __DIR__ . '/../..' . '/app/Imediata.php',
         'App\\NaoConformidade' => __DIR__ . '/../..' . '/app/NaoConformidade.php',
+        'App\\Notifications\\MailResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/MailResetPasswordNotification.php',
         'App\\Onibus' => __DIR__ . '/../..' . '/app/Onibus.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -508,34 +520,12 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
         'BeyondCode\\DumpServer\\RequestContextProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/RequestContextProvider.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
-        'Carbon\\CarbonImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',
-        'Carbon\\CarbonInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterface.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\CarbonPeriod' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonPeriod.php',
-        'Carbon\\CarbonTimeZone' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonTimeZone.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
-        'Carbon\\Factory' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Factory.php',
-        'Carbon\\FactoryImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/FactoryImmutable.php',
-        'Carbon\\Language' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Language.php',
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
-        'Carbon\\Traits\\Boundaries' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Boundaries.php',
-        'Carbon\\Traits\\Comparison' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Comparison.php',
-        'Carbon\\Traits\\Converter' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Converter.php',
-        'Carbon\\Traits\\Creator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Creator.php',
-        'Carbon\\Traits\\Date' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Date.php',
-        'Carbon\\Traits\\Difference' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Difference.php',
-        'Carbon\\Traits\\Localization' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Localization.php',
-        'Carbon\\Traits\\Macro' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Macro.php',
-        'Carbon\\Traits\\Modifiers' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Modifiers.php',
-        'Carbon\\Traits\\Mutability' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Mutability.php',
-        'Carbon\\Traits\\Options' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Options.php',
-        'Carbon\\Traits\\Rounding' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Rounding.php',
-        'Carbon\\Traits\\Serialization' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Serialization.php',
-        'Carbon\\Traits\\Test' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Test.php',
-        'Carbon\\Traits\\Timestamp' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Timestamp.php',
-        'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
-        'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Carbon\\Upgrade' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Upgrade.php',
         'ConsoleTVs\\Charts\\ChartsServiceProvider' => __DIR__ . '/..' . '/consoletvs/charts/src/ChartsServiceProvider.php',
         'ConsoleTVs\\Charts\\Classes\\BaseChart' => __DIR__ . '/..' . '/consoletvs/charts/src/Classes/BaseChart.php',
         'ConsoleTVs\\Charts\\Classes\\C3\\Chart' => __DIR__ . '/..' . '/consoletvs/charts/src/Classes/C3/Chart.php',
@@ -2434,6 +2424,144 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
+        'Khill\\Lavacharts\\Builders\\ChartBuilder' => __DIR__ . '/..' . '/khill/lavacharts/src/Builders/ChartBuilder.php',
+        'Khill\\Lavacharts\\Builders\\DashboardBuilder' => __DIR__ . '/..' . '/khill/lavacharts/src/Builders/DashboardBuilder.php',
+        'Khill\\Lavacharts\\Builders\\GenericBuilder' => __DIR__ . '/..' . '/khill/lavacharts/src/Builders/GenericBuilder.php',
+        'Khill\\Lavacharts\\Charts\\AnnotationChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/AnnotationChart.php',
+        'Khill\\Lavacharts\\Charts\\AreaChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/AreaChart.php',
+        'Khill\\Lavacharts\\Charts\\BarChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/BarChart.php',
+        'Khill\\Lavacharts\\Charts\\BubbleChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/BubbleChart.php',
+        'Khill\\Lavacharts\\Charts\\CalendarChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/CalendarChart.php',
+        'Khill\\Lavacharts\\Charts\\CandlestickChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/CandlestickChart.php',
+        'Khill\\Lavacharts\\Charts\\Chart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/Chart.php',
+        'Khill\\Lavacharts\\Charts\\ChartFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/ChartFactory.php',
+        'Khill\\Lavacharts\\Charts\\ColumnChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/ColumnChart.php',
+        'Khill\\Lavacharts\\Charts\\ComboChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/ComboChart.php',
+        'Khill\\Lavacharts\\Charts\\DonutChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/DonutChart.php',
+        'Khill\\Lavacharts\\Charts\\GanttChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/GanttChart.php',
+        'Khill\\Lavacharts\\Charts\\GaugeChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/GaugeChart.php',
+        'Khill\\Lavacharts\\Charts\\GeoChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/GeoChart.php',
+        'Khill\\Lavacharts\\Charts\\HistogramChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/HistogramChart.php',
+        'Khill\\Lavacharts\\Charts\\LineChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/LineChart.php',
+        'Khill\\Lavacharts\\Charts\\OrgChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/OrgChart.php',
+        'Khill\\Lavacharts\\Charts\\PieChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/PieChart.php',
+        'Khill\\Lavacharts\\Charts\\SankeyChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/SankeyChart.php',
+        'Khill\\Lavacharts\\Charts\\ScatterChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/ScatterChart.php',
+        'Khill\\Lavacharts\\Charts\\SteppedAreaChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/SteppedAreaChart.php',
+        'Khill\\Lavacharts\\Charts\\TableChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/TableChart.php',
+        'Khill\\Lavacharts\\Charts\\TimelineChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/TimelineChart.php',
+        'Khill\\Lavacharts\\Charts\\TreeMapChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/TreeMapChart.php',
+        'Khill\\Lavacharts\\Charts\\WordTreeChart' => __DIR__ . '/..' . '/khill/lavacharts/src/Charts/WordTreeChart.php',
+        'Khill\\Lavacharts\\Dashboards\\Bindings\\Binding' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Bindings/Binding.php',
+        'Khill\\Lavacharts\\Dashboards\\Bindings\\BindingFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Bindings/BindingFactory.php',
+        'Khill\\Lavacharts\\Dashboards\\Bindings\\ManyToMany' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Bindings/ManyToMany.php',
+        'Khill\\Lavacharts\\Dashboards\\Bindings\\ManyToOne' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Bindings/ManyToOne.php',
+        'Khill\\Lavacharts\\Dashboards\\Bindings\\OneToMany' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Bindings/OneToMany.php',
+        'Khill\\Lavacharts\\Dashboards\\Bindings\\OneToOne' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Bindings/OneToOne.php',
+        'Khill\\Lavacharts\\Dashboards\\Dashboard' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Dashboard.php',
+        'Khill\\Lavacharts\\Dashboards\\DashboardFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/DashboardFactory.php',
+        'Khill\\Lavacharts\\Dashboards\\Filters\\CategoryFilter' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Filters/CategoryFilter.php',
+        'Khill\\Lavacharts\\Dashboards\\Filters\\ChartRangeFilter' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Filters/ChartRangeFilter.php',
+        'Khill\\Lavacharts\\Dashboards\\Filters\\DateRangeFilter' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Filters/DateRangeFilter.php',
+        'Khill\\Lavacharts\\Dashboards\\Filters\\Filter' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Filters/Filter.php',
+        'Khill\\Lavacharts\\Dashboards\\Filters\\FilterFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Filters/FilterFactory.php',
+        'Khill\\Lavacharts\\Dashboards\\Filters\\NumberRangeFilter' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Filters/NumberRangeFilter.php',
+        'Khill\\Lavacharts\\Dashboards\\Filters\\StringFilter' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Filters/StringFilter.php',
+        'Khill\\Lavacharts\\Dashboards\\Wrappers\\ChartWrapper' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Wrappers/ChartWrapper.php',
+        'Khill\\Lavacharts\\Dashboards\\Wrappers\\ControlWrapper' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Wrappers/ControlWrapper.php',
+        'Khill\\Lavacharts\\Dashboards\\Wrappers\\Wrapper' => __DIR__ . '/..' . '/khill/lavacharts/src/Dashboards/Wrappers/Wrapper.php',
+        'Khill\\Lavacharts\\DataTables\\Cells\\Cell' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Cells/Cell.php',
+        'Khill\\Lavacharts\\DataTables\\Cells\\DateCell' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Cells/DateCell.php',
+        'Khill\\Lavacharts\\DataTables\\Cells\\NullCell' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Cells/NullCell.php',
+        'Khill\\Lavacharts\\DataTables\\Columns\\Column' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Columns/Column.php',
+        'Khill\\Lavacharts\\DataTables\\Columns\\ColumnBuilder' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Columns/ColumnBuilder.php',
+        'Khill\\Lavacharts\\DataTables\\Columns\\ColumnFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Columns/ColumnFactory.php',
+        'Khill\\Lavacharts\\DataTables\\DataFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/DataFactory.php',
+        'Khill\\Lavacharts\\DataTables\\DataTable' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/DataTable.php',
+        'Khill\\Lavacharts\\DataTables\\Formats\\ArrowFormat' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Formats/ArrowFormat.php',
+        'Khill\\Lavacharts\\DataTables\\Formats\\BarFormat' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Formats/BarFormat.php',
+        'Khill\\Lavacharts\\DataTables\\Formats\\DateFormat' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Formats/DateFormat.php',
+        'Khill\\Lavacharts\\DataTables\\Formats\\Format' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Formats/Format.php',
+        'Khill\\Lavacharts\\DataTables\\Formats\\NumberFormat' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Formats/NumberFormat.php',
+        'Khill\\Lavacharts\\DataTables\\Rows\\NullRow' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Rows/NullRow.php',
+        'Khill\\Lavacharts\\DataTables\\Rows\\Row' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Rows/Row.php',
+        'Khill\\Lavacharts\\DataTables\\Rows\\RowFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/DataTables/Rows/RowFactory.php',
+        'Khill\\Lavacharts\\Exceptions\\ChartNotFound' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/ChartNotFound.php',
+        'Khill\\Lavacharts\\Exceptions\\DashboardNotFound' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/DashboardNotFound.php',
+        'Khill\\Lavacharts\\Exceptions\\DataTableNotFound' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/DataTableNotFound.php',
+        'Khill\\Lavacharts\\Exceptions\\ElementIdException' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/ElementIdException.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidBindings' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidBindings.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidCellCount' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidCellCount.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidChartType' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidChartType.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidChartWrapperParams' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidChartWrapperParams.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidColumnDefinition' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidColumnDefinition.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidColumnFormat' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidColumnFormat.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidColumnIndex' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidColumnIndex.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidColumnRole' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidColumnRole.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidColumnType' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidColumnType.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidConfigProperty' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidConfigProperty.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidConfigValue' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidConfigValue.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidControlWrapperParams' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidControlWrapperParams.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidDataTable' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidDataTable.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidDate' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidDate.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidDateTimeFormat' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidDateTimeFormat.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidDateTimeString' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidDateTimeString.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidDivDimensions' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidDivDimensions.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidElementId' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidElementId.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidFilterParam' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidFilterParam.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidFilterType' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidFilterType.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidFormatType' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidFormatType.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidFunctionParam' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidFunctionParam.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidJson' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidJson.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidLabel' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidLabel.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidLavaObject' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidLavaObject.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidOptions' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidOptions.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidParamType' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidParamType.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidRowDefinition' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidRowDefinition.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidRowProperty' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidRowProperty.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidStringValue' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidStringValue.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidTimeZone' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidTimeZone.php',
+        'Khill\\Lavacharts\\Exceptions\\InvalidUIProperty' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/InvalidUIProperty.php',
+        'Khill\\Lavacharts\\Exceptions\\LavaException' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/LavaException.php',
+        'Khill\\Lavacharts\\Exceptions\\RenderingException' => __DIR__ . '/..' . '/khill/lavacharts/src/Exceptions/RenderingException.php',
+        'Khill\\Lavacharts\\Javascript\\ChartJsFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Javascript/ChartJsFactory.php',
+        'Khill\\Lavacharts\\Javascript\\DashboardJsFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Javascript/DashboardJsFactory.php',
+        'Khill\\Lavacharts\\Javascript\\JavascriptFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Javascript/JavascriptFactory.php',
+        'Khill\\Lavacharts\\Javascript\\ScriptManager' => __DIR__ . '/..' . '/khill/lavacharts/src/Javascript/ScriptManager.php',
+        'Khill\\Lavacharts\\Laravel\\LavachartsFacade' => __DIR__ . '/..' . '/khill/lavacharts/src/Laravel/LavachartsFacade.php',
+        'Khill\\Lavacharts\\Laravel\\LavachartsServiceProvider' => __DIR__ . '/..' . '/khill/lavacharts/src/Laravel/LavachartsServiceProvider.php',
+        'Khill\\Lavacharts\\Lavacharts' => __DIR__ . '/..' . '/khill/lavacharts/src/Lavacharts.php',
+        'Khill\\Lavacharts\\Support\\Buffer' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Buffer.php',
+        'Khill\\Lavacharts\\Support\\Config' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Config.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\Arrayable' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/Arrayable.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\DataTableInterface' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/DataTableInterface.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\JsClassInterface' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/JsClassInterface.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\Jsonable' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/Jsonable.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\JsonableInterface' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/JsonableInterface.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\RenderableInterface' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/RenderableInterface.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\VisualizationInterface' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/VisualizationInterface.php',
+        'Khill\\Lavacharts\\Support\\Contracts\\WrappableInterface' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Contracts/WrappableInterface.php',
+        'Khill\\Lavacharts\\Support\\Customizable' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Customizable.php',
+        'Khill\\Lavacharts\\Support\\Html\\HtmlFactory' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Html/HtmlFactory.php',
+        'Khill\\Lavacharts\\Support\\JavascriptDate' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/JavascriptDate.php',
+        'Khill\\Lavacharts\\Support\\Options' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Options.php',
+        'Khill\\Lavacharts\\Support\\Psr4Autoloader' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Psr4Autoloader.php',
+        'Khill\\Lavacharts\\Support\\RenderableTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Renderable.php',
+        'Khill\\Lavacharts\\Support\\Traits\\DataTableTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Traits/DataTableTrait.php',
+        'Khill\\Lavacharts\\Support\\Traits\\ElementIdTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Traits/ElementIdTrait.php',
+        'Khill\\Lavacharts\\Support\\Traits\\HasOptionsTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Traits/HasOptionsTrait.php',
+        'Khill\\Lavacharts\\Support\\Traits\\MaterialRenderableTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Traits/MaterialRenderableTrait.php',
+        'Khill\\Lavacharts\\Support\\Traits\\ParameterValidatorsTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Traits/ParameterValidatorsTrait.php',
+        'Khill\\Lavacharts\\Support\\Traits\\PngRenderableTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Traits/PngRenderableTrait.php',
+        'Khill\\Lavacharts\\Support\\Traits\\RenderableTrait' => __DIR__ . '/..' . '/khill/lavacharts/src/Support/Traits/RenderableTrait.php',
+        'Khill\\Lavacharts\\Symfony\\Bundle\\LavachartsBundle' => __DIR__ . '/..' . '/khill/lavacharts/src/Symfony/Bundle/LavachartsBundle.php',
+        'Khill\\Lavacharts\\Symfony\\Bundle\\Twig\\LavachartsExtension' => __DIR__ . '/..' . '/khill/lavacharts/src/Symfony/Bundle/Twig/LavachartsExtension.php',
+        'Khill\\Lavacharts\\Values\\ElementId' => __DIR__ . '/..' . '/khill/lavacharts/src/Values/ElementId.php',
+        'Khill\\Lavacharts\\Values\\Label' => __DIR__ . '/..' . '/khill/lavacharts/src/Values/Label.php',
+        'Khill\\Lavacharts\\Values\\Role' => __DIR__ . '/..' . '/khill/lavacharts/src/Values/Role.php',
+        'Khill\\Lavacharts\\Values\\StringValue' => __DIR__ . '/..' . '/khill/lavacharts/src/Values/StringValue.php',
+        'Khill\\Lavacharts\\Volcano' => __DIR__ . '/..' . '/khill/lavacharts/src/Volcano.php',
         'LaravelLegends\\PtBrValidator\\Validator' => __DIR__ . '/..' . '/laravellegends/pt-br-validator/src/pt-br-validator/Validator.php',
         'LaravelLegends\\PtBrValidator\\ValidatorProvider' => __DIR__ . '/..' . '/laravellegends/pt-br-validator/src/pt-br-validator/ValidatorProvider.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
@@ -4504,6 +4632,9 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'UpdateHelper\\ComposerPlugin' => __DIR__ . '/..' . '/kylekatarnls/update-helper/src/UpdateHelper/ComposerPlugin.php',
+        'UpdateHelper\\UpdateHelper' => __DIR__ . '/..' . '/kylekatarnls/update-helper/src/UpdateHelper/UpdateHelper.php',
+        'UpdateHelper\\UpdateHelperInterface' => __DIR__ . '/..' . '/kylekatarnls/update-helper/src/UpdateHelper/UpdateHelperInterface.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',
@@ -4601,6 +4732,7 @@ class ComposerStaticInite0afc4de424875e245631fed071aea7f
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite0afc4de424875e245631fed071aea7f::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite0afc4de424875e245631fed071aea7f::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInite0afc4de424875e245631fed071aea7f::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInite0afc4de424875e245631fed071aea7f::$prefixesPsr0;
             $loader->classMap = ComposerStaticInite0afc4de424875e245631fed071aea7f::$classMap;
 

@@ -10,14 +10,25 @@
 
 <div class="row">
 
-	<div class="col-sm-6">
-			{!! $nao_conformidade_chart->container() !!}
+
+	<div id="ncChart-div" >
+	{!! $chart->container() !!}
 	</div> 
+
+
+	<div id="imediataChart-div" style="height: 300px;">
+			
+	</div>
+
+
+	<div id="stocks-div" style="height: 300px;">
+			
+	</div>
 	   
 
 </div>
 
-{!! $nao_conformidade_chart->script() !!}
+{!! $chart->script() !!}
 
 @endsection
 

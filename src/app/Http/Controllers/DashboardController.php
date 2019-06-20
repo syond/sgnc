@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Corretiva;
 use Illuminate\Http\Request;
 use App\NaoConformidade;
+use App\Corretiva;
+use App\Imediata;
 use App\Charts\NaoConformidadeChart;
+use Khill\Lavacharts\Lavacharts;
 use DB;
 
 class DashboardController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,7 +20,98 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $nc = NaoConformidade::all()->count();
+        
+        $chart = new NaoConformidadeChart();
+        $chart->labels(['Não Conformidade', 'Imediata', 'Corretiva']);
+        $chart->dataset('Quantidade', 'bar', [1, 2, 3]);
+        
+        
+        
+        //$ncChart = $this->ncChart();
 
+        //$imediataChart = $this->imediataChart();
+
+        return view('dashboard', compact('chart'));
+    }
+
+
+
+    public function ncChart()
+    {
+        $ncChart = new LavaCharts();
+
+        $data = $ncChart->DataTable();
+
+        $data->addColumns([
+            ['date', 'Day of Month'],
+            ['number', 'Projected'],
+            ['number', 'Official']
+        ]);
+
+        // Random Data For Example
+        for ($a = 1; $a < 30; $a++) {
+            $rowData = [
+            "2017-4-$a", rand(800,1000), rand(800,1000)
+            ];
+
+            $data->addRow($rowData);
+        }
+
+
+        $ncChart->LineChart('Nc', $data, [
+            'title' => 'Não Conformidades',
+            'elementId' => 'ncChart-div',
+            'animation' => [
+                'startup' => true,
+                'easing' => 'inAndOut'
+            ],
+            'colors' => ['blue', '#F4C1D8']
+        ]);
+
+        return $ncChart;
+    }
+
+
+
+
+    public function imediataChart()
+    {
+        $imediataChart = new LavaCharts();
+
+        $data = $imediataChart->DataTable();
+
+        $data->addColumns([
+            ['date', 'Day of Month'],
+            ['number', 'Projected'],
+            ['number', 'Official']
+        ]);
+
+        // Random Data For Example
+        for ($a = 1; $a < 30; $a++) {
+            $rowData = [
+            "2017-4-$a", rand(800,1000), rand(800,1000)
+            ];
+
+            $data->addRow($rowData);
+        }
+
+
+        $imediataChart->ColumnChart('Imediata', $data, [
+            'title' => 'Imediatas',
+            'elementId' => 'imediataChart-div',
+            'animation' => [
+                'startup' => true,
+                'easing' => 'inAndOut'
+            ],
+            'colors' => ['blue', '#F4C1D8']
+        ]);
+
+        return $imediataChart;
+    }
+    
+
+/***
         $dados = NaoConformidade::selectRaw('COUNT(*) as count, YEAR(created_at) ano, MONTH(created_at) mes')
         ->groupBy('ano', 'mes')
         ->get();
@@ -37,6 +131,8 @@ class DashboardController extends Controller
 
 
         return view('dashboard', compact('nao_conformidade_chart'));
-    }
+
+ ******/
+    
     
 }
