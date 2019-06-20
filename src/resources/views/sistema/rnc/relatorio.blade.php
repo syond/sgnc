@@ -1,3 +1,5 @@
+<title>RNC</title>
+
 <style style="text/css">
 
     .table { margin: 0px auto; }
@@ -29,11 +31,9 @@
         <tr>
             <th scope="col">Cod.</th>
             <th scope="col">Data</th>
-            <th scope="col">Nome</th>
+            <th scope="col">Não Conformidade</th>
             <th scope="col">Ônibus</th>
             <th scope="col">Equipamento</th>
-            <th scope="col">Cod.Imediata</th>
-            <th scope="col">Cod.Corretiva</th>
             <th scope="col">Técnico</th>
         </tr>
     </thead>        
@@ -45,21 +45,6 @@
                 <td>{{ $value->nome }}</td>
                 <td>{{ $value->equipamento->onibus->numero }}</td>
                 <td>{{ $value->equipamento->serial }}</td>
-
-                @if($value->imediata == null)
-                    <td></td>
-                    <td></td>
-                @else
-
-                    <td>{{ $value->imediata->id }}</td>
-                    @if($value->imediata->corretiva == null)
-                        <td></td>
-                    @else
-                        <td>{{ $value->imediata->corretiva->id }}</td>
-                    @endif
-                    
-                @endif
-
                 <td>{{ $value->funcionario->nome }}</td>
             </tr>
         @endforeach
