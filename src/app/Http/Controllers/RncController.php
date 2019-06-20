@@ -15,6 +15,7 @@ use App\NaoConformidade;
 use App\Onibus;
 use App\Setor;
 use App\Rnc;
+use PDF;
 use Auth;
 
 class RncController extends Controller
@@ -23,35 +24,9 @@ class RncController extends Controller
     {
         $rnc = Rnc::listarTodos(5);
 
-
-       
-        //dd($tecnico = Rnc::listarTecnicoDoRelatorioPeloId());
-        /* dd($supervisor = Rnc::listarSupervisorDoRelatorioPeloId()
-                ->filter(function($sup){
-                            return $sup->pin != '';})
-                ->where('nivel', 1)); */
-
-        //para a filtragem por técnico
-        $funcionarios = Funcionario::listarTodos();
-
-        return view('sistema.rnc.index', compact('rnc', 'funcionarios'));
+        return view('sistema.rnc.index', compact('rnc'));
     }
 
-    public function relatorioFuncionarioEmpresas()
-    {
-        //captura id do funcionário logado
-        $funcionario_id = Auth::id();
-        
-        //encontra o usuário no banco e retorna o primeiro registro ( usei first() para não retornar como array )
-        $funcionario = Funcionario::where('id', $funcionario_id)->get()->first();  
-        //Outra forma de fazer (Não funcionou direito) -> $funcionario = Funcionario::find($funcionario_id)->get()->first();  
-
-        //retorna todas as empresas cadastradas por esse usuário
-        $empresa = $funcionario->empresa;
-        
-        //retorna para a view anterior com a variável $funcionario disponível para uso na view
-        return back()->compact('funcionario');
-    }
 
     public function create()
     {
@@ -68,6 +43,7 @@ class RncController extends Controller
         $funcionario_id = Auth::id();
         
         $dados['funcionario_id'] = $funcionario_id;
+        $dados['desativado'] = 1;
 
         Rnc::create($dados);
 
@@ -75,22 +51,28 @@ class RncController extends Controller
     }
 
 
-    public function gerarRelatorio($id)
+    public function gerarPdf($id)
     {
         $rnc = Rnc::find($id);
 
-        $de_data = Rnc::select('de_data')->where('id', $rnc->id)->first()->de_data;
-        $ate_data = Rnc::select('ate_data')->where('id', $rnc->id)->first()->ate_data;
-        $setor = Rnc::select('setor_id')->where('id', $rnc->id)->first()->setor_id;
+        $de_data    = Rnc::select('de_data')->where('id', $rnc->id)->first()->de_data;
+        $ate_data   = Rnc::select('ate_data')->where('id', $rnc->id)->first()->ate_data;
+        $setor      = Rnc::select('setor_id')->where('id', $rnc->id)->first()->setor_id;
 
         $nao_conformidades = NaoConformidade::where('setor_id', $setor)->whereBetween('created_at', [$de_data, $ate_data])->get();
 
         $qtd_nc = count($nao_conformidades);
 
-        $dados_nc = NaoConformidade::where('setor_id', $setor)->first();
-        $dados_rnc = Rnc::find($id);
+        $dados_nc   = NaoConformidade::where('setor_id', $setor)->first();
+        $dados_rnc  = Rnc::find($id);
 
-        return view('sistema.rnc.relatorio', compact('nao_conformidades', 'dados_nc', 'dados_rnc', 'qtd_nc'));
+        $pdf = PDF::loadView('sistema.rnc.relatorio', compact('nao_conformidades', 'dados_nc', 'dados_rnc', 'qtd_nc'));
+
+        $empresa        = $dados_nc->equipamento->onibus->empresa->nome_fantasia;
+        $setor          = $dados_nc->setor->nome;
+        $data_geracao   = \Carbon\Carbon::parse($dados_rnc->created_at)->format('d/m/Y');
+
+        return $pdf->stream($empresa . '_' . $setor . '_' . $data_geracao . '.pdf');
     }
 
 

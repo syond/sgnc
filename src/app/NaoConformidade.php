@@ -66,9 +66,9 @@ class NaoConformidade extends Model
     } */
 
 
-    public static function listarTodos($paginate)
+    public static function listarTodos()
     {
-        return NaoConformidade::orderBy('created_at', 'DESC')->paginate($paginate);
+        return NaoConformidade::all();
     }
 
     

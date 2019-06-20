@@ -70,7 +70,7 @@
     
 </div>       
 <hr>
-<table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+<table id="nao_conformidades_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
     <thead class="thead-dark">
         <div class="">
             <h4>Ações Cadastradas</h4>
@@ -88,7 +88,7 @@
 
         <tr>
             <td>{{ $value->id }}</td>
-            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_criacao="{{ \Carbon\Carbon::parse($value->created_at)->format('d/m/Y') }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
+            <td id="dados" data-toggle="modal" data-target="#exampleModal" data-empresa="{{ $value->equipamento->onibus->empresa->nome_fantasia }}" data-setor="{{ $value->setor->nome }}" data-serial="{{ $value->equipamento->serial }}" data-onibus="{{ $value->equipamento->onibus->numero }}" data-descricao="{{ $value->descricao }}" data-data_de_criacao="{{ \Carbon\Carbon::parse($value->created_at)->format('d/m/Y') }}" data-nome="{{ $value->nome }}" data-id="{{ $value->id }}">{{ $value->nome }}</td>
             <td>{{ $value->funcionario->nome }}</td>
 
             <td>
@@ -123,6 +123,10 @@
                             <input disabled type="text"  id="data_de_criacao" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label for="empresa" class="col-form-label">Empresa</label>
+                            <input disabled type="text" id="empresa" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label for="setor" class="col-form-label">Setor</label>
                             <input disabled type="text" id="setor" class="form-control">
                         </div>
@@ -155,11 +159,21 @@
     </tbody>
 </table>
 <div class="text-center">
-    {{ $nao_conformidades->links() }}
+
 </div>
 
 
 <script>
+
+
+$(document).ready( function () {
+    $('#nao_conformidades_table').DataTable({
+        "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+            }
+    });
+} );
+
 
 $(document).ready(function(){
   $("#filtrar").click(function(){
@@ -205,6 +219,7 @@ $(document).ready(function() {
         var nome                = button.data('nome')
         var data_de_criacao     = button.data('data_de_criacao')
         var onibus              = button.data('onibus')
+        var empresa             = button.data('empresa')
         var serial              = button.data('serial')
         var descricao           = button.data('descricao')
         var setor               = button.data('setor')
@@ -218,6 +233,7 @@ $(document).ready(function() {
         modal.find('.modal-body #data_de_criacao').val(data_de_criacao)
         modal.find('.modal-body #onibus').val(onibus)
         modal.find('.modal-body #serial').val(serial)
+        modal.find('.modal-body #empresa').val(empresa)
         modal.find('.modal-body #descricao').val(descricao)
         modal.find('.modal-body #setor').val(setor)
 

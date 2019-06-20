@@ -12,6 +12,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type='text/css'> 
 <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
 <!-- Mainly scripts -->
 <script src="{{ asset('js/jquery.min.js') }}"> </script>
 <script src="{{ asset('js/jquery.metisMenu.js') }}"></script>
@@ -23,6 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('js/Chart.min.js') }}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 
 <script>

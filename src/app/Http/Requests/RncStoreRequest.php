@@ -20,6 +20,7 @@ class RncStoreRequest extends FormRequest
             'setor_id'          => 'required',
             'de_data'           => 'required',
             'ate_data'          => 'required',
+            'ativo'             => '',
             'funcionario_id'    => 'required,' . $this->imediata,
         ];
     }

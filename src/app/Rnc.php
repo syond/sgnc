@@ -19,6 +19,7 @@ class Rnc extends Model
         'funcionario_id',
         'de_data',
         'ate_data',
+        'desativado',
         
     ];
 

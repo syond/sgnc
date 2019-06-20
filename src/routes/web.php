@@ -58,7 +58,7 @@ Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middlewa
 
 Route::get ('rnc', 'RncController@index')->name('rnc');
 Route::get ('rnc/search', 'RncController@search')->name('rnc.search');
-Route::get ('rnc/{id}/relatorio', 'RncController@gerarRelatorio')->name('rnc.relatorio');
+Route::get ('rnc/{id}/relatorio', 'RncController@gerarPdf')->name('rnc.relatorio');
 Route::get ('rnc/json-setor', 'RncController@setorSelect');
 Route::resource ('rnc', 'RncController')->middleware('auth');
 
@@ -90,3 +90,12 @@ Route::get ('tecnico/acao-imediata/json-setor', 'ImediataController@setorSelect'
 Route::get ('tecnico/acao-imediata/json-nao-conformidade', 'ImediataController@naoConformidadeSelect');
 Route::get ('tecnico/acao-imediata/live-select', 'ImediataController@liveSelect')->name('acao-imediata.liveSelect');
 Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');
+
+
+Route::get('/pdf', function(){
+    $pdf = App::make('dompdf.wrapper');
+
+    $pdf->loadHTML('<h1>SGNC</h1>');
+
+    return $pdf->stream();
+});
