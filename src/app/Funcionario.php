@@ -47,41 +47,28 @@ class Funcionario extends Authenticatable
   }
 
 
-  //Função HASH da senha
-  public function setPasswordAttribute($password){
-
-      try {
-        $this->attributes['password'] = Hash::make($password);
-
-      } catch (Exception $e) {
-        $e->getMessage();
-      }
-    
+  public static function buscarFuncionarioCadastrado($search, $paginate)
+  {
+    return Funcionario::where('matricula', 'like', '%'.$search.'%')
+                      ->orWhere('nome', 'like', '%'.$search.'%')
+                      ->orWhere('email', 'like', '%'.$search.'%')
+                      ->paginate($paginate);
   }
 
 
-    public static function buscarFuncionarioCadastrado($search, $paginate)
-    {
-        return Funcionario::where('matricula', 'like', '%'.$search.'%')
-                        ->orWhere('nome', 'like', '%'.$search.'%')
-                        ->orWhere('email', 'like', '%'.$search.'%')
-                        ->paginate($paginate);
-    }
+  public static function listarTodosOsTecnicos()
+  {
+    return Funcionario::where('nivel', 0)->get();
+  }
 
+  public static function listarTodosOsAdministradores()
+  {
+    return Funcionario::where('nivel', 1)->get();
+  }
 
-    public static function listarTodosOsTecnicos()
-    {
-        return Funcionario::where('nivel', 0)->get();
-    }
-
-    public static function listarTodosOsAdministradores()
-    {
-        return Funcionario::where('nivel', 1)->get();
-    }
-
-    public static function listarTodos()
-    {
-        return Funcionario::all();
-    }
+  public static function listarTodos()
+  {
+    return Funcionario::all();
+  }
   
 }

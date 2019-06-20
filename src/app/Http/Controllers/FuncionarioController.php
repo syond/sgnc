@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
 
 //importando model
 use App\Funcionario;
@@ -69,6 +70,10 @@ class FuncionarioController extends Controller
     {
 
         $dados = $request->validated();
+
+        $password = $request->get('password');
+
+        $dados['password'] = Hash::make($password);
           
         Funcionario::create($dados);
 
