@@ -9,11 +9,6 @@
 <hr>
 
 <div class="row">
-
-
-	<div id="nc" class="col-md-6">
-		{!! $ncPorMes->container() !!}
-	</div>
 	
 
 	<div id="total" class="col-md-12">
@@ -29,7 +24,6 @@
 </div>
 
 {!! $totalAcoes->script() !!}
-{!! $ncPorMes->script() !!}
 
 @endsection
 

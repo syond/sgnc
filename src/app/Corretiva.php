@@ -16,6 +16,8 @@ class Corretiva extends Model
         'descricao',
         'funcionario_id',
         'imediata_id',
+        'equipamento_id',
+        'setor_id',
     ];
 
     protected $hidden     = [

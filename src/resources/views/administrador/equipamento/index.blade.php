@@ -28,6 +28,7 @@
             <th scope="col">Serial</th>
             <th scope="col">Ano</th>
             <th scope="col">Ônibus</th>
+            <th scope="col">Empresa</th>
             <th scope="col">Ação</th>
         </tr>
     </thead>        
@@ -39,6 +40,7 @@
                 <td>{{ $value->serial }}</td>
                 <td>{{ $value->ano }}</td>
                 <td>{{ $value->numero }}</td>
+                <td>{{ $value->empresa->nome_fantasia }}</td>
                         
                         
 

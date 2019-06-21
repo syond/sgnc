@@ -35,24 +35,6 @@ class FuncionarioController extends Controller
     }
 
 
-    public function search(Request $request)
-    {
-        $search = $request->get('search');
-
-        $funcionario = Funcionario::buscarFuncionarioCadastrado($search, 5);
-        
-        
-        if(count($funcionario) > 0)
-        {
-            return view('funcionario.index', compact('funcionario'));
-        }
-            else
-            {
-                return view('administrador.funcionario.index', compact('funcionario'))->withErrors("Nenhum registro encontrado.");
-            } 
-    }
-
-
     /**
      * Função para o <SELECT> dinâmico no campo SETOR
      */
@@ -72,8 +54,6 @@ class FuncionarioController extends Controller
         $dados = $request->validated();
 
         $password = $request->get('password');
-
-        $dados['password'] = Hash::make($password);
           
         Funcionario::create($dados);
 

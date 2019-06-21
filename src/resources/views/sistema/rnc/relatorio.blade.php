@@ -8,6 +8,7 @@
 </style>
 
 <div class="row">
+
     <div class="col-sm-2">
         <h1>Relatório de Não Conformidade</h1>
     </div>

@@ -17,6 +17,7 @@ class Imediata extends Model
         'funcionario_id',
         'equipamento_id',
         'nao_conformidade_id',
+        'setor_id',
     ];
 
     protected $hidden     = [
