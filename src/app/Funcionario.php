@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 //importando PasswordResetEmail
 use Illuminate\Notifications\Notifiable;
 
+
 class Funcionario extends Authenticatable
 {
   use Notifiable;
@@ -45,6 +46,18 @@ class Funcionario extends Authenticatable
   {
     return $this->belongsTo(Setor::class);
   }
+
+
+
+  //Função HASH da senha
+  public function setPasswordAttribute($password){
+    try {
+      $this->attributes['password'] = Hash::make($password);
+    } catch (Exception $e) {
+      $e->getMessage();
+    } 
+  
+}
 
 
   public static function buscarFuncionarioCadastrado($search, $paginate)

@@ -22,7 +22,7 @@
         <li class="dropdown">
                 <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">{{ Auth::user()->nome }}<i class="caret"></i></span><img src="{{ asset('images/wo.jpg') }}"></a>
                 <ul class="dropdown-menu " role="menu">
-                  <li><a href="profile.html"><i class="fa fa-user"></i>Editar</a></li>
+                  <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i>Editar</a></li>
                   <li><a href="{{ route('logout') }}"><i class="fa fa-sign-in"></i>Logout</a></li>
                 </ul>
               </li>

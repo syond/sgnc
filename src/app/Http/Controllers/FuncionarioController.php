@@ -98,6 +98,7 @@ class FuncionarioController extends Controller
     {
         $funcionario = Funcionario::find($id)->update($request->all());
 
+        
         return redirect()->route('funcionario.index')->with('success', 'Funcionario atualizado com sucesso!');
     }
 

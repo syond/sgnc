@@ -31,6 +31,12 @@ Route::get ('/dashboard', 'DashboardController@index')->middleware('auth');
 
 
 /**
+ * Rota PERFIL só é acessada após o login
+ *  */
+Route::get ('/perfil', 'PerfilController@index')->middleware('auth')->name('perfil');
+
+
+/**
  * Rotas do menu ADMINISTRADOR
  *  */
 

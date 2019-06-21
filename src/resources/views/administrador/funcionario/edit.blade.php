@@ -38,12 +38,16 @@
       <div class="form-group">
                 <label for="empresa_id">Empresa</label>
                 <select name="empresa_id" id="empresa_id" class="form-control">
+
+                <option></option>
+                
                 @if($funcionario->empresa == null)
                   <option value="0" disabled selected>Selecione uma Empresa</option>
                   @foreach($empresas as $empresa)
                     <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
                   @endforeach
                 @else
+
                   <option value="0" disabled selected>{{ $funcionario->empresa->nome_fantasia }}</option>
                   @foreach($empresas as $empresa)
                     <option value="{{ $empresa->id }}">{{ $empresa->nome_fantasia }}</option>
@@ -63,11 +67,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="senha">Senha antiga</label>
-        <input type="password" class="form-control" name="password" >
-      </div>
-      <div class="form-group">
-        <label for="senha">Nova senha</label>
+        <label for="senha">Senha</label>
         <input type="password" class="form-control" name="password" >
       </div>
     </div>
@@ -87,6 +87,8 @@
               {
                 
                 $('#setor_id').empty();
+
+                $('#setor_id').append('<option></option>');
 
                 $.each(data, function(index, setorObj)
                 {

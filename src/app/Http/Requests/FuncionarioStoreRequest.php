@@ -25,7 +25,7 @@ class FuncionarioStoreRequest extends FormRequest
     {
         return [
             'matricula'     =>  'required|numeric|unique:funcionarios,matricula,' . $this->funcionario,
-            'password'      =>  'required|min:6|max:8,' . $this->funcionario,
+            'password'      =>  'sometimes|required|min:6|max:8,' . $this->funcionario,
             'nome'          =>  'required|min:3',
             'email'         =>  'required|email',
             'foto'          =>  'nullable',
