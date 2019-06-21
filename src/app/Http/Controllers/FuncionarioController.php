@@ -94,9 +94,22 @@ class FuncionarioController extends Controller
     }
 
 
-    public function update(FuncionarioStoreRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $funcionario = Funcionario::find($id)->update($request->all());
+        $funcionario = Funcionario::find($id);
+
+        $this->validate($request,[
+            'matricula'     =>  'required|numeric|unique:funcionarios,matricula,' . $funcionario->id,
+            'password'      =>  'sometimes|min:6|max:8',
+            'nome'          =>  'required|min:3',
+            'email'         =>  'required|email',
+            'foto'          =>  'nullable',
+            'nivel'         =>  'required',
+            'setor_id'      =>  '',
+            'empresa_id'    =>  '',
+        ]);
+
+        dd($request->all());
 
         
         return redirect()->route('funcionario.index')->with('success', 'Funcionario atualizado com sucesso!');

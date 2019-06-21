@@ -22,15 +22,9 @@
             <button class="btn btn-success btn-lg">Cadastrar</button>
         </form>
     </div>
-    <div class="col-sm-6">
-        <form class="navbar-left-right" action="{{ route('rnc.search') }}">
-            <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
-            <input type="submit" value="" class="fa fa-search">
-        </form>  
-    </div>
 </div>       
 <hr>
-<table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+<table id="rnc_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
     <thead class="thead-dark">
         <div class="">
             <h4>RNC's Cadastrados</h4>
@@ -127,6 +121,17 @@
 
 
 <script>
+
+
+
+$(document).ready( function () {
+        $('#rnc_table').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                }
+        });
+    } );
+
 
     //INICIO SCRIPT MODAL - LISTAR DADOS
     $('#exampleModal').on('show.bs.modal', function (event) {

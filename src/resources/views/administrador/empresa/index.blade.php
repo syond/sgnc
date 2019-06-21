@@ -18,16 +18,9 @@
                 </form>
             </div>
 
-
-            <div class="col-sm-6">
-                <form class="navbar-left-right" action="{{ route('empresa.search') }}">
-                    <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
-                    <input type="submit" value="" class="fa fa-search">
-                </form>  
-            </div>
         </div>        
         <hr>
-        <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <table id="empresa_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
             <thead class="thead-dark">
                 <div class="">
                     <h4>Empresas Cadastradas</h4>
@@ -70,6 +63,19 @@
   $(document).ready(function(){
         $("#cnpj").mask("00.000.000/0000-00")
   })
+
+
+
+    $(document).ready( function () {
+        $('#empresa_table').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                }
+        });
+    } );
+
+
+
 
 </script>
 @endsection

@@ -23,7 +23,7 @@ class FuncionarioStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return[
             'matricula'     =>  'required|numeric|unique:funcionarios,matricula,' . $this->funcionario,
             'password'      =>  'sometimes|required|min:6|max:8,' . $this->funcionario,
             'nome'          =>  'required|min:3',

@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 //importando PasswordResetEmail
 use Illuminate\Notifications\Notifiable;
 
+use App\Notifications\MailResetPasswordNotification;
+
 
 class Funcionario extends Authenticatable
 {
@@ -29,6 +31,7 @@ class Funcionario extends Authenticatable
     'setor_id',
     'empresa_id',
   ];
+  
 
   protected $hidden     = [
     'password', 
@@ -47,6 +50,11 @@ class Funcionario extends Authenticatable
     return $this->belongsTo(Setor::class);
   }
 
+
+  public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MailResetPasswordNotification($token));
+    }
 
 
   //Função HASH da senha

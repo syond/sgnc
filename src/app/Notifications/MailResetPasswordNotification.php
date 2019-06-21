@@ -16,9 +16,9 @@ class MailResetPasswordNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -40,14 +40,15 @@ class MailResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $link = url( "/password/reset/?token=" . $this->token );
+        $link = url( "/password/reset/" . $this->token . '?email=' .  $notifiable->email );
 
         return (new MailMessage)
                     ->from('sistema@sgnc.com')
-                    ->subject('Reset de senha')
-                    ->line('Titulo.')
-                    ->action('Reset de senha', $link)
-                    ->line('Thank you for using our application!');
+                    ->subject('Reset de senha - SGNC')
+                    ->greeting('Olá ' . $notifiable->nome . '!')
+                    ->line('Esta é uma solicitação para reset de senha. Clique no botão abaixo para resetar sua senha ;)')
+                    ->action('Resetar senha', $link)
+                    ->line('Obrigado por usar o SGNC!');
     }
 
     /**

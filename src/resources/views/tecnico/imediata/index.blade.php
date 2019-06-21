@@ -22,45 +22,14 @@
 <div class="row">
 
     <div class="col-sm-4">
-		<label for="tecnico_responsavel">Técnico Responsável</label>
-		<select name="tecnico_responsavel" id="tecnico_responsavel" class="form-control">
-			<option value="" disabled selected></option>
-            @foreach($funcionarios as $value)
-        	<option value="{{ $value->id }}">{{ $value->nome }}</option>
-            @endforeach
-        </select>
-    </div>
-
-
-    <div class="col-sm-4">
-		<label for="onibus">Ônibus</label>
-		<select name="onibus" id="onibus" class="form-control">
-            <option value="" disabled selected></option>
-            @foreach($onibus as $value)
-        	    <option value="{{ $value->id }}">{{ $value->numero }}</option>
-            @endforeach
-        </select>
-    </div>
-
-    <div class="col-sm-4">
-        <label for="data">Data</label>
-        <input type="date" name="data" id="data" class="form-control">
-    </div>
-
-    <div class="col-sm-4">
         <form class="" action="{{ route('acao-imediata.create') }}">
             <button class="btn btn-success btn-lg">Cadastrar</button>
         </form>
     </div>
-    <div class="col-sm-4">
-        <form class="navbar-left-right" action="{{ route('acao-imediata.search') }}">
-            <input type="text"  value="Buscar..." name="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buscar...';}">
-            <input type="submit" value="" class="fa fa-search">
-        </form>  
-    </div>
+
 </div>       
 <hr>
-<table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+<table id="imediata_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
     <thead class="thead-dark">
         <div class="">
             <h4>Ações Cadastradas</h4>
@@ -156,6 +125,20 @@
 
 
 <script>
+
+
+
+
+    $(document).ready( function () {
+        $('#imediata_table').DataTable({
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                }
+        });
+    } );
+
+
+
 
     //
     $(document).ready(function(){
