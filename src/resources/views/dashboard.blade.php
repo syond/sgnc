@@ -11,14 +11,14 @@
 <div class="row">
 
 
-	<div id="ncChart-div" >
-	{!! $chart->container() !!}
-	</div> 
-
-
-	<div id="imediataChart-div" style="height: 300px;">
-			
+	<div id="nc" class="col-md-6">
+		{!! $ncPorMes->container() !!}
 	</div>
+	
+
+	<div id="total" class="col-md-12">
+		{!! $totalAcoes->container() !!}
+	</div> 
 
 
 	<div id="stocks-div" style="height: 300px;">
@@ -28,7 +28,8 @@
 
 </div>
 
-{!! $chart->script() !!}
+{!! $totalAcoes->script() !!}
+{!! $ncPorMes->script() !!}
 
 @endsection
 

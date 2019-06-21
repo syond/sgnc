@@ -20,20 +20,74 @@ class DashboardController extends Controller
 
     public function index()
     {
+        /** GRAFICO COM TOTAL DE ACOES */
         $nc = NaoConformidade::all()->count();
+        $imediatas = Imediata::all()->count();
+        $corretivas = Corretiva::all()->count();
         
-        $chart = new NaoConformidadeChart();
-        $chart->labels(['Não Conformidade', 'Imediata', 'Corretiva']);
-        $chart->dataset('Quantidade', 'bar', [1, 2, 3]);
-        
-        
-        
-        //$ncChart = $this->ncChart();
+        $totalAcoes = new NaoConformidadeChart();
+        $totalAcoes->title('TOTAL de Ações');
+        $totalAcoes->labels(['Não Conformidade', 'Imediata', 'Corretiva']);
+        $totalAcoes->dataset('Quantidade', 'doughnut', [$nc, $imediatas, $corretivas]);
+        /** */
 
-        //$imediataChart = $this->imediataChart();
+        
+          
+        /** GRAFICO COM TOTAL DE NC POR MESES */
+        $ncPorMes = new NaoConformidadeChart();
 
-        return view('dashboard', compact('chart'));
+        $ncMeses = NaoConformidade::select('id', 'created_at')
+                        ->get()
+                        ->groupBy(function($date) {
+                            //return Carbon::parse($date->created_at)->format('Y'); // agrupos por ano
+                            return \Carbon\Carbon::parse($date->created_at)->format('m'); // agrupar por mes
+                        });
+
+
+        $ncMesesCount = [];
+        $ncMes = [];
+        $meses = [  '1'     => 'Jan', 
+                    '2'     => 'Fev',
+                    '3'     => 'Mar',
+                    '4'     => 'Abr',
+                    '5'     => 'Mai',
+                    '6'     => 'Jun',
+                    '7'     => 'Jul',
+                    '8'     => 'Ago',
+                    '9'     => 'Set',
+                    '10'    => 'Out',
+                    '11'    => 'Nov',
+                    '12'    => 'Dez', ];
+                        
+        foreach ($ncMeses as $key => $value) {
+            $ncMesesCount[(int)$key] = count($value);
+        }
+                        
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($ncMesesCount[$i])){
+                $ncMes[$i] = $ncMesesCount[$i];
+            }else{
+                $ncMes[$i] = 0;    
+            }
+        } 
+
+        $data = NaoConformidade::groupBy('created_at')
+    ->get();
+    
+
+        $ncPorMes->title('NC por mês');
+        $ncPorMes->labels($data->keys());
+        $ncPorMes->dataset('Quantidade', 'bar', $data->values());
+        /** */
+
+
+
+        return view('dashboard', compact('totalAcoes', 'ncPorMes'));
     }
+
+
+
+
 
 
 
