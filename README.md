@@ -1,6 +1,4 @@
-# sgnc
-Trabalho TCC
+# Sistema de Gerenciament de Não Conformidades
+Trabalho TCC - Universidade Estácio de Sá (Cabo Frio - 2019)
 
-Universidade Estácio de Sá Cabo Frio
-
-Projeto desenvolvido e aprovado pela banca 01/2019
+Projeto desenvolvido e aprovado pela banca.
