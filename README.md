@@ -9,10 +9,10 @@ A possibilidade de obter a solução de um problema com antecedência viabiliza 
 
 
 ## Objetivos Específicos
-- Manter funcionários autorizados a usar o sistema;
-- Manter cadastro dos Equipamento;
-- Manter cadastro da frota de ônibus;
-- Registrar não conformidades encontradas;
-- Manter as ações imediata;
-- Manter as ações Corretivas na manutenção;
+- Manter funcionário autorizado a usar o sistema;
+- Manter cadastro de equipamento;
+- Manter cadastro de ônibus;
+- Manter não conformidade;
+- Manter ação imediata;
+- Manter ação corretiva;
 - Manter relatório de não conformidade;
