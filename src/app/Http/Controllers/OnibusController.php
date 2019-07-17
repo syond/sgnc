@@ -4,82 +4,85 @@ namespace App\Http\Controllers;
 
 use App\Onibus;
 use Illuminate\Http\Request;
+use App\Http\Requests\OnibusStoreRequest;
+use App\Funcionario;
+use App\Empresa;
+use Auth;
 
 class OnibusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function index()
     {
-        //
+        $onibus = Onibus::listarJoinOnibusEmpresa(5);
+
+        return view('administrador.onibus.index', compact('onibus'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $empresas = Empresa::all();
+
+        return view('administrador.onibus.create', compact('empresas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
+        $search = $request->get('search');
+
+
+        $onibus = Onibus::buscarOnibusCadastrado($search, 5);
+        
+        
+        if(count($onibus) > 0)
+        {
+            return view('administrador.onibus.index', compact('onibus'));
+        }
+            else
+            {
+                return view('administrador.onibus.index', compact('onibus'))->withErrors("Nenhum registro encontrado.");
+            }    
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Onibus  $onibus
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Onibus $onibus)
+
+    public function store(OnibusStoreRequest $request)
     {
-        //
+        $dados = $request->validated();        
+
+        $funcionario_id = Auth::id();
+
+        $dados['funcionario_id'] = $funcionario_id;
+
+        $dados['placa'] = str_replace("-", "", $request->placa);
+        
+        Onibus::create($dados);
+
+        return redirect()->route('onibus.index')->with('success', "Ônibus cadastrado com sucesso!");
+    }
+    
+
+    public function edit($id)
+    {
+        $onibus = Onibus::find($id);
+
+        return view('administrador.onibus.edit', compact('onibus'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Onibus  $onibus
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Onibus $onibus)
+
+    public function update(OnibusStoreRequest $request, $id)
     {
-        //
+        $onibus = Onibus::find($id)->update($request->all());
+
+        return redirect()->route('onibus.index')->with('success', 'Ônibus atualizado com sucesso!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Onibus  $onibus
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Onibus $onibus)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Onibus  $onibus
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Onibus $onibus)
+    public function destroy($id)
     {
-        //
+        Onibus::find($id)->delete();
+        
+        return back()->with('success', 'Ônibus deletado com sucesso!');
     }
 }

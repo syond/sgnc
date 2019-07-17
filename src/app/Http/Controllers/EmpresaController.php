@@ -4,82 +4,104 @@ namespace App\Http\Controllers;
 
 use App\Empresa;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmpresaStoreRequest;
+use App\Funcionario;
+use Auth;
+
 
 class EmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
-    {
-        //
+    {      
+        //captura o id do usuário logado
+        $funcionario_id = Auth::id();
+
+        $empresa = Empresa::listarJoinEmpresaFuncionario(5);
+        
+        //Retorna view INDEX passando $empresa por COMPACT() para acesso nas views.
+        return view('administrador.empresa.index', compact('empresa'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        //Retorna formulário de cadastro de empresa
+        return view('administrador.empresa.create');
     }
 
+    
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Método para busca de dados cadastrados
      */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
+        //Retorna tudo que for digitado no campo de Busca
+        $search = $request->get('search');
+
+        $empresa = Empresa::buscarEmpresaCadastrada($search, 5);
+        
+        if(count($empresa) > 0)
+        {
+            return view('administrador.empresa.index', compact('empresa'));
+        }
+            else
+            {
+                return view('administrador.empresa.index', compact('empresa'))->withErrors("Nenhum registro encontrado.");
+            } 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Empresa $empresa)
+
+    public function store(EmpresaStoreRequest $request)
     {
-        //
+            $dados = $request->validated();        
+
+
+            //Implementa o atributo "funcionario_id" diretamente com o id do usuário logado
+            $dados['cnpj'] = str_replace(["/", ".", "-"], "", $request->cnpj);
+            $dados['funcionario_id'] = Auth::id();
+
+            Empresa::create($dados);
+
+            return redirect()->route('empresa.index')->with('success', "Empresa cadastrada com sucesso!");
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Empresa $empresa)
+
+    public function edit($id)
     {
-        //
+        //Query para encontrar a empresa pelo ID
+        $empresa = Empresa::find($id);
+
+        return view('administrador.empresa.edit', compact('empresa'));
+        //return redirect()->route('empresa.edit', compact('empresa'))->with('success', "Empresa editada com sucesso!");
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Empresa $empresa)
-    {
-        //
+
+    public function update(EmpresaStoreRequest $request, $id)
+    {    
+        
+        $empresa = Empresa::find($id);
+
+        /**
+         * Captura os dados preenchidos no formulário
+         * e atualiza no respectivo registro no banco.         * 
+         */   
+        $empresa->update([
+            'cnpj'          =>  str_replace(["/", ".", "-"], "", $request->input('cnpj')),
+            'nome_fantasia' =>  $request->input('nome_fantasia'),
+            'razao_social'  =>  $request->input('razao_social'),
+        ]);
+
+        return redirect()->route('empresa.index')->with('success', 'Empresa atualizada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Empresa $empresa)
+
+    public function destroy($id)
     {
-        //
+        //Query para encontrar a empresa pelo ID e deletar a mesma
+        Empresa::find($id)->delete();
+        
+        return back()->with('success', 'Empresa deletada com sucesso!');
     }
 }

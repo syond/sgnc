@@ -1,20 +1,107 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * Rota INDEX que redireciona para a View de LOGIN
+ * com middleware de autenticação e checagem se o usuário
+ * é administrador ou não.
+ *  */
+Route::get('/', function(){
 
-Route::get('/', function () {
-    return view('index');
+    return view('auth.login');
+
 });
 
-Route::get('/home', function(){
-    return view('home');
+
+/**
+ * Rota LOGOUT que redireciona para a View de LOGIN pelo método logout()
+ *  */
+Route::get('/logout', 'Auth\LoginController@logout');
+
+
+/**
+ * Rota para utilizarmos todas as Rotas do AUTH, menos as que forem passadas como FALSE
+ *  */
+Auth::routes(['register' => false]);
+
+
+/**
+ * Rota DASHBOARD só é acessada após o login
+ *  */
+Route::get ('/dashboard', 'DashboardController@index')->middleware('auth');
+
+
+/**
+ * Rota PERFIL só é acessada após o login
+ *  */
+Route::get ('/perfil', 'PerfilController@index')->middleware('auth')->name('perfil');
+
+
+/**
+ * Rotas do menu ADMINISTRADOR
+ *  */
+
+Route::get('admin/funcionario', 'FuncionarioController@index')->name('admin.funcionario');
+Route::get ('admin/funcionario/search', 'FuncionarioController@search')->name('funcionario.search');
+Route::get ('admin/funcionario/json-setor', 'FuncionarioController@setorSelect');
+Route::resource('admin/funcionario', 'FuncionarioController')->middleware('auth')->middleware('check.admin');
+
+Route::get ('admin/empresa', 'EmpresaController@index')->name('admin.empresa');
+Route::get ('admin/empresa/search', 'EmpresaController@search')->name('empresa.search');
+Route::resource ('admin/empresa', 'EmpresaController')->middleware('auth')->middleware('check.admin');
+
+Route::get ('admin/equipamento', 'EquipamentoController@index')->name('admin.equipamento');
+Route::get ('admin/equipamento/search', 'EquipamentoController@search')->name('equipamento.search');
+Route::get ('admin/equipamento/json-onibus', 'EquipamentoController@onibusSelect');
+Route::resource ('admin/equipamento', 'EquipamentoController')->middleware('auth')->middleware('check.admin');
+
+Route::get ('admin/onibus', 'OnibusController@index')->name('admin.onibus');
+Route::get ('admin/onibus/search', 'OnibusController@search')->name('onibus.search');
+Route::resource ('admin/onibus', 'OnibusController')->middleware('auth')->middleware('check.admin');
+
+Route::get ('admin/setor', 'SetorController@index')->name('admin.setor');
+Route::get ('admin/setor/search', 'SetorController@search')->name('setor.search');
+Route::resource ('admin/setor', 'SetorController')->middleware('auth')->middleware('check.admin');
+
+Route::get ('rnc', 'RncController@index')->name('rnc');
+Route::get ('rnc/search', 'RncController@search')->name('rnc.search');
+Route::get ('rnc/{id}/relatorio', 'RncController@gerarPdf')->name('rnc.relatorio');
+Route::get ('rnc/json-setor', 'RncController@setorSelect');
+Route::resource ('rnc', 'RncController')->middleware('auth');
+
+
+/**
+ * Rotas do menu TÉCNICO
+ *  */
+Route::get ('tecnico/nao-conformidade', 'NaoConformidadeController@index')->name('tecnico.naoconformidade');
+Route::get ('tecnico/nao-conformidade/search', 'NaoConformidadeController@search')->name('nao-conformidade.search');
+Route::get ('tecnico/nao-conformidade/json-onibus', 'NaoConformidadeController@onibusSelect');
+Route::get ('tecnico/nao-conformidade/json-equipamento', 'NaoConformidadeController@equipamentoSelect');
+Route::get ('tecnico/nao-conformidade/json-setor', 'NaoConformidadeController@setorSelect');
+Route::get ('tecnico/nao-conformidade/filtro','NaoConformidadeController@filtroSelect');
+Route::resource ('tecnico/nao-conformidade', 'NaoConformidadeController')->middleware('auth');
+
+Route::get ('tecnico/acao-corretiva', 'CorretivaController@index')->name('tecnico.acaocorretiva');
+Route::get ('tecnico/acao-corretiva/search', 'CorretivaController@search')->name('acao-corretiva.search');
+Route::get ('tecnico/acao-corretiva/json-onibus', 'CorretivaController@onibusSelect');
+Route::get ('tecnico/acao-corretiva/json-equipamento', 'CorretivaController@equipamentoSelect');
+Route::get ('tecnico/acao-corretiva/json-setor', 'CorretivaController@setorSelect');
+Route::get ('tecnico/acao-corretiva/json-imediata', 'CorretivaController@imediataSelect');
+Route::resource ('tecnico/acao-corretiva', 'CorretivaController')->middleware('auth');
+
+Route::get ('tecnico/acao-imediata', 'ImediataController@index')->name('tecnico.acaoimediata');
+Route::get ('tecnico/acao-imediata/search', 'ImediataController@search')->name('acao-imediata.search');
+Route::get ('tecnico/acao-imediata/json-onibus', 'ImediataController@onibusSelect');
+Route::get ('tecnico/acao-imediata/json-equipamento', 'ImediataController@equipamentoSelect');
+Route::get ('tecnico/acao-imediata/json-setor', 'ImediataController@setorSelect');
+Route::get ('tecnico/acao-imediata/json-nao-conformidade', 'ImediataController@naoConformidadeSelect');
+Route::get ('tecnico/acao-imediata/live-select', 'ImediataController@liveSelect')->name('acao-imediata.liveSelect');
+Route::resource ('tecnico/acao-imediata', 'ImediataController')->middleware('auth');
+
+
+Route::get('/pdf', function(){
+    $pdf = App::make('dompdf.wrapper');
+
+    $pdf->loadHTML('<h1>SGNC</h1>');
+
+    return $pdf->stream();
 });

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+
 class LoginController extends Controller
 {
     /*
@@ -25,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -35,5 +39,58 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Determine if the user has too many failed login attempts.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+
+    protected function hasTooManyLoginAttempts ($request)
+    {
+        $maxLoginAttempts = 2;
+        $lockoutTime = 5; // 5 minutes
+        
+        return $this->limiter()->tooManyAttempts(
+            $this->throttleKey($request), $maxLoginAttempts, $lockoutTime
+        );
+    }
+
+
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+
+    public function username()
+    {
+        return 'matricula';
+    }
+
+    protected function login(Request $request)
+    {
+        if(Auth::attempt(['matricula' => $request->matricula, 'password' => $request->password]))
+        {
+            return redirect('dashboard');
+        }
+        else
+        {
+            return redirect('/login')
+                ->with('error', 'Dados inválidos. Verifique se a matricula e senha estão corretas.'); 
+        }         
+    }
+    
+    public function logout()
+    {
+        return redirect('login')->with(Auth::logout());
     }
 }
